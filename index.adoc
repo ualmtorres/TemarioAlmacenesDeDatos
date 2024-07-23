@@ -1,0 +1,122 @@
+////
+NO CAMBIAR!!
+Codificación, idioma, tabla de contenidos, tipo de documento
+////
+:encoding: utf-8
+:lang: es
+:toc: right
+:toc-title: Tabla de contenidos
+:doctype: book
+:linkattrs:
+
+////
+Nombre y título del trabajo
+////
+# Almacenes de datos
+Grado en Ingeniería Informática. Manuel Torres <mtorres@ual.es>
+
+
+image::Docs/Tema0/images/di.png[]
+
+// NO CAMBIAR!! (Entrar en modo no numerado de apartados)
+:numbered!: 
+
+
+[abstract]
+== Resumen
+////
+COLOCA A CONTINUACION EL RESUMEN
+////
+La asignatura Almacenes de datos es una asignatura ...
+
+////
+COLOCA A CONTINUACION LOS OBJETIVOS
+////
+.Objetivos
+* Dolore irure est quis mollit adipisicing ea velit irure laboris labore exercitation in duis dolore.
+* Voluptate magna id deserunt ullamco aute exercitation adipisicing veniam proident aliqua.
+* Officia eu ipsum ullamco ipsum nisi do commodo ut nulla est anim in.
+
+// Entrar en modo numerado de apartados
+:numbered:
+
+## Introducción
+
+Culpa labore proident reprehenderit consectetur incididunt laborum nisi. Ad ea veniam do ullamco amet duis sint ut est enim duis ipsum nulla eiusmod. Quis dolor qui cupidatat magna et sit veniam ut. Pariatur mollit cupidatat amet adipisicing duis ut id exercitation enim enim aliqua deserunt dolore in. Laborum tempor ut cillum amet proident dolor nostrud et.
+
+Occaecat mollit nisi reprehenderit eu ipsum occaecat ea nisi excepteur commodo in nostrud nulla id. Dolor occaecat officia duis ex cupidatat. Amet reprehenderit culpa ullamco aliqua eiusmod ut reprehenderit deserunt pariatur eu magna. Ea exercitation in adipisicing excepteur veniam sint voluptate cupidatat amet. Enim ex labore adipisicing minim ex laboris nostrud consequat magna mollit.
+## Sobre la Guía docente
+
+### Materia con la que se relaciona en el Plan de estudios:
+
+La asignatura Almacenes de datos está directamente relacionada con las asignaturas siguientes:
+
+* ...
+* ...
+
+### Conocimientos recomendables
+
+* ...
+* ...
+
+## Contenidos
+
+* ...
+* ...
+
+## Horario de clase y de tutorías
+
+...
+	
+## Cómo seguir la asignatura
+
+* Material disponible en
+** Aula Virtual UAL
+** https://ualmtorres.github.io/AsignaturaAlmacenesDeDatos/[Repositorio GitHub]
+
+* Metodología docente
+** Clases participativas
+** Contenido práctico
+** Elaboración de trabajos prácticos
+** Actividades no presenciales: $$$
+** Tutorías
+
+## Cómo superar la asignatura
+
+...
+
+.Criterios e Instrumentos de evaluación
+****
+...
+****
+
+## Encuesta inicial
+
+...
+
+## Antes de comenzar
+
+...
+
+## Recursos
+
+### Tema 1. ,,,
+
+
+
+## Trabajo autónomo
+
+* link:Labs/Lab01/index.html[Lab 01. xxx] 
+* link:Labs/Lab02/index.html[Lab 02. xxx]
+* link:Labs/Lab03/index.html[Lab 03. xxx]
+* link:Labs/Lab04/index.html[Lab 04. xxx]
+
+.Actividades complementarias
+****
+Puedes profundizar en ... a través de estos recursos:
+
+****
+
+## Actividades no presenciales
+
+...
