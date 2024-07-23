@@ -15,8 +15,8 @@ Nombre y título del trabajo
 # Almacenes de datos
 Grado en Ingeniería Informática. Manuel Torres <mtorres@ual.es>
 
+image::images/di.png[]
 
-image::Docs/Tema0/images/di.png[]
 
 // NO CAMBIAR!! (Entrar en modo no numerado de apartados)
 :numbered!: 
@@ -27,52 +27,76 @@ image::Docs/Tema0/images/di.png[]
 ////
 COLOCA A CONTINUACION EL RESUMEN
 ////
-La asignatura Almacenes de datos es una asignatura ...
+La asignatura Almacenes de datos es una asignatura optativa de la mención de Sistemas de Información del https://www.ual.es/estudios/grados/presentacion/4015[Grado en Ingeniería Informática de la Universidad de Almería, window=_blank]. En la asignatura se estudian los conceptos y técnicas necesarios para el diseño e implementación de almacenes de datos y sistemas OLAP. Se estudian los conceptos básicos del Modelo de datos Multidimensional, las operaciones OLAP, técnicas de diseño dimensional, extensiones OLAP de SQL y el lenguaje MDX. Se desarrollan módulos ETL para la inicialización y mantenimiento de cubos OLAP.
 
 ////
 COLOCA A CONTINUACION LOS OBJETIVOS
 ////
 .Objetivos
-* Dolore irure est quis mollit adipisicing ea velit irure laboris labore exercitation in duis dolore.
-* Voluptate magna id deserunt ullamco aute exercitation adipisicing veniam proident aliqua.
-* Officia eu ipsum ullamco ipsum nisi do commodo ut nulla est anim in.
+* Conocer el papel que juegan los Sistemas OLTP y OLAP en los Sistemas de Información 
+* Conocer los conceptos básicos del Modelo de datos Multidimensional (Cubos, dimensiones, hechos, medidas) 
+* Saber utilizar las operaciones OLAP 
+* Saber utilizar técnicas de diseño dimensional (Dimensiones poco cambiantes, minidimensiones, Outriggers, Diseño de jerarquías, ...) 
+* Utilizar las extensiones OLAP de SQL y el lenguaje MDX para interactuar con cubos OLAP 
+* Desarrollar módulos ETL para la inicialización y mantenimiento decubos OLAP
 
 // Entrar en modo numerado de apartados
 :numbered:
 
 ## Introducción
 
-Culpa labore proident reprehenderit consectetur incididunt laborum nisi. Ad ea veniam do ullamco amet duis sint ut est enim duis ipsum nulla eiusmod. Quis dolor qui cupidatat magna et sit veniam ut. Pariatur mollit cupidatat amet adipisicing duis ut id exercitation enim enim aliqua deserunt dolore in. Laborum tempor ut cillum amet proident dolor nostrud et.
+Las bases de datos que soportan las operaciones de una organización se denominan bases de datos operacionales o transaccionales (OLTP). Estas bases de datos están optimizadas para soportar operaciones de inserción, actualización y borrado de datos. Sin embargo, estas bases de datos no son adecuadas para soportar operaciones de análisis de datos. Para ello se utilizan los almacenes de datos (Data Warehouses) y los sistemas OLAP (On-Line Analytical Processing). Este tipo de sistemas permiten realizar análisis de datos de forma eficiente y rápida. Para la construcción de almacenes de datos y sistemas OLAP se utilizan técnicas de diseño específicas, como el modelo de datos multidimensional, se usan procesos ETL (Extracción, Transformación y Carga) para la inicialización y mantenimiento de los datos y se utilizan lenguajes específicos para realizar consultas OLAP, como el lenguaje MDX.
 
-Occaecat mollit nisi reprehenderit eu ipsum occaecat ea nisi excepteur commodo in nostrud nulla id. Dolor occaecat officia duis ex cupidatat. Amet reprehenderit culpa ullamco aliqua eiusmod ut reprehenderit deserunt pariatur eu magna. Ea exercitation in adipisicing excepteur veniam sint voluptate cupidatat amet. Enim ex labore adipisicing minim ex laboris nostrud consequat magna mollit.
 ## Sobre la Guía docente
 
 ### Materia con la que se relaciona en el Plan de estudios:
 
-La asignatura Almacenes de datos está directamente relacionada con las asignaturas siguientes:
-
-* ...
-* ...
+Gestión y análisis de la información en la organización. Esto comprende asignaturas obligatorias, como Bases de Datos, Estructuras de datos, y asignturas de la mención de Sistemas de Información, como Sistemas de Información para las organizaciones, Ingeniería de Sistema de Información, Inteligencia de Negocio, etc.
 
 ### Conocimientos recomendables
 
-* ...
-* ...
+* Diseño de bases de datos
+* SQL
 
 ## Contenidos
 
-* ...
-* ...
+### Grupo docente
+
+* Tema 1. Introduccion al Data Warehousing
+* Tema 2. El modelo de datos multidimensional
+* Tema 3. Diseño de bases de datos multidimensionales
+* Tema 4. Extensiones OLAP de SQL y el lenguaje MDX
+* Tema 5. Tendencias actules
+
+### Grupo de trabajo
+
+* Práctica 1. Construcción de cubos OLAP
+* Práctica 2. Extracción e integración de datos
+* Práctica 3. Consultas en cubos OLAP
 
 ## Horario de clase y de tutorías
 
-...
-	
+* Grupo docente: Aula 12 - Aulario III
+** Horario de clase: Miércoles de 16h a 18h
+** 13 sesiones presenciales = 26 horas.
+* Grupo de trabajo: Aula - Aulario V (Aulas de Informática)
+** Horario de clase: Miércoles de 18h a 20h
+** 10 sesiones presenciales = 20 horas.
+
+* link:Docs/PlanificacionAD.html[Planificación de la asignatura, window=_blank]
+
+Profesores:
+
+* Manuel Torres Gil
+** Tutorías: Martes y Miércoles de 10h a 13h. Solicitar cita previa
+** Despacho: 2.19.5 CITE III (2a planta)
+** email: mailto:mtorres@ual.es[mtorres@ual.es]
+
 ## Cómo seguir la asignatura
 
 * Material disponible en
 ** Aula Virtual UAL
-** https://ualmtorres.github.io/AsignaturaAlmacenesDeDatos/[Repositorio GitHub]
+** https://ualmtorres.github.io/Asignatura-Almacenes-De-Datos/[Repositorio GitHub, window=_blank]
 
 * Metodología docente
 ** Clases participativas
@@ -83,12 +107,10 @@ La asignatura Almacenes de datos está directamente relacionada con las asignatu
 
 ## Cómo superar la asignatura
 
-...
+* Completar con éxito y a tiempo todas las actividades propuestas de Trabajo autónomo en el Grupo de trabajo (70% de la nota final)
+* Examen final de contenidos teóricos (30% de la nota final)
 
-.Criterios e Instrumentos de evaluación
-****
-...
-****
+**Es necesario obtener una calificación mínima de 5/10 en cada una de las partes para superar la asignatura.**
 
 ## Encuesta inicial
 
@@ -96,27 +118,49 @@ La asignatura Almacenes de datos está directamente relacionada con las asignatu
 
 ## Antes de comenzar
 
-...
+** link:Docs/00-ConfiguracionEntorno/configuracion-entorno.html[Configuración del entorno de trabajo, window=_blank]
 
 ## Recursos
 
-### Tema 1. ,,,
+### Tema 1. Introducción al Data Warehousing
 
+* https://todo.com[Introducción al Data Warehousing - No disponible, window=_blank]
+* link:Docs/Tema01/Enlaces.html[Enlaces de interés, window=_blank]
 
+### Tema 2. El modelo de datos multidimensional
+
+* https://todo.com[El modelo de datos multidimensional - No disponible, window=_blank]
+* link:Docs/Tema02/Enlaces.html[Enlaces de interés, window=_blank]
+
+### Tema 3. Diseño de bases de datos multidimensionales
+
+* https://todo.com[Diseño de bases de datos multidimensionales - No disponible, window=_blank]
+* link:Docs/Tema03/Enlaces.html[Enlaces de interés, window=_blank]
+
+### Tema 4. Extensiones OLAP de SQL y el lenguaje MDX
+
+* https://todo.com[Extensiones OLAP de SQL y el lenguaje MDX - No disponible, window=_blank]
+* link:Docs/Tema04/Enlaces.html[Enlaces de interés, window=_blank]
+
+### Tema 5. Tendencias actuales
+
+* https://todo.com[Tendencias actuales - No disponible, window=_blank]
+* link:Docs/Tema05/Enlaces.html[Enlaces de interés, window=_blank]
 
 ## Trabajo autónomo
 
-* link:Labs/Lab01/index.html[Lab 01. xxx] 
-* link:Labs/Lab02/index.html[Lab 02. xxx]
-* link:Labs/Lab03/index.html[Lab 03. xxx]
-* link:Labs/Lab04/index.html[Lab 04. xxx]
+* link:Labs/Lab01/index.html[Lab 01. xxx, window=_blank] 
+* link:Labs/Lab02/index.html[Lab 02. xxx, window=_blank]
+* link:Labs/Lab03/index.html[Lab 03. xxx, window=_blank]
+* link:Labs/Lab04/index.html[Lab 04. xxx, window=_blank]
 
 .Actividades complementarias
 ****
-Puedes profundizar en ... a través de estos recursos:
+Puedes profundizar en contenidos de la asignatura a través de estos recursos:
 
+* https://todo.com[No disponible, window=_blank]
 ****
 
 ## Actividades no presenciales
 
-...
+* https://todo.com[No disponible, window=_blank]

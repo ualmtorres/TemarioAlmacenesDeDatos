@@ -1,0 +1,37 @@
+////
+NO CAMBIAR!!
+Codificación, idioma, tabla de contenidos, tipo de documento
+////
+:encoding: utf-8
+:lang: es
+:toc: right
+:toc-title: Tabla de contenidos
+:doctype: book
+:linkattrs:
+
+////
+Nombre y título del trabajo
+////
+# Planificación  de la asignatura
+Almacenes de datos - Grado en Ingeniería Informática. Manuel Torres <mtorres@ual.es>
+
+image::../images/di.png[]
+
+## Grupo docente
+
+[width="100%",options="header"]
+|====================
+| Sesión | Contenido | Enlace 
+| 01 | xxx | https://todo.com[Enlace no disponible]
+| 02 | xxx | https://todo.com[Enlace no disponible]
+|====================
+
+## Grupo de trabajo
+
+[width="100%",options="header"]
+|====================
+| Sesión | Contenido | Enlace 
+| 01 | xxx | https://todo.com[Enlace no disponible]
+| 02 | xxx | https://todo.com[Enlace no disponible]
+|====================
+
