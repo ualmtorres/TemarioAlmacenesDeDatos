@@ -120,7 +120,8 @@ La tecnología de almacenamiento en data lakes comenzó con el Apache Hadoop Dis
 
 Los datos en un data lake se almacenan en su formato natural (o bruto), lo que significa que pueden ir desde el sistema fuente al data lake sin ser transformados a otro formato. Estos archivos pueden contener datos estructurados (como datos de bases de datos relacionales), semi-estructurados (como archivos CSV, registros, XML o JSON) o no estructurados (como correos electrónicos, documentos y PDFs). También pueden incluir datos binarios (como imágenes, audio y video).
 
-image::../images/data-lake.png[]
+
+image::../../images/data-lake.png[]
 
 Los data lakes surgieron como la solución a todos los problemas asociados con los almacenes de datos relacionales, como el alto costo, la escalabilidad limitada, el bajo rendimiento, la sobrecarga en la preparación de datos y el soporte limitado para tipos de datos complejos. Empresas que vendían Hadoop y data lakes, como Cloudera, Hortonworks y MapR, los promocionaron como si estuvieran llenos de unicornios y arcoíris que copiarían y limpiarían datos, haciéndolos disponibles para los usuarios finales con facilidad mágica. Aseguraban que los data lakes podrían reemplazar completamente a los almacenes de datos relacionales, adoptando un enfoque de "una tecnología para hacerlo todo".
 
@@ -142,7 +143,7 @@ Alrededor de 2011, muchas empresas comenzaron a construir arquitecturas que comb
 
 Al integrar ambos, el almacén de datos moderno (MDW) combina la capacidad de los data lakes para manejar datos en su formato bruto y la robustez de los almacenes de datos relacionales para realizar análisis complejos y mantener la calidad y la integridad de los datos. Esto permite una solución más completa y flexible para el almacenamiento y análisis de datos.
 
-image::../images/mdw.png[]
+image::../../images/mdw.png[]
 
 ### Fábricas de datos
 
@@ -150,7 +151,7 @@ Las fábricas de datos comenzaron a aparecer alrededor de 2016. La arquitectura 
 
 Una fábrica de datos integra y orquesta datos a través de múltiples entornos y plataformas, proporcionando una capa unificada de gestión de datos que abarca tanto datos estructurados como no estructurados. Esta arquitectura permite una mejor visibilidad, gobernanza y accesibilidad de los datos a lo largo de toda la organización, facilitando la integración de datos provenientes de diversas fuentes y la aplicación de políticas de seguridad y privacidad en un entorno cada vez más complejo.
 
-image::../images/data-fabric.png[]
+image::../../images/data-fabric.png[]
 
 ### Data lakehouses
 
@@ -158,13 +159,13 @@ El término _data lakehouse_ es una combinación de data lake y data warehouse. 
 
 Pero si dijimos que los data lakes adoptaron este mismo enfoque cuando aparecieron por primera vez, ¡y fracasaron estrepitosamente! ¿Qué ha cambiado? La respuesta es una capa de software de almacenamiento transaccional llamada Delta Lake que se ejecuta sobre un data lake existente y hace que funcione de manera más parecida a una base de datos relacional. Las opciones de código abierto que compiten en esta capa incluyen https://delta.io/[Delta Lake], https://iceberg.apache.org/[Apache Iceberg] y https://hudi.apache.org/[Apache Hudi].
 
-image::../images/lakehouse.png[]
+image::../../images/lakehouse.png[]
 
 ### Data mesh
 
 Las arquitecturas de almacén de datos moderno, fábrica de datos y data lakehouse implican la centralización de datos: copiar los datos operacionales en una ubicación centralizada propiedad de TI bajo una arquitectura que TI controla, donde TI luego crea los datos analíticos (lado izquierdo de la figura). Este enfoque centralizado presenta tres desafíos principales: propiedad de los datos, calidad de los datos y escalabilidad organizacional/técnica. El objetivo del data mesh es resolver estos desafíos.
 
-image::../images/data-mesh.png[]
+image::../../images/data-mesh.png[]
 
 En un data mesh, los datos se mantienen dentro de varios dominios dentro de una empresa, como fabricación, ventas y proveedores (lado derecho de la figura). Cada dominio cuenta con su propio equipo de TI que es responsable de sus datos, los limpia, crea los datos analíticos y los pone a disposición. Cada dominio también tiene su propia infraestructura de computación y almacenamiento. Esto resulta en una arquitectura descentralizada donde los datos, las personas y la infraestructura se expanden—cuantos más dominios tienes, más personas e infraestructura obtienes. El sistema puede manejar más datos, y TI deja de ser un cuello de botella.
 
@@ -174,7 +175,7 @@ Es importante entender que el data mesh es un concepto, no una tecnología. No e
 
 A continuación, se presenta un resumen comparativo de las arquitecturas de datos mencionadas:
 
-image::../images/comparative-summary.png[]
+image::../../images/comparative-summary.png[]
 
 ## Sesión de diseño de la arquitectura de datos
 
@@ -187,7 +188,7 @@ Una ADS no es un taller técnico, una capacitación técnica, una demostración 
 
 A continuación se muestra un ejemplo de agenda para una sesión de diseño de arquitectura de datos:
 
-image::../images/ads.png[]
+image::../../images/ads.png[]
 
 ## Almacenes de datos relacionales
 
@@ -329,13 +330,13 @@ Las zonas corresponden a niveles crecientes de calidad de datos:
 
 Cada una de estas capas permite gestionar los datos de manera que se pueda mejorar su calidad y utilidad a medida que se avanza a través del proceso de análisis y preparación.
 
-image::../images/data-lake-layers.png[]
+image::../../images/data-lake-layers.png[]
 
 #### Crear una estructura de carpetas lógica
 
 También es útil organizar los datos en el data lake en una estructura de carpetas lógica que refleje las diferentes capas y zonas de calidad de datos por las que van pasando los datos a medida que pasan por diferentes niveles de procesamiento. Esto facilita la gestión y el acceso a los datos, así como la implementación de políticas de gobernanza y seguridad. A continuación se muestra un ejemplo de una estructura de carpetas para un data lake organizada por capas incluyendo las fechas para una mejor organización y gestión de los datos.
 
-image::../images/data-lake-folder-structure.png[]
+image::../../images/data-lake-folder-structure.png[]
 
 [source,bash]
 /data_lake
@@ -422,13 +423,13 @@ Imaginemos un supermercado en la ciudad que cambia de bases de datos tradicional
 
 En un MDW, el data lake se utiliza para la preparación y el almacenamiento de datos, mientras que el RDW se encarga de la presentación y la seguridad.
 
-image::../images/mdw-detail.png[]
+image::../../images/mdw-detail.png[]
 
 ## Fábrica de datos
 
 La arquitectura de una fábrica de datos es una evolución de la arquitectura del almacén de datos moderno (MDW): una capa avanzada construida sobre el MDW para mejorar el acceso a los datos, la seguridad, la capacidad de descubrimiento y la disponibilidad.
 
-image::../images/data-fabric-detail.png[]
+image::../../images/data-fabric-detail.png[]
 
 Como características, destacar las siguientes:
 
