@@ -1,0 +1,25 @@
+////
+NO CAMBIAR!!
+Codificación, idioma, tabla de contenidos, tipo de documento
+////
+:encoding: utf-8
+:lang: es
+:doctype: book
+:linkattrs:
+
+////
+Nombre y título del trabajo
+////
+# Enlaces de interés sobre Introducción al Data Warehousing
+Almacenes de datos - Grado en Ingeniería Informática - UAL
+Manuel Torres <mtorres@ual.es>
+
+
+image::../../images/di.png[]
+
+## Enlaces de interés
+
+* link:https://aws.amazon.com/what-is/olap/[¿Qué es el procesamiento analítico en línea (OLAP)?, windows=_blank]
+* link:https://www.dremio.com/wiki/heterogeneous-data/[Heterogeneous Data, windows=_blank]
+* link:https://www.ibm.com/es-es/topics/etl[¿Qué es ETL?, windows=_blank]
+* link:https://learn.microsoft.com/en-us/fabric/data-warehouse/tutorial-introduction[Data warehouse tutorial introduction, windows=_blank]

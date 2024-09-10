@@ -21,17 +21,38 @@ image::../images/di.png[]
 
 [width="100%",options="header"]
 |====================
-| Sesión | Contenido | Enlace 
-| 01 | xxx | https://todo.com[Enlace no disponible]
-| 02 | xxx | https://todo.com[Enlace no disponible]
+| Sesión | Fecha | Contenido | Enlace 
+| 01 | 11S | T1. Introducción | https://docs.google.com/presentation/d/1VVKN--uW8ycHNH4mXjE2VKHILYLkLaQfJz4M1WSTIOM/edit?usp=sharing[Enlace, window=_blank]
+| 02 | 18S | T2. Modelo multidimensional (1/2) | https://todo.com[Enlace no disponible, window=_blank]
+| 03 | 25S | T2. Modelo multidimensional (2/2) | https://todo.com[Enlace no disponible, window=_blank]
+| 04 | 2O | T3. Diseño multidimensional (1/5) | https://todo.com[Enlace no disponible, window=_blank]
+| 05 | 9O | T3. Diseño multidimensional (2/5) | https://todo.com[Enlace no disponible, window=_blank]
+| 06 | 16O | T3. Diseño multidimensional (3/5) | https://todo.com[Enlace no disponible, window=_blank]
+| 07 | 23O | T3. Diseño multidimensional (4/5) | https://todo.com[Enlace no disponible, window=_blank]
+| - | 30O | - | -
+| 08 | 6N | T3. Diseño multidimensional (5/5) | https://todo.com[Enlace no disponible, window=_blank]
+| 09 | 13N | T4. Consultas (1/4) | https://todo.com[Enlace no disponible, window=_blank]
+| 10 | 20N | T4. Consultas (2/4) | https://todo.com[Enlace no disponible, window=_blank]
+| 11 | 27N | T4. Consultas (3/4) | https://todo.com[Enlace no disponible, window=_blank]
+| 12 | 4D | T4. Consultas (4/4) | https://todo.com[Enlace no disponible, window=_blank]
+| 13 | 11D | T5. Tendencias actuales | link:Docs/Tema05/Evolucion.html[Enlace, window=_blank]
 |====================
 
 ## Grupo de trabajo
 
 [width="100%",options="header"]
 |====================
-| Sesión | Contenido | Enlace 
-| 01 | xxx | https://todo.com[Enlace no disponible]
-| 02 | xxx | https://todo.com[Enlace no disponible]
+| Sesión | Fecha | Contenido | Enlace 
+| 01 | 2O | Modelado dimensional (1/3) | https://todo.com[Enlace no disponible, window=_blank]
+| 02 | 9O | Modelado dimensional (2/3) | https://todo.com[Enlace no disponible, window=_blank]
+| 03 | 16O | Modelado dimensional (3/3) | https://todo.com[Enlace no disponible, window=_blank]
+| 04 | 23O | ETL (1/3) | https://todo.com[Enlace no disponible, window=_blank]
+| - | 30O | - | -
+| 05 | 6N | ETL (2/3) | https://todo.com[Enlace no disponible, window=_blank]
+| 06 | 13N | ETL (3/3) | https://todo.com[Enlace no disponible, window=_blank]
+| 07 | 20N | Consultas (1/4) | https://todo.com[Enlace no disponible, window=_blank]
+| 08 | 27N | Consultas (2/4) | https://todo.com[Enlace no disponible, window=_blank]
+| 09 | 4D | Consultas (3/4) | https://todo.com[Enlace no disponible, window=_blank]
+| 10 | 11D | Consultas (4/4) | https://todo.com[Enlace no disponible, window=_blank]
 |====================
 

@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.22">
+<meta name="author" content="Almacenes de datos - Grado en Ingeniería Informática. Manuel Torres &lt;mtorres@ual.es&gt;">
+<title>Evolución de las arquitecturas de datos. De los almacenes de datos relacionales a los Data Lakehouses</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="book toc2 toc-right">
+<div id="header">
+<h1>Evolución de las arquitecturas de datos. De los almacenes de datos relacionales a los Data Lakehouses</h1>
+<div class="details">
+<span id="author" class="author">Almacenes de datos - Grado en Ingeniería Informática. Manuel Torres &lt;mtorres@ual.es&gt;</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de contenidos</div>
+<ul class="sectlevel1">
+<li><a href="#_resumen">Resumen</a></li>
+<li><a href="#_introducción">1. Introducción</a>
+<ul class="sectlevel2">
+<li><a href="#_los_datos_son_el_nuevo_petróleo">1.1. Los datos son el nuevo petróleo</a></li>
+<li><a href="#_madurez_de_los_datos">1.2. Madurez de los datos</a></li>
+</ul>
+</li>
+<li><a href="#_arquitecturas_de_datos">2. Arquitecturas de datos</a>
+<ul class="sectlevel2">
+<li><a href="#_bases_de_datos_relacionales">2.1. Bases de datos relacionales</a></li>
+<li><a href="#_almacenes_de_datos_relacionales">2.2. Almacenes de datos relacionales</a></li>
+<li><a href="#_data_lakes">2.3. Data lakes</a></li>
+<li><a href="#_almacenes_de_datos_modernos">2.4. Almacenes de datos modernos</a></li>
+<li><a href="#_fábricas_de_datos">2.5. Fábricas de datos</a></li>
+<li><a href="#_data_lakehouses">2.6. Data lakehouses</a></li>
+<li><a href="#_data_mesh">2.7. Data mesh</a></li>
+<li><a href="#_resumen_comparativo">2.8. Resumen comparativo</a></li>
+</ul>
+</li>
+<li><a href="#_sesión_de_diseño_de_la_arquitectura_de_datos">3. Sesión de diseño de la arquitectura de datos</a></li>
+<li><a href="#_almacenes_de_datos_relacionales_2">4. Almacenes de datos relacionales</a>
+<ul class="sectlevel2">
+<li><a href="#_objetivos_de_un_almacén_de_datos_relacional">4.1. Objetivos de un almacén de datos (relacional)</a></li>
+<li><a href="#_desafíos_de_un_almacén_de_datos_relacional">4.2. Desafíos de un almacén de datos (relacional)</a></li>
+<li><a href="#_población_de_un_almacén_de_datos">4.3. Población de un almacén de datos</a></li>
+</ul>
+</li>
+<li><a href="#_data_lakes_2">5. Data lakes</a>
+<ul class="sectlevel2">
+<li><a href="#_la_importancia_de_los_datos_semmi_estructurados_y_no_estructurados">5.1. La importancia de los datos semmi-estructurados y no estructurados</a></li>
+<li><a href="#_data_lake_vs_data_swamp">5.2. Data lake vs Data Swamp</a></li>
+<li><a href="#_creando_un_data_lake">5.3. Creando un data lake</a></li>
+<li><a href="#_catálogo_de_datos">5.4. Catálogo de Datos</a></li>
+</ul>
+</li>
+<li><a href="#_el_almacén_de_datos_moderno">6. El almacén de datos moderno</a></li>
+<li><a href="#_fábrica_de_datos">7. Fábrica de datos</a></li>
+<li><a href="#_data_lakehouse">8. Data lakehouse</a>
+<ul class="sectlevel2">
+<li><a href="#_delta_lake_mejorando_los_data_lakes_con_capacidades_transaccionales">8.1. Delta Lake (Mejorando los Data Lakes con Capacidades Transaccionales)</a></li>
+<li><a href="#_características_de_delta_lake_para_data_lakes">8.2. Características de Delta Lake para Data Lakes</a></li>
+<li><a href="#_inconvenientes_de_delta_lake">8.3. Inconvenientes de Delta Lake</a></li>
+</ul>
+</li>
+<li><a href="#_recursos_complementarios">9. Recursos complementarios</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../images/di.png" alt="di">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resumen">Resumen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En este artículo exploraremos la evolución de las arquitecturas de almacenamiento de datos, desde los almacenes de datos relacionales tradicionales (RDW) hasta las soluciones más modernas como los data lakes y el concepto emergente de data lakehouse. También discutiremos las fábricas de datos y el data mesh, y cómo estas arquitecturas abordan los desafíos de la gestión de datos en la actualidad.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introducción">1. Introducción</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Según un <a href="https://www.bcg.com/publications/2023/new-data-architectures-can-help-manage-data-costs-and-complexity">estudio de Boston Consulting Group</a> sobre nuevas arquitecturas para el manejo de datos realizado en 2023, <em>el volumen de datos generados se duplicó aproximadamente entre 2018 y 2021, alcanzando alrededor de 84 ZB, una tasa de crecimiento que se espera continúe</em>. Las empresas son conscientes de que pueden ahorrar millones de dólares y aumentar sus ingresos recopilando estos datos y utilizándolos para analizar el pasado y el presente, además de hacer predicciones sobre el futuro. Sin embargo, para lograrlo, necesitan una forma de almacenar todos esos datos.</p>
+</div>
+<div class="paragraph">
+<p>El objetivo es proporcionar la información correcta a las personas adecuadas, en el momento adecuado y en el formato adecuado. Para lograr esto, es imprescindible contar con una arquitectura de datos que permita la ingestión, almacenamiento, transformación y modelado de los datos (procesamiento de big data), de manera que se puedan utilizar de forma precisa y sencilla. Se necesita una arquitectura que permita a cualquier usuario final, incluso aquellos con muy poco conocimiento técnico, analizar los datos y generar informes y paneles, en lugar de depender de personal de TI con conocimientos técnicos profundos para hacerlo.</p>
+</div>
+<div class="sect2">
+<h3 id="_los_datos_son_el_nuevo_petróleo">1.1. Los datos son el nuevo petróleo</h3>
+<div class="paragraph">
+<p>Los datos son como una materia prima que necesita ser extraída, refinada y procesada para ser útil. En el caso de los datos, esto implica recopilarlos, almacenarlos y analizarlos para obtener conocimientos que puedan impulsar decisiones empresariales.</p>
+</div>
+<div class="paragraph">
+<p>Su valor es inmenso. Las empresas que recopilan y analizan grandes volúmenes de datos pueden utilizarlos para mejorar sus productos y servicios, tomar mejores decisiones comerciales y obtener una ventaja competitiva.</p>
+</div>
+<div class="paragraph">
+<p>Además, los datos pueden emplearse de muchas maneras. Por ejemplo, si se utilizan para entrenar algoritmos de aprendizaje automático, esos algoritmos pueden automatizar tareas, identificar patrones y hacer predicciones.</p>
+</div>
+<div class="paragraph">
+<p>Se trata de un recurso poderoso con un efecto transformador en la sociedad. Así como el uso generalizado del petróleo impulsó el crecimiento de las industrias y permitió el desarrollo de nuevas tecnologías, los datos han dado lugar a avances en campos como la inteligencia artificial, el aprendizaje automático y la analítica predictiva.</p>
+</div>
+<div class="paragraph">
+<p>Debido a todos estos factores, los datos también pueden ser una fuente de poder e influencia.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, con big data se pueden generar informes y paneles que indiquen dónde están bajando las ventas, y tomar medidas “después del hecho” para mejorar esas ventas. También es posible usar el aprendizaje automático para predecir dónde disminuirán las ventas en el futuro y tomar medidas proactivas para evitar esa caída. A esto se le llama inteligencia empresarial (Business Intelligence, BI): el proceso de recopilar, analizar y utilizar datos para ayudar a las empresas a tomar decisiones más informadas.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_madurez_de_los_datos">1.2. Madurez de los datos</h3>
+<div class="paragraph">
+<p>En los útimos años se escucha bastante el término "transformación digital" en la industria de TI. Hace referencia a cómo las empresas integran tecnologías en todas sus áreas para generar un cambio fundamental en la forma en que extraen valor de los datos, operan y entregan valor a sus clientes. Esta transformación digital puede dividirse en cuatro etapas, conocidas como las fases de madurez de los datos empresariales:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>La madurez de los datos es un concepto que se refiere a la calidad y la utilidad de los datos. Los datos maduros son datos que se han limpiado, organizado y estructurado de manera que sean fáciles de usar y analizar. Los datos inmaduros, por otro lado, son datos que no se han limpiado ni organizado, lo que dificulta su uso y análisis.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Etapa 1: Reactiva.</strong> En esta primera etapa, una empresa tiene datos dispersos por todas partes, generalmente en múltiples hojas de cálculo de Excel y/o bases de datos de escritorio en varios sistemas de archivos, que son compartidos por correo electrónico. Los arquitectos de datos llaman a esta situación un <em>spreadmart</em> (abreviatura de <em>data mart de hojas de cálculo</em>): una colección de datos informal y descentralizada que suele encontrarse en organizaciones que usan hojas de cálculo para almacenar, gestionar y analizar datos. Los spreadmarts suelen ser creados y mantenidos de manera independiente por individuos o equipos, sin conexión con el sistema centralizado de gestión de datos o el almacén de datos oficial de la organización. Este enfoque genera problemas de inconsistencia en los datos, falta de gobernanza, escalabilidad limitada e ineficiencia (debido a la duplicación de esfuerzos).</p>
+</li>
+<li>
+<p><strong>Etapa 2: Informativa.</strong> Las empresas alcanzan la segunda etapa de madurez cuando comienzan a centralizar sus datos, lo que facilita el análisis y la generación de informes. Las etapas 1 y 2 se centran en los informes históricos, es decir, en identificar tendencias y patrones del pasado, por lo que a menudo se las conoce como mirar por “el espejo retrovisor”. En estas etapas, las empresas reaccionan ante eventos ya ocurridos. En la etapa 2, las soluciones para recopilar datos no suelen ser muy escalables. Por lo general, el tamaño y los tipos de datos que pueden manejar son limitados, y la frecuencia de ingestión de datos es baja (por ejemplo, una vez por la noche). La mayoría de las empresas están en esta fase, especialmente si su infraestructura sigue estando en sus instalaciones (on-premise).</p>
+</li>
+<li>
+<p><strong>Etapa 3: Predictiva.</strong> En la tercera etapa, las empresas ya han migrado a la nube y han construido un sistema capaz de manejar mayores cantidades de datos, diferentes tipos de datos y que puede ingerirlos con mayor frecuencia (cada hora o en tiempo real mediante streaming). Además, han mejorado la toma de decisiones al incorporar aprendizaje automático (analítica avanzada), lo que les permite tomar decisiones en tiempo real. Por ejemplo, mientras un usuario está en una tienda de libros en línea, el sistema podría recomendar libros adicionales en la página de pago basándose en sus compras previas.</p>
+</li>
+<li>
+<p><strong>Etapa 4: Transformativa.</strong> Finalmente, en la cuarta etapa, la empresa ha desarrollado una solución que puede manejar cualquier tipo de datos, independientemente de su tamaño, velocidad o formato. Incorporar nuevos datos es un proceso ágil, ya que la arquitectura está preparada para gestionarlos, y la infraestructura tiene la capacidad necesaria para soportarlos. Esta solución permite a los usuarios finales no técnicos crear fácilmente informes y paneles con las herramientas que prefieran.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_arquitecturas_de_datos">2. Arquitecturas de datos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Al construir una solución de datos, es fundamental contar con un plan bien diseñado, y es aquí donde entran en juego las arquitecturas de datos. Las arquitecturas de datos son un conjunto de reglas, políticas, estándares y prácticas que definen cómo se capturan, almacenan, gestionan y utilizan los datos en una organización. Estas arquitecturas son esenciales para garantizar que los datos sean precisos, consistentes, seguros y accesibles. Además, permiten a las organizaciones aprovechar al máximo sus datos y utilizarlos para tomar decisiones informadas. Las arquitecturas de datos definen un enfoque arquitectónico de alto nivel y un conjunto de tecnologías a utilizar, además de especificar el flujo de datos que se empleará para construir la solución y capturar grandes volúmenes de información (big data).</p>
+</div>
+<div class="paragraph">
+<p>Las arquitecturas de datos se refieren al diseño general y la organización de los datos dentro de un sistema de información. Aunque las plantillas predefinidas de arquitecturas de datos pueden parecer una forma rápida de configurar un nuevo sistema, a menudo no logran contemplar los requisitos y restricciones específicos del sistema en el que se aplican. Esto puede ocasionar problemas en la calidad de los datos, el rendimiento del sistema y su mantenimiento.</p>
+</div>
+<div class="paragraph">
+<p>Además, las necesidades de la organización y los sistemas de datos tienden a cambiar con el tiempo, lo que exige actualizaciones y ajustes en la arquitectura de datos. Una plantilla estandarizada podría no ser lo suficientemente flexible para adaptarse a estos cambios, lo que puede generar ineficiencias y limitaciones en el sistema.</p>
+</div>
+<div class="sect2">
+<h3 id="_bases_de_datos_relacionales">2.1. Bases de datos relacionales</h3>
+<div class="paragraph">
+<p>Una base de datos relacional almacena datos de manera estructurada, con relaciones entre los elementos de datos definidas mediante claves. Los datos suelen organizarse en tablas, donde cada tabla se compone de filas y columnas. Cada fila representa una instancia específica de los datos, mientras que cada columna representa un atributo particular de esos datos.</p>
+</div>
+<div class="paragraph">
+<p>Las bases de datos relacionales están diseñadas para manejar datos estructurados y proporcionan un marco para crear, modificar y consultar los datos utilizando un lenguaje estandarizado conocido como SQL (Structured Query Language). El modelo relacional fue propuesto por primera vez por Edgar F. Codd en 1970, y desde mediados de los años 70 se ha convertido en el modelo dominante para los sistemas de gestión de bases de datos. La mayoría de las aplicaciones operacionales necesitan almacenar datos de manera permanente, y una base de datos relacional es la herramienta preferida por una gran mayoría para esta tarea.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>No obstante, las bases de datos relacionales tienen limitaciones en cuanto a la escalabilidad y el manejo de grandes volúmenes de datos no estructurados. Además, la estructura rígida de las bases de datos relacionales puede dificultar la adaptación a cambios en los requisitos de los datos. Es por ello que han surgido nuevos tipos de bases de datos, como las bases de datos NoSQL, que ofrecen una mayor flexibilidad y escalabilidad para ciertos tipos de aplicaciones. Sin embargo, en el contexto de las aplicaciones transaccionales y analíticas tradicionales, los datos suelen ser estructurados y de un volumen manejable, por lo que las bases de datos relacionales siguen siendo una opción popular y ampliamente utilizada en este contexto.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title"><em>Schema on write</em> vs. <em>schema on read</em></div>
+<div class="paragraph">
+<p>En las bases de datos relacionales, donde la consistencia y la integridad de los datos son de máxima importancia, los datos suelen organizarse utilizando un enfoque conocido como <em>schema-on-write</em>. El esquema se refiere a la estructura formal que define la organización y las relaciones entre tablas, campos, tipos de datos y restricciones. Este esquema actúa como una plantilla para almacenar y gestionar los datos, garantizando consistencia, integridad y una organización eficiente dentro de la base de datos.</p>
+</div>
+<div class="paragraph">
+<p>Con el enfoque de <em>schema-on-write</em>, el esquema de datos se define y se aplica cuando los datos son escritos o ingeridos en la base de datos. Es decir, antes de que los datos puedan ser almacenados, deben cumplir con el esquema predefinido, lo que incluye tipos de datos, restricciones y relaciones. Esto asegura que los datos se almacenen de manera estructurada y que se mantengan las reglas de integridad definidas por el esquema.</p>
+</div>
+<div class="paragraph">
+<p>Por contra, en el enfoque de <em>schema-on-read</em>, el esquema se aplica cuando los datos son leídos o accedidos, en lugar de cuando se escriben. Esto permite que los datos se guarden en el sistema de almacenamiento sin la necesidad de ajustarse a un esquema estricto, y la estructura se define solo cuando los datos son consultados o consumidos. Este enfoque ofrece mayor flexibilidad para almacenar datos no estructurados o semi-estructurados, y es comúnmente utilizado en <a href="https://cloud.google.com/learn/what-is-a-data-lake?hl=es-419"><em>data lakes</em></a>.</p>
+</div>
+<div class="paragraph">
+<p>Esta flexibilidad permite a las organizaciones almacenar grandes cantidades de datos en su forma original sin preocuparse inicialmente por su estructura, lo que es ideal para escenarios en los que los datos provienen de diversas fuentes y pueden necesitar distintos tipos de procesamiento en el futuro.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Cuestiones a considerar en las arquitecturas de datos</div>
+<div class="paragraph">
+<p>A nivel general, las arquitecturas de datos proporcionan un marco para organizar y gestionar los datos de manera que se adapten a las necesidades de una organización. Esto implica definir cómo se recopilan, almacenan, procesan y acceden los datos, al mismo tiempo que se mantienen la calidad, seguridad y privacidad de los mismos.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Almacenamiento de datos</strong>: Toda arquitectura de datos debe especificar cómo se almacenan los datos, incluyendo el medio de almacenamiento físico (como discos duros o almacenamiento en la nube) y las estructuras de datos utilizadas para organizarlos.</p>
+</li>
+<li>
+<p><strong>Procesamiento de datos</strong>: Las arquitecturas de datos deben definir cómo se procesan los datos, lo que incluye las transformaciones o cálculos que se realizan sobre ellos antes de ser almacenados o analizados.</p>
+</li>
+<li>
+<p><strong>Acceso a los datos</strong>: Deben proporcionar mecanismos para acceder a los datos, como interfaces de usuario e interfaces de programación de aplicaciones (APIs) que permitan consultar y analizar la información.</p>
+</li>
+<li>
+<p><strong>Seguridad y privacidad de los datos</strong>: Es crucial incorporar mecanismos que aseguren la seguridad y privacidad de los datos, tales como controles de acceso, cifrado y enmascaramiento de datos.</p>
+</li>
+<li>
+<p><strong>Gobernanza de los datos</strong>: Las arquitecturas de datos deben establecer marcos de gestión que incluyan estándares de calidad, seguimiento de linaje (origen y transformación de los datos) y políticas de retención. Esto asegura que los datos se manejen de manera coherente y conforme a las normativas.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_almacenes_de_datos_relacionales">2.2. Almacenes de datos relacionales</h3>
+<div class="paragraph">
+<p>Los datos de las fuentes de datos operacionales se copian en un almacén de datos (data warehouse), lo que permite a los usuarios ejecutar consultas e informes contra el almacén de datos en lugar de hacerlo directamente sobre las fuentes de datos. De esta manera, no se sobrecarga los sistemas que albergan las fuentes originales, evitando la ralentización de las aplicaciones para los usuarios finales. Los almacenes de datos relacionales (RDWs) también centralizan datos de múltiples aplicaciones para mejorar la generación de informes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_lakes">2.3. Data lakes</h3>
+<div class="paragraph">
+<p>Puedes pensar en un <em>data lake</em> como un sistema de archivos vitaminado, no muy diferente al sistema de archivos en tu computadora portátil. <strong>Un data lake es simplemente un almacenamiento; a diferencia de un almacén de datos relacional, no tiene un motor de cómputo asociado</strong>. Otra diferencia es que, mientras los RDWs utilizan almacenamiento relacional, los data lakes emplean almacenamiento de objetos, que no requiere que los datos estén estructurados en filas y columnas.</p>
+</div>
+<div class="paragraph">
+<p>La tecnología de almacenamiento en data lakes comenzó con el Apache Hadoop Distributed File System (HDFS), una tecnología gratuita y de código abierto que estaba casi exclusivamente en instalaciones locales y que fue muy popular a principios de la década de 2010. HDFS es un sistema de almacenamiento distribuido escalable y tolerante a fallos diseñado para ejecutarse en hardware estándar. Es un componente central del ecosistema <a href="https://www.sas.com/es_es/insights/big-data/hadoop.html">Apache Hadoop</a>.</p>
+</div>
+<div class="paragraph">
+<p>Los datos en un data lake se almacenan en su formato natural (o bruto), lo que significa que pueden ir desde el sistema fuente al data lake sin ser transformados a otro formato. Estos archivos pueden contener datos estructurados (como datos de bases de datos relacionales), semi-estructurados (como archivos CSV, registros, XML o JSON) o no estructurados (como correos electrónicos, documentos y PDFs). También pueden incluir datos binarios (como imágenes, audio y video).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/data-lake.png" alt="data lake">
+</div>
+</div>
+<div class="paragraph">
+<p>Los data lakes surgieron como la solución a todos los problemas asociados con los almacenes de datos relacionales, como el alto costo, la escalabilidad limitada, el bajo rendimiento, la sobrecarga en la preparación de datos y el soporte limitado para tipos de datos complejos. Empresas que vendían Hadoop y data lakes, como Cloudera, Hortonworks y MapR, los promocionaron como si estuvieran llenos de unicornios y arcoíris que copiarían y limpiarían datos, haciéndolos disponibles para los usuarios finales con facilidad mágica. Aseguraban que los data lakes podrían reemplazar completamente a los almacenes de datos relacionales, adoptando un enfoque de "una tecnología para hacerlo todo".</p>
+</div>
+<div class="paragraph">
+<p>El problema era que consultar los data lakes no era tan sencillo: requería habilidades bastante avanzadas. El personal de TI les decía a los usuarios finales: "Hemos copiado todos los datos que necesitas en este data lake. Solo abre un cuaderno de Jupyter y usa Hive y Python para construir tus informes con los archivos en estas carpetas."</p>
+</div>
+<div class="paragraph">
+<p>Además, los data lakes no contaban con algunas de las características que la gente valoraba en los almacenes de datos, como el soporte de transacciones, la aplicación de esquemas y las trazas de auditoría. Esto llevó a que dos de los tres principales proveedores de data lakes, Hortonworks y MapR, cerraran sus puertas.</p>
+</div>
+<div class="paragraph">
+<p>Pero el data lake no desapareció. En lugar de eso, su propósito se transformó en uno diferente, pero muy útil: la preparación y el almacenamiento temporal de datos.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_almacenes_de_datos_modernos">2.4. Almacenes de datos modernos</h3>
+<div class="paragraph">
+<p>Los data lakes no lograron reemplazar completamente a los almacenes de datos relacionales, pero sí ofrecen beneficios para la preparación y el almacenamiento temporal de datos. ¿Por qué no aprovechar las ventajas de ambos?</p>
+</div>
+<div class="paragraph">
+<p>Alrededor de 2011, muchas empresas comenzaron a construir arquitecturas que combinaban data lakes con almacenes de datos relacionales, formando la arquitectura de datos que ahora llamamos el almacén de datos moderno (MDW, por sus siglas en inglés). Esta combinación permite aprovechar los beneficios de ambos enfoques:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Almacenes de datos relacionales</strong>: Proporcionan un marco estructurado para la consulta y análisis de datos organizados, con soporte para transacciones, aplicación de esquemas y control de calidad.</p>
+</li>
+<li>
+<p><strong>Data lakes</strong>: Ofrecen flexibilidad para almacenar grandes volúmenes de datos en su formato original, permitiendo la ingesta de datos no estructurados y semi-estructurados, y facilitando la preparación y el procesamiento previo de los datos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Al integrar ambos, el almacén de datos moderno (MDW) combina la capacidad de los data lakes para manejar datos en su formato bruto y la robustez de los almacenes de datos relacionales para realizar análisis complejos y mantener la calidad y la integridad de los datos. Esto permite una solución más completa y flexible para el almacenamiento y análisis de datos.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/mdw.png" alt="mdw">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fábricas_de_datos">2.5. Fábricas de datos</h3>
+<div class="paragraph">
+<p>Las fábricas de datos comenzaron a aparecer alrededor de 2016. La arquitectura de una fábrica de datos se puede considerar como una evolución de la arquitectura del almacén de datos moderno, con tecnología adicional para captar más datos, asegurar su integridad y hacerlos disponibles de manera más eficiente.</p>
+</div>
+<div class="paragraph">
+<p>Una fábrica de datos integra y orquesta datos a través de múltiples entornos y plataformas, proporcionando una capa unificada de gestión de datos que abarca tanto datos estructurados como no estructurados. Esta arquitectura permite una mejor visibilidad, gobernanza y accesibilidad de los datos a lo largo de toda la organización, facilitando la integración de datos provenientes de diversas fuentes y la aplicación de políticas de seguridad y privacidad en un entorno cada vez más complejo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/data-fabric.png" alt="data fabric">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_lakehouses">2.6. Data lakehouses</h3>
+<div class="paragraph">
+<p>El término <em>data lakehouse</em> es una combinación de data lake y data warehouse. Las arquitecturas de data lakehouse se hicieron populares alrededor de 2020, cuando la empresa Databricks comenzó a utilizar este término. El concepto de un lakehouse es eliminar el almacén de datos relacional y usar solo un repositorio, un data lake, en la arquitectura de datos. Todos los tipos de datos—estructurados, semi-estructurados y no estructurados—se ingieren en el data lake, y todas las consultas e informes se realizan directamente desde el data lake.</p>
+</div>
+<div class="paragraph">
+<p>Pero si dijimos que los data lakes adoptaron este mismo enfoque cuando aparecieron por primera vez, ¡y fracasaron estrepitosamente! ¿Qué ha cambiado? La respuesta es una capa de software de almacenamiento transaccional llamada Delta Lake que se ejecuta sobre un data lake existente y hace que funcione de manera más parecida a una base de datos relacional. Las opciones de código abierto que compiten en esta capa incluyen <a href="https://delta.io/">Delta Lake</a>, <a href="https://iceberg.apache.org/">Apache Iceberg</a> y <a href="https://hudi.apache.org/">Apache Hudi</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/lakehouse.png" alt="lakehouse">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_mesh">2.7. Data mesh</h3>
+<div class="paragraph">
+<p>Las arquitecturas de almacén de datos moderno, fábrica de datos y data lakehouse implican la centralización de datos: copiar los datos operacionales en una ubicación centralizada propiedad de TI bajo una arquitectura que TI controla, donde TI luego crea los datos analíticos (lado izquierdo de la figura). Este enfoque centralizado presenta tres desafíos principales: propiedad de los datos, calidad de los datos y escalabilidad organizacional/técnica. El objetivo del data mesh es resolver estos desafíos.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/data-mesh.png" alt="data mesh">
+</div>
+</div>
+<div class="paragraph">
+<p>En un data mesh, los datos se mantienen dentro de varios dominios dentro de una empresa, como fabricación, ventas y proveedores (lado derecho de la figura). Cada dominio cuenta con su propio equipo de TI que es responsable de sus datos, los limpia, crea los datos analíticos y los pone a disposición. Cada dominio también tiene su propia infraestructura de computación y almacenamiento. Esto resulta en una arquitectura descentralizada donde los datos, las personas y la infraestructura se expanden—cuantos más dominios tienes, más personas e infraestructura obtienes. El sistema puede manejar más datos, y TI deja de ser un cuello de botella.</p>
+</div>
+<div class="paragraph">
+<p>Es importante entender que el data mesh es un concepto, no una tecnología. No existe un "data mesh en una caja" que puedas comprar.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resumen_comparativo">2.8. Resumen comparativo</h3>
+<div class="paragraph">
+<p>A continuación, se presenta un resumen comparativo de las arquitecturas de datos mencionadas:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/comparative-summary.png" alt="comparative summary">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sesión_de_diseño_de_la_arquitectura_de_datos">3. Sesión de diseño de la arquitectura de datos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Una sesión de diseño de arquitectura (ADS, por sus siglas en inglés) es una discusión estructurada con partes interesadas tanto empresariales como técnicas, guiada por expertos técnicos y enfocada en definir y planificar el diseño de alto nivel de una solución para recopilar datos para oportunidades empresariales específicas. La ADS debe producir dos entregables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Una arquitectura (o "plano") que pueda servir como punto de partida para la solución de datos.</p>
+</li>
+<li>
+<p>Un plan de acción de alto nivel, que puede incluir demostraciones posteriores, pruebas de concepto y discusiones sobre productos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Una ADS no es un taller técnico, una capacitación técnica, una demostración técnica ni una sesión de requisitos de bajo nivel.</p>
+</div>
+<div class="paragraph">
+<p>A continuación se muestra un ejemplo de agenda para una sesión de diseño de arquitectura de datos:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ads.png" alt="ads">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_almacenes_de_datos_relacionales_2">4. Almacenes de datos relacionales</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Un almacén de datos relacional (RDW, por sus siglas en inglés) es un sistema donde se almacenan y gestionan de manera centralizada grandes volúmenes de datos estructurados, copiados de múltiples fuentes de datos para su uso en informes de análisis histórico y de tendencias, con el fin de que una organización pueda tomar decisiones de negocio más informadas. Se llama relacional porque se basa en el modelo relacional, un enfoque ampliamente utilizado para la representación y organización de datos en bases de datos. Se denomina almacén de datos porque recopila, almacena y gestiona volúmenes masivos de datos estructurados provenientes de diversas fuentes, como bases de datos transaccionales, sistemas de aplicaciones y fuentes de datos externas.</p>
+</div>
+<div class="sect2">
+<h3 id="_objetivos_de_un_almacén_de_datos_relacional">4.1. Objetivos de un almacén de datos (relacional)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Reducir la carga en el sistema de producción: Minimizar el impacto en los sistemas operacionales al centralizar el análisis en el almacén de datos.</p>
+</li>
+<li>
+<p>Optimizar el acceso de lectura: Mejorar el rendimiento en la consulta y generación de informes.</p>
+</li>
+<li>
+<p>Integrar múltiples fuentes de datos: Consolidar datos de diversas fuentes para una visión unificada.</p>
+</li>
+<li>
+<p>Generar informes históricos precisos: Proporcionar informes detallados sobre tendencias y datos históricos.</p>
+</li>
+<li>
+<p>Reestructurar y renombrar tablas: Adaptar la estructura de datos para facilitar el análisis.</p>
+</li>
+<li>
+<p>Proteger contra actualizaciones de aplicaciones: Asegurar que los cambios en las aplicaciones no afecten los informes.</p>
+</li>
+<li>
+<p>Reducir preocupaciones de seguridad: Implementar medidas para proteger los datos sensibles.</p>
+</li>
+<li>
+<p>Mantener datos históricos: Conservar datos a lo largo del tiempo para análisis en profundidad.</p>
+</li>
+<li>
+<p>Gestión de datos maestros (MDM): Garantizar una única fuente de verdad para los datos clave.</p>
+</li>
+<li>
+<p>Mejorar la calidad de los datos: Corregir problemas en los sistemas de origen para asegurar datos precisos y completos.</p>
+</li>
+<li>
+<p>Eliminar la participación de TI en la creación de informes: Permitir a los usuarios finales crear informes de manera autónoma sin depender de TI.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_desafíos_de_un_almacén_de_datos_relacional">4.2. Desafíos de un almacén de datos (relacional)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Complejidad: La implementación y gestión de un RDW puede ser complicada debido a la necesidad de integrar y estructurar grandes volúmenes de datos.</p>
+</li>
+<li>
+<p>Altos costos: Los costos de licencias, hardware, y mantenimiento pueden ser significativos.</p>
+</li>
+<li>
+<p>Desafíos en la integración de datos: Consolidar datos de múltiples fuentes puede ser complicado y requerir soluciones personalizadas.</p>
+</li>
+<li>
+<p>Transformación de datos que consume tiempo: Los procesos de limpieza y transformación de datos pueden ser largos y laboriosos.</p>
+</li>
+<li>
+<p>Latencia de datos: Los datos en el almacén de datos pueden no estar actualizados con los cambios más recientes en las bases de datos de origen.</p>
+</li>
+<li>
+<p>Ventana de mantenimiento: Las actualizaciones y el mantenimiento del sistema pueden requerir tiempos de inactividad programados.</p>
+</li>
+<li>
+<p>Flexibilidad limitada: Los RDWs están diseñados para soportar tipos específicos de análisis, lo que puede limitar su flexibilidad para otros tipos de procesamiento o análisis de datos.</p>
+</li>
+<li>
+<p>Preocupaciones de seguridad y privacidad: Almacenar grandes cantidades de datos sensibles en una ubicación centralizada puede aumentar el riesgo de brechas de seguridad y violaciones de privacidad.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_población_de_un_almacén_de_datos">4.3. Población de un almacén de datos</h3>
+<div class="paragraph">
+<p>Una de las tareas más importantes en la implementación de un almacén de datos es la población inicial del almacén con datos de las fuentes de datos operacionales. La población inicial implica extraer, transformar y cargar (ETL) los datos desde las fuentes de datos operacionales al almacén de datos. No obstante, los procesos de ETL también están presentes en la operación continua del almacén de datos, ya que los datos deben actualizarse regularmente para mantener la información actualizada. La población inicial y la operación continua del almacén de datos son procesos críticos que requieren una planificación cuidadosa y una ejecución precisa. A continuación se describen los pasos típicos en el proceso de población de un almacén de datos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Métodos de Extracción</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Extracción Completa: Se extrae todo el conjunto de datos desde el sistema de origen a cada vez, lo que puede ser costoso y consumir mucho tiempo, pero asegura que se capture toda la información.</p>
+</li>
+<li>
+<p>Extracción Incremental: Solo se extraen los datos que han cambiado desde la última extracción. Esto es más eficiente en términos de tiempo y recursos.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cómo determinar los datos que han cambiado desde la última extracción</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Timestamps: Algunas tablas en los sistemas operacionales tienen columnas de timestamp que registran la fecha y hora de la última modificación de una fila. Esta información puede usarse para identificar los datos que han cambiado.</p>
+</li>
+<li>
+<p>Captura de Datos de Cambio (CDC): La mayoría de las bases de datos relacionales soportan CDC, que graba los INSERTs, UPDATEs y DELETEs aplicados a las tablas de la base de datos, proporcionando un registro de los cambios realizados.</p>
+</li>
+<li>
+<p>Particionamiento: Las tablas de origen se particionan según una clave de fecha, facilitando la identificación de datos nuevos. Esto permite extraer solo las particiones que han cambiado desde la última extracción.</p>
+</li>
+<li>
+<p>Triggers de Base de Datos: Se utilizan triggers para rastrear cambios mediante la captura de INSERTs, UPDATEs y DELETEs en las tablas de origen.</p>
+</li>
+<li>
+<p>Sentencia MERGE: La opción menos preferida es realizar una extracción completa desde el sistema de origen a un área de staging en el almacén de datos, y luego comparar esta tabla con una extracción completa anterior utilizando una declaración MERGE para identificar los datos que han cambiado. Este método puede ser menos eficiente y más laborioso.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">La caída de los almacenes de datos relacionales ha sido exagerada enormemente</div>
+<div class="paragraph">
+<p>A principios de la década de 2010, surgió la pregunta en el ámbito de TI sobre si el almacén de datos relacional (RDW) seguía siendo necesario, planteando la cuestión: “¿Está muerto el almacén de datos relacional?” Con la aparición de los data lakes, construidos inicialmente con tecnología Apache Hadoop, muchos proveedores de Hadoop proclamaron la muerte del RDW. “Coloca todos tus datos en el data lake y deshazte del RDW,” aconsejaron. Sin embargo, los proyectos que intentaron hacer esto fracasaron.</p>
+</div>
+<div class="paragraph">
+<p>Los RDWs siguen siendo necesarios porque los data lakes basados en Hadoop tenían demasiadas limitaciones. Pero con la llegada de soluciones como Delta Lake y el uso de productos más avanzados y fáciles de utilizar, los data lakes empezaron a superar muchas de esas limitaciones.</p>
+</div>
+<div class="paragraph">
+<p>Los data lakes ofrecen una fuente rica de datos para científicos de datos y usuarios de datos autogestionados (“power users”), y satisfacen bien las necesidades de análisis y big data. Sin embargo, no todos los trabajadores de datos e información quieren convertirse en usuarios avanzados.</p>
+</div>
+<div class="paragraph">
+<p>Los RDWs siguen siendo necesarios por las siguientes razones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Dificultad de generación de informes desde un Data Lake: Crear informes desde un data lake sigue siendo más complicado que hacerlo desde un RDW.</p>
+</li>
+<li>
+<p>Valor continuo del RDW: Los RDWs continúan satisfaciendo las necesidades de información de los usuarios y aportan valor.</p>
+</li>
+<li>
+<p>Dependencia y confianza en el RDW: Muchas personas utilizan, dependen y confían en los RDWs, y no desean reemplazarlos con data lakes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_lakes_2">5. Data lakes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>El big data comenzó a aparecer en volúmenes sin precedentes a principios de la década de 2010 debido al aumento de fuentes que generan datos semiestructurados y no estructurados, como sensores, videos y redes sociales. Los data lakes pueden manejar fácilmente datos semiestructurados y no estructurados y gestionar datos que se ingieren con frecuencia.</p>
+</div>
+<div class="paragraph">
+<p>El término "data lake" es una metáfora para describir el concepto de almacenar grandes cantidades de datos en su formato natural. Así como un lago contiene agua sin alterar la naturaleza del agua, un data lake almacena datos sin necesidad de estructurarlos o procesarlos primero.</p>
+</div>
+<div class="paragraph">
+<p>Los data lakes son espacios de almacenamiento distribuido muy utilizados hoy en día para crear grandes repositorios de datos corporativos heterogéneos en la nube. A diferencia de un almacén de datos (data warehouse), un data lake no cuenta con un motor de base de datos subyacente ni existe un modelo relacional de los datos.</p>
+</div>
+<div class="sect2">
+<h3 id="_la_importancia_de_los_datos_semmi_estructurados_y_no_estructurados">5.1. La importancia de los datos semmi-estructurados y no estructurados</h3>
+<div class="paragraph">
+<p>Veamos este caso de uso: Unos analistas de una gran cadena de tiendas querían captar datos de Twitter para entender qué pensaban los clientes sobre sus tiendas. Sabían que los clientes podrían dudar en presentar quejas a los empleados de la tienda, pero estarían dispuestos a publicarlas en Twitter. Con la ingesta de datos de Twitter en un data lake y la evaluación del sentimiento de los comentarios de los clientes, categorizándolos como positivos, neutros o negativos, los analistas pudieron identificar problemas en las tiendas y tomar medidas correctivas. Al revisar los comentarios negativos, encontraron un número inusualmente alto de quejas sobre los probadores: eran demasiado pequeños, estaban demasiado llenos y no ofrecían suficiente privacidad. Como experimento, la empresa decidió remodelar los probadores en una tienda. Un mes después de la remodelación, los analistas encontraron un gran número de comentarios positivos sobre los probadores en esa tienda, junto con un aumento del 7% en las ventas. Esto llevó a la empresa a remodelar los probadores en todas sus tiendas, resultando en un aumento del 6% en las ventas a nivel nacional y millones de dólares adicionales en ganancias. ¡Todo gracias a un data lake!</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los data lakes son especialmente útiles para almacenar y analizar datos semiestructurados y no estructurados, como correos electrónicos, documentos, imágenes, videos, registros de transacciones, datos de sensores y datos de redes sociales. Estos datos pueden ser difíciles de manejar con un enfoque tradicional de bases de datos relacionales, pero los data lakes permiten almacenarlos y procesarlos de manera eficiente. Si te parece interesante este tema, puedes profundizar en este <a href="https://learn.microsoft.com/en-us/azure/synapse-analytics/machine-learning/tutorial-cognitive-services-sentiment">tutorial sobre análisis de sentimientos con servicios de Azure AI</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_lake_vs_data_swamp">5.2. Data lake vs Data Swamp</h3>
+<div class="paragraph">
+<p>Un data lake generalmente no impone una estructura específica a los datos que ingiere. De hecho, esta es una de sus características clave (ver Schema on write vs. schema on read en la sección <a href="#_bases_de_datos_relacionales">Bases de datos relacionales</a>). Esto es diferente de una base de datos tradicional o un almacén de datos, que requiere que los datos estén estructurados o modelados previamente. Sin embargo, para que los datos sean utilizables y evitar que el data lake se convierta en un “pantano de datos” (una colección desorganizada e inmanejable de datos), es importante aplicar algunas prácticas de organización y gobernanza. Esta sección presenta algunas buenas prácticas para empezar:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Establecer un catálogo de datos: Implementar un catálogo de datos para registrar qué datos están disponibles, de dónde provienen, y cómo se deben utilizar. Esto facilita la búsqueda y gestión de datos dentro del data lake.</p>
+</li>
+<li>
+<p>Aplicar metadatos: Utilizar metadatos para describir el contenido, el formato y la estructura de los datos. Los metadatos ayudan a los usuarios a entender el contexto de los datos y a encontrar información relevante más fácilmente.</p>
+</li>
+<li>
+<p>Implementar gobernanza de datos: Definir y aplicar políticas de gobernanza de datos para asegurar que los datos sean precisos, confiables y se manejen de acuerdo con las normativas y estándares de seguridad.</p>
+</li>
+<li>
+<p>Definir estrategias de seguridad: Implementar controles de acceso adecuados y cifrado para proteger los datos sensibles y garantizar que solo los usuarios autorizados puedan acceder a la información.</p>
+</li>
+<li>
+<p>Realizar limpieza y mantenimiento de forma regular: Establecer procesos para la limpieza y el mantenimiento regular de los datos para evitar que el data lake se llene de datos obsoletos o irrelevantes.</p>
+</li>
+<li>
+<p>Facilitar el acceso y la integración: Proporcionar herramientas y interfaces que permitan a los usuarios acceder a los datos de manera eficiente y integrarlos con otras fuentes y sistemas según sea necesario.</p>
+</li>
+<li>
+<p>Monitorizar el rendimiento: Supervisar el rendimiento del data lake para asegurar que pueda manejar el volumen y la variedad de datos sin afectar negativamente a la velocidad o la eficiencia del sistema.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Estas prácticas ayudan a asegurar que el data lake se mantenga organizado y útil, evitando que se convierta en una acumulación desordenada de datos que sea difícil de gestionar y utilizar.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creando_un_data_lake">5.3. Creando un data lake</h3>
+<div class="sect3">
+<h4 id="_dividir_el_data_lake_en_varias_capas_también_llamadas_zonas">5.3.1. Dividir el data lake en varias capas (también llamadas zonas)</h4>
+<div class="paragraph">
+<p>Las zonas corresponden a niveles crecientes de calidad de datos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Capa Raw (Cruda): Aquí se almacenan los eventos en su formato original para referencia histórica. Estos datos suelen guardarse de forma inmutable, es decir, no se modifican una vez que se han almacenado. Como características, los datos se mantienen tal como fueron capturados, en formatos diversos como CSV, JSON, o Parquet.</p>
+</li>
+<li>
+<p>Capa Conformed (Conformada): En esta capa todos los tipos de archivos de la capa cruda se convierten a un formato común, generalmente <a href="https://datos.gob.es/es/blog/por-que-deberias-de-usar-ficheros-parquet-si-procesas-muchos-datos">Parquet</a>. Esto facilita el procesamiento eficiente de big data. Como características, la conversión a un formato único permite la estandarización y preparación para el siguiente nivel de calidad de datos.</p>
+</li>
+<li>
+<p>Capa Cleansed (Limpiada): En esta capa los eventos crudos se transforman. Los datos se limpian, integran y consolidan para crear conjuntos de datos directamente utilizables. Como características, se corrigen inconsistencias (como errores en nombres de ítems, cantidades erróneas y marcas de tiempo faltantes) y se transforman en un esquema común (por ejemplo, convenios de nombres, formatos de tiempo, o sistemas de ID de tienda comunes).</p>
+</li>
+<li>
+<p>Capa Presentation (Presentación): Se aplica la lógica de negocio a los datos limpios para producir datos listos para ser consumidos por usuarios finales o aplicaciones. Esta capa suele presentar los datos en un formato fácil de entender y utilizar. Como características, la transformación puede incluir agregaciones, resúmenes, o la disposición de los archivos en un formato específico para su uso en herramientas de informes.</p>
+</li>
+<li>
+<p>Capa Sandbox (Zona de Experimentación): Esta capa opcional se utiliza para "jugar" o experimentar. Generalmente, es utilizada por científicos de datos y es una copia de la capa raw donde los datos no solo se pueden leer, sino también modificar. Como características, puede haber múltiples capas sandbox, también conocidas como capas de exploración, desarrollo o espacio de trabajo de ciencia de datos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cada una de estas capas permite gestionar los datos de manera que se pueda mejorar su calidad y utilidad a medida que se avanza a través del proceso de análisis y preparación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/data-lake-layers.png" alt="data lake layers">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_crear_una_estructura_de_carpetas_lógica">5.3.2. Crear una estructura de carpetas lógica</h4>
+<div class="paragraph">
+<p>También es útil organizar los datos en el data lake en una estructura de carpetas lógica que refleje las diferentes capas y zonas de calidad de datos por las que van pasando los datos a medida que pasan por diferentes niveles de procesamiento. Esto facilita la gestión y el acceso a los datos, así como la implementación de políticas de gobernanza y seguridad. A continuación se muestra un ejemplo de una estructura de carpetas para un data lake organizada por capas incluyendo las fechas para una mejor organización y gestión de los datos.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/data-lake-folder-structure.png" alt="data lake folder structure">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">/data_lake
+│
+├── /raw
+│   ├── /csv
+│   │   ├── /2024
+│   │   └── /2023
+│   ├── /json
+│   │   ├── /2024
+│   │   └── /2023
+│   ├── /parquet
+│   │   ├── /2024
+│   │   └── /2023
+│   └── /logs
+│       ├── /2024
+│       └── /2023
+│
+├── /conformed
+│   ├── /parquet
+│   │   ├── /2024
+│   │   └── /2023
+│   ├── /csv
+│   │   ├── /2024
+│   │   └── /2023
+│   └── /json
+│       ├── /2024
+│       └── /2023
+│
+├── /cleansed
+│   ├── /standardized
+│   │   ├── /2024
+│   │   └── /2023
+│   ├── /integrated
+│   │   ├── /2024
+│   │   └── /2023
+│   └── /consolidated
+│       ├── /2024
+│       └── /2023
+│
+├── /presentation
+│   ├── /reports
+│   │   ├── /2024
+│   │   └── /2023
+│   ├── /dashboards
+│   │   ├── /2024
+│   │   └── /2023
+│   └── /summaries
+│       ├── /2024
+│       └── /2023
+│
+└── /sandbox
+    ├── /exploration
+    │   ├── /2024
+    │   └── /2023
+    ├── /development
+    │   ├── /2024
+    │   └── /2023
+    └── /data_science
+        ├── /2024
+        └── /2023</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_catálogo_de_datos">5.4. Catálogo de Datos</h3>
+<div class="paragraph">
+<p>Un catálogo de datos es un repositorio centralizado, típicamente alojado en la nube, que almacena y organiza metadatos sobre todas las fuentes de datos, tablas, esquemas, columnas y otros activos de datos de una organización, como informes y dashboards, procesos ETL y scripts SQL. Funciona como una única fuente de verdad para que los usuarios descubran, comprendan y gestionen datos almacenados en bases de datos de aplicaciones, lagos de datos, almacenes de datos, data marts y cualquier otra forma de almacenamiento de datos.</p>
+</div>
+<div class="paragraph">
+<p>Un catálogo de datos típicamente incluye la siguiente información sobre cada activo de datos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Información sobre la fuente: Ubicación, tipo y detalles de conexión.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Si está en un RDW: Información sobre tablas y esquemas (estructura, relaciones y organización) y columnas (tipos de datos, formatos, descripciones y relaciones entre columnas).</p>
+</li>
+<li>
+<p>Si está en un almacenamiento de objetos como un data lake: Propiedades de archivos (almacenamiento, nombre de carpeta, nombre de archivo).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Linaje de datos: Cómo llegó el dato desde su origen, incluyendo información sobre cualquier transformación, agregación e integración que haya sufrido el dato.</p>
+</li>
+<li>
+<p>Detalles de gobernanza y cumplimiento de datos: Calidad de los datos, propiedad y políticas.</p>
+</li>
+<li>
+<p>Herramientas de búsqueda y descubrimiento: Herramientas para que los usuarios busquen, filtren y encuentren datos relevantes.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Una herramienta destacada en este ámbito es <a href="https://docs.open-metadata.org/v1.3.x">OpenMetadata</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_el_almacén_de_datos_moderno">6. El almacén de datos moderno</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Imaginemos un supermercado en la ciudad que cambia de bases de datos tradicionales a un almacén de datos moderno (MDW). Ahora, los gerentes pueden acceder a datos de inventario en tiempo real, predecir tendencias de compra y optimizar la experiencia de compra para sus clientes. Ese es el poder de un MDW. Combina lo mejor de ambos mundos: la estructura de los RDWs y la flexibilidad de los lagos de datos.</p>
+</div>
+<div class="paragraph">
+<p>En un MDW, el data lake se utiliza para la preparación y el almacenamiento de datos, mientras que el RDW se encarga de la presentación y la seguridad.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/mdw-detail.png" alt="mdw detail">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fábrica_de_datos">7. Fábrica de datos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La arquitectura de una fábrica de datos es una evolución de la arquitectura del almacén de datos moderno (MDW): una capa avanzada construida sobre el MDW para mejorar el acceso a los datos, la seguridad, la capacidad de descubrimiento y la disponibilidad.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/data-fabric-detail.png" alt="data fabric detail">
+</div>
+</div>
+<div class="paragraph">
+<p>Como características, destacar las siguientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Políticas de Acceso a Datos: Las políticas de acceso a datos son clave para la gobernanza de datos. Comprenden un conjunto de directrices, reglas y procedimientos que controlan quién tiene acceso a qué información, cómo se puede utilizar esa información y cuándo se puede conceder o denegar el acceso dentro de una organización. Ayudan a garantizar la seguridad, privacidad e integridad de los datos sensibles, así como el cumplimiento de leyes y regulaciones.</p>
+</li>
+<li>
+<p>Catálogo de Metadatos: Las arquitecturas de fábrica de datos incluyen un catálogo de metadatos: un repositorio que almacena información sobre los activos de datos, incluyendo su estructura, relaciones y características. Proporciona una manera centralizada y organizada de gestionar y descubrir datos, facilitando a los usuarios encontrar y entender los datos que necesitan. Por ejemplo, si un usuario busca en el catálogo de metadatos "cliente", los resultados incluirán archivos, tablas de bases de datos, informes o paneles de control que contengan datos de clientes. Hacer posible ver qué ingestión y reportes ya se han realizado ayuda a evitar esfuerzos duplicados. Una parte importante del catálogo es el linaje de datos, un registro de la historia de cualquier pieza de datos, incluyendo de dónde provino, cómo fue transformada y dónde está almacenada.</p>
+</li>
+<li>
+<p>Gestión de datos maestros (MDM): La MDM es el proceso de recolectar, consolidar y mantener datos consistentes y precisos de diversas fuentes dentro de una empresa para crear una fuente única y autorizada para datos maestros. La MDM ayuda a las empresas a tomar decisiones informadas y evitar problemas relacionados con los datos, como registros duplicados, inconsistencias e información incorrecta.</p>
+</li>
+<li>
+<p>Virtualización de datos: La virtualización de datos es una arquitectura de software que permite a las aplicaciones y a los usuarios finales acceder a datos de múltiples fuentes como si estuvieran almacenados en una sola ubicación.</p>
+</li>
+<li>
+<p>Procesamiento en tiempo real: Se refiere al procesamiento de datos y la producción de resultados inmediatos tan pronto como esos datos estén disponibles, sin retrasos notables.</p>
+</li>
+<li>
+<p>APIs: Las APIs proporcionan datos de una manera estandarizada desde una variedad de fuentes, como un data lake o un RDW, sin compartir los detalles específicos de dónde está ubicado el dato.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_lakehouse">8. Data lakehouse</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La idea detrás de un data lakehouse es simplificar las cosas al utilizar solo un data lake para almacenar todos tus datos, en lugar de tener también un data warehouse relacional separado. Para lograr esto, el data lake necesita más funcionalidades para reemplazar las características de un RDW. Aquí es donde entra en juego Delta Lake de Databricks.</p>
+</div>
+<div class="paragraph">
+<p>Delta Lake añade una capa de almacenamiento transaccional sobre el data lake, permitiendo que este funcione más como un RDW al proporcionar:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Transacciones ACID: Garantiza que las operaciones de lectura y escritura sean consistentes, seguras y confiables, similares a las que ofrece un RDW.</p>
+</li>
+<li>
+<p>Esquema predefinido: Permite imponer un esquema en los datos, asegurando que los datos escritos cumplan con las especificaciones del esquema definido, lo que ayuda a mantener la calidad de los datos.</p>
+</li>
+<li>
+<p>Versionado de datos: Facilita el seguimiento de cambios en los datos y la capacidad de revertir a versiones anteriores, proporcionando una capa adicional de seguridad y control.</p>
+</li>
+<li>
+<p>Optimización de consultas: Usa técnicas de optimización y almacenamiento en formato de columna (como Parquet) para mejorar el rendimiento de las consultas y la eficiencia del almacenamiento.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Con Delta Lake, el data lakehouse puede ofrecer las capacidades analíticas avanzadas y el rendimiento de un RDW, mientras mantiene la flexibilidad y escalabilidad de un data lake.</p>
+</div>
+<div class="sect2">
+<h3 id="_delta_lake_mejorando_los_data_lakes_con_capacidades_transaccionales">8.1. Delta Lake (Mejorando los Data Lakes con Capacidades Transaccionales)</h3>
+<div class="paragraph">
+<p>Delta Lake es una capa de almacenamiento transaccional diseñada para ejecutarse sobre un data lake existente, aportando características avanzadas que normalmente se asocian con los almacenes de datos relacionales (RDW) al mundo de los data lakes. A diferencia de un RDW, Delta Lake no proporciona almacenamiento en sí; en cambio, mejora la funcionalidad del data lake subyacente al introducir características que optimizan la confiabilidad, seguridad y rendimiento de los datos.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Funcionamiento: En su núcleo, Delta Lake transforma la gestión de datos dentro de un data lake mediante el uso de un formato especializado. Cuando los datos se almacenan utilizando Delta Lake, se organizan en archivos Parquet, un formato de almacenamiento columnar de código abierto optimizado para el procesamiento de grandes volúmenes de datos. Además, Delta Lake mantiene un registro de transacciones que rastrea todos los cambios realizados en los datos. Este registro asegura que todas las modificaciones se registren de manera precisa, lo que facilita operaciones de datos confiables y la recuperación de datos.</p>
+</li>
+<li>
+<p>Beneficios:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Integridad transaccional: Delta Lake soporta transacciones ACID (Atomicidad, Consistencia, Aislamiento, Durabilidad), lo que asegura la consistencia y confiabilidad de los datos incluso frente a operaciones concurrentes de lectura y escritura. Esta capacidad mitiga problemas como la corrupción o pérdida de datos, comunes en los data lakes tradicionales.</p>
+</li>
+<li>
+<p>Cumplimiento y evolución del esquema: Delta Lake permite el cumplimiento del esquema, lo que significa que los datos deben adherirse a una estructura predefinida antes de ser escritos. También soporta la evolución del esquema, acomodando cambios en la estructura de los datos con el tiempo sin interrumpir las operaciones en curso.</p>
+</li>
+<li>
+<p>Viaje en el tiempo: Delta Lake proporciona una característica conocida como "viaje en el tiempo", que permite a los usuarios consultar versiones históricas de los datos. Esto es particularmente útil para auditorías, depuración o recuperación de cambios no deseados.</p>
+</li>
+<li>
+<p>Calidad de datos: Al mantener registros detallados de los cambios en los datos, Delta Lake ayuda a garantizar una alta calidad de los datos. Los usuarios pueden rastrear y gestionar anomalías o inconsistencias en los datos de manera efectiva.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternativas: Aunque Delta Lake es una solución prominente, no es la única opción disponible para mejorar los data lakes con capacidades transaccionales. Dos alternativas populares son:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Apache Iceberg: Iceberg es un formato de tabla de código abierto que ofrece características similares a Delta Lake, incluyendo soporte para transacciones ACID, evolución del esquema y viaje en el tiempo. Está diseñado para manejar conjuntos de datos a gran escala y está optimizado para consultas de alto rendimiento.</p>
+</li>
+<li>
+<p>Apache Hudi: Hudi es otro marco de gestión de datos de código abierto que ofrece características como actualizaciones incrementales y versionado de datos. Es especialmente adecuado para el procesamiento y análisis de datos en tiempo real.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cada una de estas herramientas (Delta Lake, Apache Iceberg y Apache Hudi) ofrece ventajas únicas y puede ser elegida en función del caso de uso y requisitos. Juntas, representan una evolución significativa en la tecnología de data lakes, combinando la flexibilidad de los data lakes con las capacidades robustas tradicionalmente asociadas con los RDWs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_características_de_delta_lake_para_data_lakes">8.2. Características de Delta Lake para Data Lakes</h3>
+<div class="paragraph">
+<p>Delta Lake introduce una serie de características inspiradas en los almacenes de datos relacionales (RDW) para mejorar la funcionalidad y el manejo de datos en los data lakes. A continuación, se detallan algunas de las principales características que ofrece Delta Lake:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Soporte para comandos DML: Delta Lake admite comandos DML (Data Manipulation Language), como INSERT, DELETE, UPDATE y MERGE. Tradicionalmente, actualizar datos en un data lake implica leer el archivo completo, realizar las actualizaciones necesarias y volver a escribir el archivo completo, un proceso que puede ser lento, especialmente para archivos grandes. Delta Lake aborda este problema dividiendo la tabla en varios archivos más pequeños para facilitar su gestión, creando lo que se conoce como una Delta Table. Cuando se ejecuta una instrucción UPDATE, Delta Lake identifica y selecciona todos los archivos que contienen datos que coinciden con el predicado de la consulta y que, por lo tanto, necesitan ser actualizados. Luego, lee cada archivo coincidente en memoria, actualiza las filas relevantes y escribe el resultado en nuevos archivos de datos.</p>
+</li>
+<li>
+<p>Transacciones ACID: Delta Lake soporta transacciones ACID (Atomicidad, Consistencia, Aislamiento, Durabilidad), aunque está limitado a una sola Delta Table. Esto asegura que las operaciones realizadas en la tabla sean consistentes y seguras, incluso cuando se realizan múltiples operaciones simultáneamente.</p>
+</li>
+<li>
+<p>Viaje en el tiempo: Una característica destacada de Delta Lake es el "viaje en el tiempo", que permite a los usuarios consultar datos almacenados en Delta Tables como existían en un momento específico del pasado. Esta capacidad permite a los usuarios ver y acceder a versiones anteriores de los datos y, si es necesario, revertir los datos a una versión previa.</p>
+</li>
+<li>
+<p>Procesamiento por lotes y Streaming en tiempo Real: Delta Lake permite realizar procesamiento por lotes y streaming en tiempo real sobre los mismos datos en una Delta Table. Esto ofrece flexibilidad para trabajar con datos históricos y en tiempo real sin necesidad de gestionar diferentes conjuntos de datos o sistemas de procesamiento.</p>
+</li>
+<li>
+<p>Aplicación y cumplimiento del esquema: La aplicación del esquema es otra característica importante de Delta Lake. Permite especificar el esquema esperado para los datos en una Delta Table y aplicar reglas como restricciones de nulidad, restricciones de tipo de datos y restricciones de unicidad. Esto asegura que los datos cumplan con los requisitos estructurales definidos y ayuda a mantener la integridad de los datos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Estas características permiten que Delta Lake combine la flexibilidad de los data lakes con capacidades avanzadas de gestión de datos, ofreciendo una solución robusta para la manipulación y el análisis de grandes volúmenes de datos.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_inconvenientes_de_delta_lake">8.3. Inconvenientes de Delta Lake</h3>
+<div class="paragraph">
+<p>A pesar de las avanzadas características que Delta Lake añade a los data lakes, hay algunas áreas en las que los almacenes de datos relacionales (RDW) todavía pueden superar a Delta Lake. Aquí se detallan algunas de las principales diferencias:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Velocidad de Consultas: Las consultas en bases de datos relacionales suelen ser más rápidas en comparación con las consultas realizadas en un Delta Lake. Esto se debe en parte a que muchos RDWs utilizan tecnología de procesamiento masivo en paralelo (MPP), que distribuye las consultas a través de múltiples nodos para procesarlas simultáneamente. Esto permite una ejecución más rápida y eficiente de consultas complejas y de grandes volúmenes de datos. Delta Lake, por otro lado, está diseñado para ofrecer flexibilidad y manejo avanzado de datos, pero no puede igualar la velocidad de procesamiento de consultas de un RDW con MPP.</p>
+</li>
+<li>
+<p>Seguridad: Delta Lake, aunque mejora las capacidades de los data lakes tradicionales, todavía carece de algunas de las características de seguridad comunes en los RDWs, como:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Seguridad a Nivel de Fila (Row-Level Security): Los RDWs a menudo permiten definir reglas de acceso a nivel de fila, lo que significa que diferentes usuarios pueden ver diferentes subconjuntos de los datos basados en sus credenciales o roles. Delta Lake no ofrece esta funcionalidad de forma nativa. Sin embargo, esta funcionalidad puede ser implementada a través de herramientas de gestión de acceso a datos como <a href="https://ranger.apache.org/">Apache Ranger</a>. También se puede lograr mediante la implementación de lógica de seguridad en la capa de aplicación.</p>
+</li>
+<li>
+<p>Seguridad a Nivel de Columna (Column-Level Security): Similar a la seguridad a nivel de fila, la seguridad a nivel de columna permite controlar el acceso a columnas específicas de una tabla. Los RDWs pueden ofrecer esta funcionalidad para proteger información sensible, una característica que Delta Lake no proporciona por defecto. Sin embargo, al igual que con la seguridad a nivel de fila, esta funcionalidad puede ser implementada a través de herramientas de gestión de acceso a datos, como <a href="https://ranger.apache.org/">Apache Ranger</a>. También se puede lograr mediante la implementación de lógica de seguridad en la capa de aplicación.</p>
+</li>
+<li>
+<p>Cifrado de datos en reposo (Data-at-Rest Encryption): Los RDWs suelen incorporar cifrado de datos en reposo para proteger la información almacenada contra accesos no autorizados. Aunque Delta Lake puede utilizar encriptación a nivel de almacenamiento, la encriptación específica y la implementación de encriptación a nivel de archivo pueden no ser tan avanzadas como las ofrecidas por RDWs.</p>
+</li>
+<li>
+<p>Cifrado a nivel de columna (Column-Level Encryption): Los RDWs pueden proporcionar encriptación a nivel de columna, lo que permite encriptar datos sensibles en columnas específicas, mientras que Delta Lake no tiene un soporte nativo para esta funcionalidad.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Estas diferencias destacan que, aunque Delta Lake ofrece muchas ventajas en términos de flexibilidad y capacidad de manejo de datos, los RDWs aún mantienen ciertas ventajas en términos de rendimiento de consulta y características de seguridad avanzadas.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recursos_complementarios">9. Recursos complementarios</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enlaces a recursos adicionales para profundizar en los temas tratados en este documento:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tecnologías</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://delta.io/">Delta Lake</a></p>
+</li>
+<li>
+<p><a href="https://iceberg.apache.org/">Apache Iceberg</a></p>
+</li>
+<li>
+<p><a href="https://hudi.apache.org/">Apache Hudi</a></p>
+</li>
+<li>
+<p><a href="https://ranger.apache.org/">Apache Ranger</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tutoriales</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/azure/architecture/solution-ideas/articles/ingest-etl-stream-with-adb">Ingestion, ETL, and stream processing pipelines with Azure Databricks and Delta Lake</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/azure/data-factory/tutorial-data-flow-delta-lake">Transform data in delta lake using mapping data flows</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/training/modules/describe-medallion-architecture/">Organize a Fabric lakehouse using medallion architecture design</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/training/modules/catalog-data-artifacts-use-microsoft-purview/">Catalog data artifacts by using Microsoft Purview</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/training/paths/govern-data-across-enterprise/">Govern data across an enterprise</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2024-09-10 16:44:56 +0200
+</div>
+</div>
+</body>
+</html>

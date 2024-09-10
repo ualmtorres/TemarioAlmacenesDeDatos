@@ -13,7 +13,7 @@ Codificación, idioma, tabla de contenidos, tipo de documento
 Nombre y título del trabajo
 ////
 # Almacenes de datos
-Grado en Ingeniería Informática. Manuel Torres <mtorres@ual.es>
+Grado en Ingeniería Informática - UAL. Manuel Torres <mtorres@ual.es>
 
 image::images/di.png[]
 
@@ -90,7 +90,6 @@ Profesores:
 * Manuel Torres Gil
 ** Tutorías: Martes y Miércoles de 10h a 13h. Solicitar cita previa
 ** Despacho: 2.19.5 CITE III (2a planta)
-** email: mailto:mtorres@ual.es[mtorres@ual.es]
 
 ## Cómo seguir la asignatura
 
@@ -102,7 +101,7 @@ Profesores:
 ** Clases participativas
 ** Contenido práctico
 ** Elaboración de trabajos prácticos
-** Actividades no presenciales: $$$
+** Actividades no presenciales
 ** Tutorías
 
 ## Cómo superar la asignatura
@@ -112,10 +111,6 @@ Profesores:
 
 **Es necesario obtener una calificación mínima de 5/10 en cada una de las partes para superar la asignatura.**
 
-## Encuesta inicial
-
-...
-
 ## Antes de comenzar
 
 ** link:Docs/00-ConfiguracionEntorno/configuracion-entorno.html[Configuración del entorno de trabajo, window=_blank]
@@ -124,43 +119,39 @@ Profesores:
 
 ### Tema 1. Introducción al Data Warehousing
 
-* https://todo.com[Introducción al Data Warehousing - No disponible, window=_blank]
+* https://docs.google.com/presentation/d/1PAMdC9DJWYN-BegeYcoj4zQC3B2ISraQ_lJiDbVAZUU/edit?usp=sharing[Introducción al Data Warehousing, window=_blank]
 * link:Docs/Tema01/Enlaces.html[Enlaces de interés, window=_blank]
 
 ### Tema 2. El modelo de datos multidimensional
 
 * https://todo.com[El modelo de datos multidimensional - No disponible, window=_blank]
-* link:Docs/Tema02/Enlaces.html[Enlaces de interés, window=_blank]
+* link:Docs/Tema02/Enlaces.html[Enlaces de interés - No disponible, window=_blank]
 
 ### Tema 3. Diseño de bases de datos multidimensionales
 
 * https://todo.com[Diseño de bases de datos multidimensionales - No disponible, window=_blank]
-* link:Docs/Tema03/Enlaces.html[Enlaces de interés, window=_blank]
+* link:Docs/Tema03/Enlaces.html[Enlaces de interés - No disponible, window=_blank]
 
 ### Tema 4. Extensiones OLAP de SQL y el lenguaje MDX
 
 * https://todo.com[Extensiones OLAP de SQL y el lenguaje MDX - No disponible, window=_blank]
-* link:Docs/Tema04/Enlaces.html[Enlaces de interés, window=_blank]
+* link:Docs/Tema04/Enlaces.html[Enlaces de interés - No disponible, window=_blank]
 
 ### Tema 5. Tendencias actuales
 
-* https://todo.com[Tendencias actuales - No disponible, window=_blank]
-* link:Docs/Tema05/Enlaces.html[Enlaces de interés, window=_blank]
+* link:Docs/Tema05/Evolucion.html[Evolución de las arquitecturas de datos. De los almacenes de datos relacionales a los Data Lakehouses, window=_blank]
+* link:Docs/Tema05/Enlaces.html[Enlaces de interés - No disponible, window=_blank]
 
 ## Trabajo autónomo
 
-* link:Labs/Lab01/index.html[Lab 01. xxx, window=_blank] 
-* link:Labs/Lab02/index.html[Lab 02. xxx, window=_blank]
-* link:Labs/Lab03/index.html[Lab 03. xxx, window=_blank]
-* link:Labs/Lab04/index.html[Lab 04. xxx, window=_blank]
+* link:Labs/Lab01/index.html[Lab 01. Construcción de cubos OLAP - No disponible, window=_blank] 
+* link:Labs/Lab02/index.html[Lab 02. Extracción e integración de datos - No disponible, window=_blank]
+* link:Labs/Lab03/index.html[Lab 03. Consultas en cubos OLAP - No disponible, window=_blank]
 
 .Actividades complementarias
 ****
 Puedes profundizar en contenidos de la asignatura a través de estos recursos:
 
-* https://todo.com[No disponible, window=_blank]
+* link:https://learn.microsoft.com/en-us/fabric/data-warehouse/[Data warehousing documentation in Microsoft Fabric, windows=_blank]
+* link:https://learn.microsoft.com/en-us/power-bi/[Power BI documentation, windows=_blank]
 ****
-
-## Actividades no presenciales
-
-* https://todo.com[No disponible, window=_blank]
