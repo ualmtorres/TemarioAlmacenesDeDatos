@@ -16,9 +16,8 @@ Codificación, idioma, tabla de contenidos, tipo de documento
 Nombre y título del trabajo
 ////
 # Configuración del entorno de la asignatura - Almacenes de datos
-Grado en Ingeniería Informática. Universidad de Almería
+Almacenes de datos - Grado en Ingeniería Informática - UAL
 Manuel Torres <mtorres@ual.es>
-
 
 image::images/di.png[]
 

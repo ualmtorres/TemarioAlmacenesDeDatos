@@ -13,7 +13,8 @@ Codificación, idioma, tabla de contenidos, tipo de documento
 Nombre y título del trabajo
 ////
 # Evolución de las arquitecturas de datos. De los almacenes de datos relacionales a los Data Lakehouses
-Almacenes de datos - Grado en Ingeniería Informática. Manuel Torres <mtorres@ual.es>
+Almacenes de datos - Grado en Ingeniería Informática - UAL
+Manuel Torres <mtorres@ual.es>
 
 image::../../images/di.png[]
 
