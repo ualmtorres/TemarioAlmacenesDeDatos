@@ -145,10 +145,10 @@ Profesores:
 
 ## Trabajo autónomo
 
-* link:Labs/01-PowerBI/index.html[Lab 01. Visualización de datos con Power BI - En curso, window=_blank]
-* link:Labs/Lab02/index.html[Lab 02. Construcción de cubos OLAP - No disponible, window=_blank] 
-* link:Labs/Lab03/index.html[Lab 03. Extracción e integración de datos - No disponible, window=_blank]
-* link:Labs/Lab04/index.html[Lab 04. Consultas en cubos OLAP - No disponible, window=_blank]
+* link:Docs/Labs/01-PowerBI/index.html[Lab 01. Visualización de datos con Power BI - En curso, window=_blank]
+* link:Docs/Labs/Lab02/index.html[Lab 02. Construcción de cubos OLAP - No disponible, window=_blank] 
+* link:Docs/Labs/Lab03/index.html[Lab 03. Extracción e integración de datos - No disponible, window=_blank]
+* link:Docs/Labs/Lab04/index.html[Lab 04. Consultas en cubos OLAP - No disponible, window=_blank]
 
 .Actividades complementarias
 ****
