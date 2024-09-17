@@ -16,13 +16,13 @@ Nombre y título del trabajo
 Almacenes de datos - Grado en Ingeniería Informática - UAL
 Manuel Torres <mtorres@ual.es>
 
-image::../../../images//di.png[]
+image::../../../images/di.png[]
 
 :numbered!: 
 
 ## Resumen
 
-En este artículo se describe la herramienta Power BI, que permite la visualización de datos de forma sencilla y eficaz. Se describen las principales características de la herramienta y se muestran ejemplos de uso.
+En este tutorial se describe la herramienta Power BI, que permite la visualización de datos de forma sencilla y eficaz. Se describen las principales características de la herramienta y se muestran ejemplos de uso. Para facilitar la introducción de conceptos se presenta un caso de estudio en el que se analizan datos de ventas de una empresa ficticia, denominada Contoso. En particular, se muestra cómo crear un informe interactivo con Power BI y cómo utilizar las funcionalidades básicas del informe. Se describen las funcionalidades de filtrado, ordenación y exploración de datos, así como la creación de segmentadores. Se muestra cómo crear visualizaciones como tarjetas, gráficos de líneas, tablas de datos, mapas y gráficos de barras.
 
 :numbered: 
 
@@ -42,11 +42,11 @@ Power BI es una herramienta de visualización de datos que forma parte de la fam
 - Power BI Service: Es una plataforma en la nube que permite la publicación y el consumo de informes creados con Power BI Desktop. Permite la colaboración en tiempo real y la visualización de informes en cualquier dispositivo. Dentro de la clasificación de productos cloud, se corresponde con la categoría de Software as a Service (SaaS).
 - Power BI Mobile: Es una aplicación móvil, disponible para https://apps.apple.com/app/microsoft-power-bi/id929738808[iOS] y https://play.google.com/store/apps/details?id=com.microsoft.powerbim[Android], que permite la visualización de informes creados con Power BI Desktop y publicados en Power BI Service. Permite la visualización de informes en cualquier dispositivo móvil, incluyendo smartphones y tablets.
 +
-image::../../../images//powerbi-mobile.png[]
+image::../../../images/powerbi-mobile.png[]
 
 - Report Builder: Es una aplicación de escritorio, disponible sólo para Microsoft Windows, que permite la creación de informes interactivos y atractivos para salida impresa. Permite la conexión a múltiples fuentes de datos, la creación de gráficos y tablas, y la publicación de informes en la nube.
 +
-image::../../../images//powerbi-report-builder.png[]
+image::../../../images/powerbi-report-builder.png[]
 
 - https://powerbi.microsoft.com/en-nz/report-server/[Power BI Report Server]: Es una plataforma de informes en local que permite la publicación y el consumo de informes creados con Power BI Desktop. Permite la colaboración en tiempo real y la visualización de informes en cualquier dispositivo. 
 
@@ -62,7 +62,7 @@ Power BI permite la conexión a múltiples fuentes de datos, incluyendo bases de
 
 Según el https://cloud.google.com/blog/products/data-analytics/2024-gartner-magic-quadrant-analytics-and-business-intelligence[cuadrante de Gartner de 2024 para plataformas analíticas y de Business Intelligente], Power BI es una de las herramientas líderes en el mercado de análisis y visualización de datos. Power BI destaca por su facilidad de uso, su integración con otras herramientas de Microsoft, y su capacidad para trabajar con grandes volúmenes de datos. Power BI es una herramienta muy versátil que se puede utilizar en múltiples contextos, desde la empresa hasta la educación.
 
-image::../../../images//powerbi-gartner.png[]
+image::../../../images/powerbi-gartner.png[]
 
 Power BI está situado en el cuadrante de Gartner desde 2008, siendo líder desde 2019. Esto refleja la posición de Power BI como una de las herramientas de visualización de datos más populares y utilizadas en el mercado.
 
@@ -76,7 +76,7 @@ Se recomienda crear una copia del archivo original antes de realizar cualquier m
 
 Los archivos Power BI suelen contener modelos, informes e incluso datos. Se pueden abrir con Power BI Desktop y Power BI Service. Al abir el archivo, en la parte izquierda se encuentran las pestañas de "Vista de informe" (zona de diseño de informes), "Vista de datos" (permite la exploración rápida de una tabla seleccionada en la parte derecha), "Vista de modelo" (muestra las tablas y relaciones entre ellas) y "Vista de consultas DAX" (para realizar consultas y cálculos en DAX). En la parte derecha se encuentran las tablas y campos de la base de datos. En la parte central se encuentra el lienzo, donde se pueden arrastrar y soltar campos para crear visualizaciones. La figura siguiente ilustra la interfaz de Power BI Desktop destacando las pestañas y la zona de tablas.
 
-image::../../../images//powerbi-inicio.png[]
+image::../../../images/powerbi-inicio.png[]
 
 [NOTE]
 ====
@@ -87,7 +87,7 @@ Los archivos Power BI suelen contener datos. Esos datos están cargados en el pr
 
 El modelo de datos es una representación visual de las tablas y relaciones en una base de datos. En Power BI, el modelo de datos se crea automáticamente al importar datos de una fuente de datos. El modelo de datos se puede personalizar añadiendo tablas, campos y relaciones. Esta personalización puede ocultar campos o crear nuevos campos calculados, cambiar nombres, crear jerarquías, etc. A continuación se muestra el modelo de datos del caso de estudio:
 
-image::../../../images//powerbi-datamodel-base.png[]
+image::../../../images/powerbi-datamodel-base.png[]
 
 Se puede observar que se trata de un modelo en copo de nieve ya que algunas tablas de dimensión tienen relaciones con otras tablas de dimensión habiendo sufrido un proceso de normalización. Dejando de lado la normalización, el modelo de datos es sencillo y fácil de entender. El modelo de datos consta de una tabla central de ventas (`Sales`) que contiene datos sobre las ventas de productos en diferentes tiendas y teniendo en cuenta las condiciones promocionales de venta así como los canales de venta utilizados. La tabla de ventas tiene relaciones con otras tablas de dimensión, como la tabla de productos (`Product`), la tabla de tiendas (`Stores`), la tabla de promociones (`Promotion`), la tabla de canales de venta (`Channel`), así como la tabla de fechas ('Calendar'). Las tablas de dimensión contienen información adicional sobre los productos, las tiendas, las promociones, los canales de venta y las fechas. Las tablas de dimensión se utilizan para enriquecer los datos de ventas y facilitar el análisis de los mismos.
 
@@ -101,14 +101,14 @@ Las tarjetas son visualizaciones que muestran un único valor. Pueden ser útile
 2. Seleccionar la visualización "Tarjeta" en la barra de visualizaciones.
 3. Arrastrar el campo `SalesAmount`` de la tabla `Sales` al cuadro _Valores_ de la tarjeta.
 +
-image::../../../images//powerbi-tarjeta-inicio.png[]
+image::../../../images/powerbi-tarjeta-inicio.png[]
 
 4. Personalizar la tarjeta cambiando el formato del número, el color del texto, el tamaño de la letra, etc. En la pestaña "Dar formato a su objeto visual"
         * En la pestaña "Objeto visual", establecer el color del texto a blanco, número de decimales a 2 y desactivar la "Etiqueta de categoría".
         * En la pestaña "General", establecer el texto del título a "Total de ventas", ponerlo en blanco, negrita centrado. Ena la zona de "Efectos", cambiar el color de fondo a un tono verde pastel, con el borde un poco más oscuro y las esquinas ligeramente redondeadas. 
         * Ajustar la altura de la tarjeta para que se vea bien sin ocupar demasiado espacio.
 +
-image::../../../images//powerbi-tarjeta-final.png[]
+image::../../../images/powerbi-tarjeta-final.png[]
 
 ### Creación de gráficos de líneas con las ventas y unidades vendidas
 
@@ -131,7 +131,7 @@ Para crear un gráfico de líneas con las ventas a lo largo del tiempo, se sigue
         * En la pestaña "Objeto visual" activar las líneas de cuadrícula verticales y horizontales, configurar el color de la línea de la serie de datos para que tenga el mismo valor que el color de la tarjeta de ventas.
         * En la pestaña "General", establecer el texto del título a "Ventas diarias", ponerlo en el mismo color que la línea del gráfico, negrita y centrado. 
 +
-image::../../../images//powerbi-lineas-ventas-diarias.png[]
+image::../../../images/powerbi-lineas-ventas-diarias.png[]
 
 #### Creación de un gráfico de líneas con las unidades vendidas a lo largo del tiempo
 
@@ -143,7 +143,7 @@ A partir del gráfico de líneas anterior, se puede crear un gráfico de líneas
         * En la pestaña "Objeto visual" activar las líneas de cuadrícula verticales y horizontales, y configurar el color de la línea de la serie de datos para que tenga un tono azul claro.
         * En la pestaña "General", establecer el texto del título a "Unidades vendidas" y ponerlo en azul claro, como el de la línea del gráfico.
 +
-image::../../../images//powerbi-lineas-unidades-vendidas.png[]
+image::../../../images/powerbi-lineas-unidades-vendidas.png[]
 
 ### Creación de tablas de datos con las ventas y unidades vendidas 
 
@@ -163,14 +163,14 @@ Para crear una tabla de datos con las ventas por continente, se siguen los sigui
     * Segundo `SalesQuantity`: En el desplegable seleccionar `Mostrar valor como` y después `Porcentaje de total general`.
     * Para cada columna de valores cambiar los nombres de las columnas a `Continente, `Total ventas`, `% Total ventas`, `Unidades vendidas` y `% Unidades vendidas`.
 +
-image::../../../images//powerbi-tabladedatos-columnas.png[]
+image::../../../images/powerbi-tabladedatos-columnas.png[]
 5. En la pestaña "Dar formato a su objeto visual":
     * Seleccionar la pestaña "Objeto visual" y establecer en _Columna específica_ el número de decimales a 2 para la columna `Total ventas`.
 6 Ajustar el ancho de la visualización para que se vean bien los datos.
 
 Finalmente. la tabla de datos mostrará las ventas y unidades vendidas por continente en formato numérico y en formato de porcentaje. La tabla de datos permitirá ver los datos de forma detallada y facilitará la toma de decisiones. La figura siguiente muestra la tabla de datos con las ventas y unidades vendidas por continente.
 
-image::../../../images//powerbi-tabladedatos-final.png[]
+image::../../../images/powerbi-tabladedatos-final.png[]
 
 #### Creación de una tabla de datos con el total de ventas y unidades por canal
 
@@ -181,7 +181,7 @@ A partir de la tabla de datos anterior, se puede crear una tabla de datos con el
 
 La tabla de datos modificada será como la siguiente:
 
-image::../../../images//powerbi-tabladedatos-canal-final.png[]
+image::../../../images/powerbi-tabladedatos-canal-final.png[]
 
 ### Creación de un mapa con las ventas por región
 
@@ -191,7 +191,7 @@ Los mapas son visualizaciones que muestran datos geográficos en forma de mapa. 
 ====
 De forma predeterminada, Power BI tiene desativada la representación de datos geográficos. Esta configuración se puede cambiar en `Archivo` | Opciones y configuración` | `Opciones` | `Global`| `Seguridad`. Ahí se debe activar la opción de "Uso de elementos visuales de mapa y mapa coroplético".
 
-image::../../../images//powerbi-configuracion-datos-geograficos.png[]
+image::../../../images/powerbi-configuracion-datos-geograficos.png[]
 ====
 
 1. Seleccionar la pestaña "Vista de informe".
@@ -203,7 +203,7 @@ image::../../../images//powerbi-configuracion-datos-geograficos.png[]
 
 La figura siguiente muestra el mapa con las ventas por región. En el mapa, las burbujas representan las ventas por región y el tamaño de las burbujas representa el importe de las ventas. Al pasar el ratón por encima de las burbujas, se muestra el total de ventas y unidades vendidas.
 
-image::../../../images//powerbi-mapa.png[]
+image::../../../images/powerbi-mapa.png[]
 
 ### Incorporación de nuevas tarjetas de datos
 
@@ -222,7 +222,7 @@ Inicialmente el modelo de datos está configurado para que las columnas `Product
 
 Las tarjetas deberán ser como las que se muestran en la figura siguiente.
 
-image::../../../images//powerbi-tarjetas-datos.png[]
+image::../../../images/powerbi-tarjetas-datos.png[]
 
 ### Incorporación de nuevos gráficos de barras
 
@@ -254,25 +254,25 @@ A partir del gráfico de líneas de ventas de unidades diarias, se puede crear u
 
 La figura siguiente muestra el gráfico de barras con las unidades vendidas por marca. En el gráfico, las barras representan las unidades vendidas por marca. Las etiquetas de datos muestran el total de unidades vendidas por marca.
 
-image::../../../images//powerbi-barras-unidades-marca.png[]
+image::../../../images/powerbi-barras-unidades-marca.png[]
 
 ## Uso básico del informe de ventas
 
 Con los pasos anteriores hemos creado un informe interactivo con Power BI que ya puede ser de utilidad para analizar las ventas de la empresa Contoso. El informe muestra las ventas por producto, marca, continente y canal. El informe incluye tarjetas con el total de ventas, gráficos de líneas con las ventas y unidades vendidas a lo largo del tiempo, tablas de datos con las ventas y unidades vendidas por continente y por canal, un mapa con las ventas por región, tarjetas de datos con el total de productos vendidos, tiendas y regiones que han registrado ventas, y gráficos de barras con las ventas y unidades vendidas por marca. El informe debe ser similar al que se muestra en la figura siguiente.
 
-image::../../../images//powerbi-ventas-inicial.png[]
+image::../../../images/powerbi-ventas-inicial.png[]
 
 El informe es interactivo y permite explorar los datos de forma detallada. A continuación se describen algunas funcionalidades básicas del informe:
 
 1. **Filtrado de datos**: Se pueden filtrar los datos del informe por producto, marca, continente, canal, región, etc. Al seleccionar un valor en una visualización, el resto de visualizaciones se actualizan automáticamente para mostrar los datos correspondientes. Por ejemplo, si se selecciona una marca en el gráfico de barras con las ventas por marca, el resto de visualizaciones se actualizarán para mostrar las ventas y unidades vendidas de esa marca. Esto permite analizar los datos de forma detallada y obtener información útil para la toma de decisiones. Por ejemplo, si se selecciona la marca `Fabrikam` en el gráfico de barras de ventas por marca, se pueden ver las ventas y unidades vendidas de esa marca en el resto de visualizaciones.
 +
-image::../../../images//powerbi-filtrado-marca.png[]
+image::../../../images/powerbi-filtrado-marca.png[]
 2. **Ordenación de datos**: Se pueden ordenar los datos del informe por importe de ventas, unidades vendidas, marca, continente, canal, etc. Al hacer clic en una columna de una tabla de datos, los datos se ordenan automáticamente en función de esa columna. Por ejemplo, si se hace clic en la columna `Total ventas` de la tabla de datos con las ventas por continente, los datos se ordenarán automáticamente en función del importe de ventas. Esto permite analizar los datos de forma detallada y obtener información útil para la toma de decisiones. Por ejemplo, si se hace clic en la columna `Total ventas` de la tabla de datos con las ventas por continente, se pueden ver las ventas y unidades vendidas de cada continente ordenadas por importe de ventas. La figura siguiente muestra la tabla de datos con las ventas por continente ordenadas por importe de ventas para la marca `Fabrikam`.
 +
-image::../../../images//powerbi-ordenacion-ventas.png[]
+image::../../../images/powerbi-ordenacion-ventas.png[]
 3. **Exploración de datos**: Se pueden explorar los datos del informe de forma interactiva. Al pasar el ratón por encima de una visualización, se muestran los datos correspondientes. Por ejemplo, al pasar el ratón por encima de una burbuja en el mapa con las ventas por región, se muestra el total de ventas y unidades vendidas de esa región. Esto permite analizar los datos de forma detallada y obtener información útil para la toma de decisiones. Por ejemplo, al pasar el ratón por encima de una burbuja en el mapa con las ventas por región, se pueden ver las ventas y unidades vendidas de esa región. La figura siguiente muestra el mapa con las ventas por región y el total de ventas y unidades vendidas de la región `Canadá` por la marca `Fabrikam`.
 +
-image::../../../images//powerbi-exploracion-ventas.png[]
+image::../../../images/powerbi-exploracion-ventas.png[]
 
 [TIP]
 ====
@@ -296,7 +296,7 @@ Para crear un segmentador de año, se siguen los siguientes pasos:
 
 La figura siguiente muestra el segmentador de año. En el segmentador, se pueden seleccionar los años disponibles en la tabla `Calendar` y ver cómo afecta a las visualizaciones. Por ejemplo, al seleccionar el año `2011`, se pueden ver las ventas y unidades vendidas de ese año en las visualizaciones.
 
-image::../../../images//powerbi-segmentador-fecha.png[]
+image::../../../images/powerbi-segmentador-fecha.png[]
 
 [TIP]
 ====
@@ -314,7 +314,7 @@ A partir del segmentador de año, se puede crear un segmentador de producto que 
 
 La figura siguiente muestra el segmentador de producto. En el segmentador, se pueden seleccionar los productos disponibles en la tabla `Product` y ver cómo afecta a las visualizaciones. Por ejemplo, para seleccionar el producto `Fabrikam Laptop 12 M2002 Red`, introducir "M2002" en el cuadro de búsqueda. A continuación, seleccionar el producto y a continuación se pueden ver las ventas y unidades vendidas de ese producto en las visualizaciones. Si además se tiene seleccionado un año, se pueden ver las ventas y unidades vendidas de ese producto en ese año. La figura siguiente muestra el segmentador de producto actuando conjuntamente con el segmentador de año mostrando las ventas y unidades vendidas del producto `Fabrikam Laptop 12 M2002 Red` en el año `2011`.
 
-image::../../../images//powerbi-segmentador-producto.png[]
+image::../../../images/powerbi-segmentador-producto.png[]
 
 ### Creación de un segmentador de tienda
 
@@ -327,7 +327,144 @@ A partir del segmentador de producto, se puede crear un segmentador de tienda qu
 
 La figura siguiente muestra el segmentador de tienda. En el segmentador, se pueden seleccionar las tiendas disponibles en la tabla `Stores` y ver cómo afecta a las visualizaciones. Por ejemplo, para seleccionar la tienda `Contoso York Store`, introducir "York" en el cuadro de búsqueda. A continuación, seleccionar la tienda correcta y a continuación se pueden ver las ventas y unidades vendidas de esa tienda en las visualizaciones. Si además se tiene seleccionado un año y un producto, se pueden ver las ventas y unidades vendidas de esa tienda en ese año y para ese producto. La figura siguiente muestra el segmentador de tienda actuando conjuntamente con el segmentador de producto y el segmentador de año mostrando las ventas y unidades vendidas de la tienda `Contoso York Store`` para el producto `Fabrikam Laptop 12 M2002 Red` en el año `2011`.
 
-image::../../../images//powerbi-segmentador-tienda.png[]
+image::../../../images/powerbi-segmentador-tienda.png[]
 
 Con los segmentadores creados, el informe interactivo con Power BI es aún más útil para analizar las ventas de la empresa Contoso. Los segmentadores permiten filtrar los datos por año, producto y tienda y ver cómo afecta a las visualizaciones. El informe incluye tarjetas con el total de ventas, gráficos de líneas con las ventas y unidades vendidas a lo largo del tiempo, tablas de datos con las ventas y unidades vendidas por continente y por canal, un mapa con las ventas por región, tarjetas de datos con el total de productos vendidos, tiendas y regiones que han registrado ventas, gráficos de barras con las ventas y unidades vendidas por marca, y segmentadores de año, producto y tienda. 
+
+## Informes con varias pestañas
+
+Power BI permite crear informes con varias pestañas. Cada pestaña puede contener visualizaciones diferentes y permitir al usuario explorar los datos de forma detallada. En este caso de estudio, se va a crear una nueva pestaña con visualizaciones adicionales. La nueva pestaña permitirá analizar las ventas por país. La creación de informes con varias pestañas es útil para organizar las visualizaciones y facilitar la exploración de los datos. Normalmente se tendrá una pestaña inicial con un resumen de los datos y pestañas adicionales con visualizaciones más detalladas.  A continuación se describen los pasos para crear la nueva pestaña.
+
+### Creación de una nueva pestaña
+
+1. Seleccionar la pestaña "Vista de informe".
+2. Crear una forma de rectángulo con las esquinas redondeadas que englobe todas las visualizaciones de la pestaña actual. Esta forma servirá de separador entre las visualizaciones de la pestaña actual y las de la nueva pestaña. Enviar atrás la forma para que quede detrás de las visualizaciones.
+3. Insertar un botón de navegación entre páginas selecccionando `Insertar | Botones | Navegador | Navegador de páginas`
+4. Modificar el formato del botón de navegación. En la pestaña "Dar formato a su objeto visual":
+    * En `Forma` seleccionar `Pestaña redondeada, ambas partes superiores`.
+    * Configurar el estilo del botón cuando la pestaña seleccionada. En `Estilo` seleccionar en `Estado` el valor `Seleccionado`. Usar el color verde pastel para cambiar el color de relleno y del borde en las opciones `Rellenar` y `Borde`, respectivamente.
+    * Configurar el estilo del botón cuando la pestaña no está seleccionada. En `Estilo` seleccionar en `Estado` el valor `Valor predeterminado. Mantener el borde y cambiar el color del texto y relleno para que sea texto verde pastel sobre fondo blanco.
+5. Cambiar el título de la pestaña a `General`.
+6. Duplicar la pestaña actual. Seleccionar la pestaña duplicada y cambiar el título a `Ventas por país`.
+7. Modificar el ancho de los botones de navegación para que se vean bien.
+
+Las pestañas ya son totalmente funcionales y permiten navegar entre ellas. En modo diseño la navegación se hace con `Ctrl` + clic en el botón de navegación. En modo de visualización, se puede hacer clic en el botón de navegación para cambiar de pestaña. La figura siguiente muestra el informe con las dos pestañas creadas mostrando la pestaña General.
+
+image::../../../images/powerbi-pestanas-general.png[]
+
+### Personalización del informe de Ventas por país
+
+Una vez creada la nueva pestaña de ventas por país, realizaremos una serie de cambios para adaptar las visualizaciones a este nuevo contexto. A continuación se describen los pasos para personalizar el informe de ventas por país.
+
+1. Modificar las listas desplegables para dejar la de año en primera posición y una de selección de país. La lista de selección de país está basada en el campo `RegionCountryName` de la tabla `Geography`.
+2. Eliminar la visualización del mapa.
+3. Organizar todos los gráficos de líneas anteriores en una sola fila debajo de las tarjetas de datos y segmentadores.
+4. Dejar una única visualización de tabla de datos que muestre el importe de ventas y unidades por tienda (`StoreName` de la tabla `Stores`). Modificar el nombre de la columna a `Tienda`. Modificar el formato de la tabla para que se vea bien y colocarla en el cuadrante inferior derecho.
+5. Crear un gráfico de barras con ventas por categoría. Para ello, se selecciona la visualización "Gráfico de barras agrupadas" en la barra de visualizaciones. Esto creará un gráfico de barras vacío en el lienzo. Situaremos el gráfico de barras en la parte izquierda del cuadrante inferior izquierdo ocupando la mitad del cuadrante. Arrastrar el campo `ProductCategory` de la tabla `ProductCategory` a _Eje Y_ del gráfico de barras. Arrastrar el campo `SalesAmount` de la tabla `Sales` a _Eje X_ del gráfico de barras. Personalizar el gráfico de barras cambiando el color de las barras y añadiéndole un título. En la pestaña "Dar formato a su objeto visual", en la pestaña "Objeto visual" establecer el color de las barras a un tono ocre y el texto del título a "Ventas por categoría". Activar también la opción de `Etiquetas de datos`.
+6. Crear en el espacio libre del cuadrante izquierdo un gráfico de anillos con ventas por canal. Para ello, se selecciona la visualización "Gráfico de anillos" en la barra de visualizaciones. Esto creará un gráfico de anillos vacío en el lienzo. Arrastrar el campo `ChannelName` de la tabla `Channel` a _Leyenda_ del gráfico de anillos. Arrastrar el campo `SalesAmount` de la tabla `Sales` a _Valores_ del gráfico de anillos. Personalizar el gráfico de anillos cambiando el título a "Ventas por canal". Activar también la opción de `Etiquetas de datos`.
+
+La figura siguiente muestra el informe con las dos pestañas creadas mostrando la pestaña Ventas por país.
+
+image::../../../images/powerbi-pestanas-ventas-pais.png[]
+
+Si usamos los segmentadores de año y país combinado con la selección de elementos en las visualizaciones se pueden obtener datos muy interesantes. Por ejemplo, si seleccionamos el país `Spain` en la lista desplegable y seleccionamos la categoría `Computers` en el gráfico de barras de ventas por categoría, podemos ver las ventas y unidades vendidas de esa categoría en ese país. La figura siguiente muestra el informe con los resultados.
+
+image::../../../images/powerbi-ventas-pais.png[]
+
+### Sincronización de segmentadores entre pestañas
+
+Power BI permite sincronizar los segmentadores entre pestañas para que al seleccionar un valor en un segmentador en una pestaña, se actualicen automáticamente los valores en los segmentadores de las demás pestañas. Esto es útil para explorar los datos de forma detallada y obtener información útil para la toma de decisiones. A continuación se describen los pasos para sincronizar los segmentadores entre pestañas.
+
+1. Seleccionar la pestaña "Vista de informe".
+2. Seleccionar el segmentador de año en la pestaña `General`.
+3. En el menú `Ver` seleccionar `Sincronización de segmentaciones`. Aparecerá a la derecha la barra de sincronización de segmentadores. La barra permite seleccionar en qué pestañas está visible el segmentador seleccionado y si se sincroniza con otros segmentadores de otras páginas. En este caso, se seleccionarán las pestañas `General` y `Ventas por país` para que el segmentador de año esté visible en esas pestañas y se sincronicen en ambas páginas, de forma que al seleccionar un año en una pestaña, se actualicen automáticamente los valores en la otra pestaña.
++
+image::../../../images/powerbi-sincronizacion-segmentadores.png[]
+
+Podemos comprobar que al seleccionar un año en la pestaña `General`, se actualizan automáticamente los valores en la pestaña `Ventas por país`. Por ejemplo, si seleccionamos el año `2011` en la pestaña `General`, se pueden ver las ventas y unidades vendidas de ese año en la pestaña `Ventas por país`. La figura siguiente muestra el informe con los resultados.
+
+image::../../../images/powerbi-sincronizacion-ventas-pais.png[]
+
+### Exclusión de visualizaciones al filtrar
+
+Power BI permite excluir visualizaciones al filtrar los datos para que no se actualicen automáticamente al usar segmentadores. Esto es útil para mantener una visualización fija y compararla con otras visualizaciones. En nuestro caso de estudio vamos a excluir las tarjetas de datos del filtrado. De esta forma, siempre mostrarán los totales absolutos independientemente de los filtros aplicados. A continuación se describen los pasos para excluir visualizaciones al filtrar.
+
+1. Seleccionar la pestaña "Vista de informe".
+2. Seleccionar menú `Formato | Editar interacciones`.
+3. Seleccionar segmentador (p.e. la lista de desplegable de año) y seleccionar la opción `Ninguno` -el icono con forma de prohibido- para las tarjetas de datos. De esta forma, las tarjetas de datos no se actualizarán automáticamente al usar el segmentador de año.
+4. Repetir el proceso para el segmentador de producto y de tienda en la pestaña `General`.
+4. Repetir el proceso para los segmentadores de la pestaña `Ventas por país`.
+
+De esta forma, las tarjetas de datos no se actualizarán automáticamente al usar los segmentadores de año, producto y tienda. Esto permite mantener los totales absolutos de ventas y unidades vendidas independientemente de los filtros aplicados. La figura siguiente muestra el informe con los resultados en la pestaña General. Se puede observar que aunque se seleccionen valores en los segmentadores de año, producto y tienda, las tarjetas de datos no se actualizan y muestran los totales absolutos de ventas y unidades vendidas.
+
+image::../../../images/powerbi-exclusion-visualizaciones.png[]
+
+## Publicación del informe en Power BI Service
+
+Power BI permite publicar informes en Power BI Service para compartirlos con otras personas. Power BI Service es una plataforma en la nube que permite ver y compartir informes de Power BI. En este caso de estudio, se va a publicar el informe de ventas en Power BI Service. A continuación se describen los pasos para publicar el informe en Power BI Service.
+
+[IMPORTANT]
+====
+Para publicar un informe en Power BI Service, es necesario tener una cuenta de Power BI. En nuestro caso usaremos la cuenta PowerBI disponible en la licencia de estudiante de la UAL.
+====
+
+En la Vista de informe de la vista de escritorio, no la de disponsitivos móviles, seleccionar el botón `Publicar` en la barra de herramientas. Si no tenemos iniciada la sesión en nuestra cuenta de Microsoft, aparecerá una ventana emergente para iniciar sesión en Power BI. Introducir las credenciales y seleccionar `Iniciar sesión`. A continuación, aparecerá una ventana emergente para seleccionar el espacio de trabajo en Power BI Service. Seleccionar el espacio de trabajo y seleccionar `Seleccionar`. Aparecerá una ventana emergente para publicar el informe en Power BI Service. A continuación, se publicará el informe en Power BI Service. El informe está disponible en `https://app.powerbi.com/`. Si no está seleccionada el área de trabajo correcta, se puede cambiar en la parte izquierda de la pantalla. El informe se mostrará en la zona de informes. Se trata de informe totalmente funcional que se puede ver y compartir con otras personas en Power BI Service. La figura siguiente muestra el informe de ventas en Power BI Service.
+
+image::../../../images/powerbi-service.png[]
+
+## Adaptación del informe para dispositivos móviles
+
+Power BI permite adaptar los informes para dispositivos móviles. Los informes adaptados para dispositivos móviles se pueden ver en la aplicación móvil de Power BI y permiten explorar los datos de forma interactiva en cualquier lugar y en cualquier momento. En este caso de estudio, se va a adaptar el informe de ventas para dispositivos móviles. A continuación se describen los pasos para adaptar el informe para dispositivos móviles.
+
+### Creación de una vista para dispositivos móviles
+
+1. Seleccionar la pestaña "Vista de informe".
+2. Seleccionar el menú `Ver | Diseño para móviles`. Esto creará una vista para dispositivos móviles en el lienzo. La vista para dispositivos móviles permite diseñar el informe para que se vea bien en dispositivos móviles. 
++
+[INFO]
+====
+La vista para dispositivos móviles es una vista adicional que se puede personalizar para adaptar un informe existente a las dimensiones de los dispositivos móviles. Para crear una vista se añadirán las visualizaciones más importantes del informe original que se quieran mostrar en el informe para dispositivos móviles y se organizarán para que se vean bien en dispositivos móviles.
+====
+3. Para el informe para dispositivos móviles en este caso seleccionaremos las siguientes visualizaciones que colocaremos de arriba a abajo en este orden:
+
+* Total de ventas
+* Total de productos, regiones y tiendas
+* Gráfico de barras con ventas por marca
+* Gráfico de líneas con ventas diarias
+* Gráfico de barras con unidades por marca
+* Grácico de líneas con unidades vendidas
+
+4. Ajustar el tamaño de las visualizaciones para que se vean bien en dispositivos móviles. Por ejemplo, se pueden reducir el tamaño de las visualizaciones para que se vean bien en dispositivos móviles. También se pueden cambiar el tamaño de las fuentes y los colores para que se vean bien en dispositivos móviles.
+
+La figura siguiente muestra el informe general adaptado para dispositivos móviles. En el informe para dispositivos móviles, se han seleccionado las visualizaciones más importantes del informe original y se han organizado para que se vean bien en dispositivos móviles. El informe para dispositivos móviles permite explorar los datos de forma interactiva en cualquier lugar y en cualquier momento.
+
+image::../../../images/powerbi-movil-general.png[]
+
+### Uso de segmentadores en la vista para dispositivos móviles
+
+Cada pestaña del informe original se puede adaptar para dispositivos móviles de forma independiente. Para ello, se selecciona la pestaña y se siguen los pasos anteriores para adaptar la pestaña para dispositivos móviles. La figura siguiente muestra el informe de ventas por país adaptado para dispositivos móviles. En el informe para dispositivos móviles, se han seleccionado los segmentadores, las visualizaciones más importantes de la pestaña original y se han organizado para que se vean bien en dispositivos móviles.
+
+image::../../../images/powerbi-movil-ventas-pais.png[]
+
+[TIP]
+====
+Esta misma idea de usar los segmentadores en la vista para dispositivos móviles se podría incorporar en la vista general para que se puedan seleccionar los años, productos y tiendas desde dispositivos móviles.
+====
+
+### Incorporación de navegadores entre páginas en la vista para dispositivos móviles
+
+Finalmemte, es posible incorporar los navegadores entre páginas en la vista para dispositivos móviles. Para ello, se selecciona el botón de navegación entre páginas y se ajusta el tamaño y la posición para que se vea bien en dispositivos móviles. La figura siguiente muestra el informe de ventas general adaptado para dispositivos móviles con el botón de navegación entre páginas. El informe de ventas para móviles también ha sido modificado para incorporar los segmentadores de año, producto y tienda.
+
+image::../../../images/powerbi-movil-navegacion.png[]
+
+.Uso de la app de Power BI para visualizar el informe
+****
+Power BI permite visualizar los informes en la aplicación móvil de Power BI. La aplicación móvil de Power BI está disponible para dispositivos https://apps.apple.com/app/microsoft-power-bi/id929738808[iOS] y https://play.google.com/store/apps/details?id=com.microsoft.powerbim[Android] y permite explorar los datos de forma interactiva en cualquier lugar y en cualquier momento. El informe adaptado para dispositivos móviles creado. Para ello basta con tener la aplicación de Power BI instalada en el dispositivo móvil y acceder al informe con las credenciales de Power BI.
+****
+
+## Conclusiones
+
+El uso de herramientas como PowerBI para la visualización de datos es fundamental para la toma de decisiones en la empresa y permite analizar los datos de forma detallada y obtener información útil para la toma de decisiones. Power BI es una herramienta muy potente y versátil que permite crear informes interactivos fáciles de entender y compartirlos con otras personas. 
+
+En este tutorial se ha creado un informe interactivo con Power BI para mostrar las principales funcionalidades de Power BI. Se ha utilizado un caso de estudio para facilitar la introducción de conceptos y herramientas. El caso de estudio se ha basado en los datos de la empresa Contoso y se ha creado un informe interactivo para analizar las ventas de la empresa Contoso. En el tutorial se han utilizado visualizaciones básicas como las tarjetas de datos, los gráficos de barras, líneas y anillos, los mapas y las tablas de datos. El tutorial también ha introducido el uso de segmentadores mediante listas desplegables para el filtrado de información. Además, se ha mostrado cómo personalizar los informes para su utilización en dispositivos móviles y se ha visto cómo publicar los informes en Power BI Service para compartirlos con otras personas y poder consumirlos con una app móvil. 
 

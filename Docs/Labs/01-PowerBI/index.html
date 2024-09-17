@@ -472,6 +472,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_creación_de_un_segmentador_de_tienda">4.3. Creación de un segmentador de tienda</a></li>
 </ul>
 </li>
+<li><a href="#_informes_con_varias_pestañas">5. Informes con varias pestañas</a>
+<ul class="sectlevel2">
+<li><a href="#_creación_de_una_nueva_pestaña">5.1. Creación de una nueva pestaña</a></li>
+<li><a href="#_personalización_del_informe_de_ventas_por_país">5.2. Personalización del informe de Ventas por país</a></li>
+<li><a href="#_sincronización_de_segmentadores_entre_pestañas">5.3. Sincronización de segmentadores entre pestañas</a></li>
+<li><a href="#_exclusión_de_visualizaciones_al_filtrar">5.4. Exclusión de visualizaciones al filtrar</a></li>
+</ul>
+</li>
+<li><a href="#_publicación_del_informe_en_power_bi_service">6. Publicación del informe en Power BI Service</a></li>
+<li><a href="#_adaptación_del_informe_para_dispositivos_móviles">7. Adaptación del informe para dispositivos móviles</a>
+<ul class="sectlevel2">
+<li><a href="#_creación_de_una_vista_para_dispositivos_móviles">7.1. Creación de una vista para dispositivos móviles</a></li>
+<li><a href="#_uso_de_segmentadores_en_la_vista_para_dispositivos_móviles">7.2. Uso de segmentadores en la vista para dispositivos móviles</a></li>
+<li><a href="#_incorporación_de_navegadores_entre_páginas_en_la_vista_para_dispositivos_móviles">7.3. Incorporación de navegadores entre páginas en la vista para dispositivos móviles</a></li>
+</ul>
+</li>
+<li><a href="#_conclusiones">8. Conclusiones</a></li>
 </ul>
 </div>
 </div>
@@ -480,7 +497,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//di.png" alt="di">
+<img src="../../../images/di.png" alt="di">
 </div>
 </div>
 </div>
@@ -489,7 +506,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_resumen">Resumen</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En este artículo se describe la herramienta Power BI, que permite la visualización de datos de forma sencilla y eficaz. Se describen las principales características de la herramienta y se muestran ejemplos de uso.</p>
+<p>En este tutorial se describe la herramienta Power BI, que permite la visualización de datos de forma sencilla y eficaz. Se describen las principales características de la herramienta y se muestran ejemplos de uso. Para facilitar la introducción de conceptos se presenta un caso de estudio en el que se analizan datos de ventas de una empresa ficticia, denominada Contoso. En particular, se muestra cómo crear un informe interactivo con Power BI y cómo utilizar las funcionalidades básicas del informe. Se describen las funcionalidades de filtrado, ordenación y exploración de datos, así como la creación de segmentadores. Se muestra cómo crear visualizaciones como tarjetas, gráficos de líneas, tablas de datos, mapas y gráficos de barras.</p>
 </div>
 </div>
 </div>
@@ -524,7 +541,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Power BI Mobile: Es una aplicación móvil, disponible para <a href="https://apps.apple.com/app/microsoft-power-bi/id929738808">iOS</a> y <a href="https://play.google.com/store/apps/details?id=com.microsoft.powerbim">Android</a>, que permite la visualización de informes creados con Power BI Desktop y publicados en Power BI Service. Permite la visualización de informes en cualquier dispositivo móvil, incluyendo smartphones y tablets.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-mobile.png" alt="powerbi mobile">
+<img src="../../../images/powerbi-mobile.png" alt="powerbi mobile">
 </div>
 </div>
 </li>
@@ -532,7 +549,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Report Builder: Es una aplicación de escritorio, disponible sólo para Microsoft Windows, que permite la creación de informes interactivos y atractivos para salida impresa. Permite la conexión a múltiples fuentes de datos, la creación de gráficos y tablas, y la publicación de informes en la nube.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-report-builder.png" alt="powerbi report builder">
+<img src="../../../images/powerbi-report-builder.png" alt="powerbi report builder">
 </div>
 </div>
 </li>
@@ -568,7 +585,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-gartner.png" alt="powerbi gartner">
+<img src="../../../images/powerbi-gartner.png" alt="powerbi gartner">
 </div>
 </div>
 <div class="paragraph">
@@ -602,7 +619,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-inicio.png" alt="powerbi inicio">
+<img src="../../../images/powerbi-inicio.png" alt="powerbi inicio">
 </div>
 </div>
 <div class="admonitionblock note">
@@ -626,7 +643,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-datamodel-base.png" alt="powerbi datamodel base">
+<img src="../../../images/powerbi-datamodel-base.png" alt="powerbi datamodel base">
 </div>
 </div>
 <div class="paragraph">
@@ -653,7 +670,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Arrastrar el campo <code>SalesAmount`</code> de la tabla <code>Sales</code> al cuadro <em>Valores</em> de la tarjeta.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-tarjeta-inicio.png" alt="powerbi tarjeta inicio">
+<img src="../../../images/powerbi-tarjeta-inicio.png" alt="powerbi tarjeta inicio">
 </div>
 </div>
 </li>
@@ -671,7 +688,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Ajustar la altura de la tarjeta para que se vea bien sin ocupar demasiado espacio.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-tarjeta-final.png" alt="powerbi tarjeta final">
+<img src="../../../images/powerbi-tarjeta-final.png" alt="powerbi tarjeta final">
 </div>
 </div>
 </li>
@@ -730,7 +747,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>En la pestaña "General", establecer el texto del título a "Ventas diarias", ponerlo en el mismo color que la línea del gráfico, negrita y centrado.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-lineas-ventas-diarias.png" alt="powerbi lineas ventas diarias">
+<img src="../../../images/powerbi-lineas-ventas-diarias.png" alt="powerbi lineas ventas diarias">
 </div>
 </div>
 </li>
@@ -764,7 +781,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>En la pestaña "General", establecer el texto del título a "Unidades vendidas" y ponerlo en azul claro, como el de la línea del gráfico.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-lineas-unidades-vendidas.png" alt="powerbi lineas unidades vendidas">
+<img src="../../../images/powerbi-lineas-unidades-vendidas.png" alt="powerbi lineas unidades vendidas">
 </div>
 </div>
 </li>
@@ -816,7 +833,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Para cada columna de valores cambiar los nombres de las columnas a <code>Continente, `Total ventas</code>, <code>% Total ventas</code>, <code>Unidades vendidas</code> y <code>% Unidades vendidas</code>.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-tabladedatos-columnas.png" alt="powerbi tabladedatos columnas">
+<img src="../../../images/powerbi-tabladedatos-columnas.png" alt="powerbi tabladedatos columnas">
 </div>
 </div>
 </li>
@@ -841,7 +858,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-tabladedatos-final.png" alt="powerbi tabladedatos final">
+<img src="../../../images/powerbi-tabladedatos-final.png" alt="powerbi tabladedatos final">
 </div>
 </div>
 </div>
@@ -865,7 +882,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-tabladedatos-canal-final.png" alt="powerbi tabladedatos canal final">
+<img src="../../../images/powerbi-tabladedatos-canal-final.png" alt="powerbi tabladedatos canal final">
 </div>
 </div>
 </div>
@@ -887,7 +904,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-configuracion-datos-geograficos.png" alt="powerbi configuracion datos geograficos">
+<img src="../../../images/powerbi-configuracion-datos-geograficos.png" alt="powerbi configuracion datos geograficos">
 </div>
 </div>
 </td>
@@ -921,7 +938,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-mapa.png" alt="powerbi mapa">
+<img src="../../../images/powerbi-mapa.png" alt="powerbi mapa">
 </div>
 </div>
 </div>
@@ -968,7 +985,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-tarjetas-datos.png" alt="powerbi tarjetas datos">
+<img src="../../../images/powerbi-tarjetas-datos.png" alt="powerbi tarjetas datos">
 </div>
 </div>
 </div>
@@ -1050,7 +1067,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-barras-unidades-marca.png" alt="powerbi barras unidades marca">
+<img src="../../../images/powerbi-barras-unidades-marca.png" alt="powerbi barras unidades marca">
 </div>
 </div>
 </div>
@@ -1065,7 +1082,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-ventas-inicial.png" alt="powerbi ventas inicial">
+<img src="../../../images/powerbi-ventas-inicial.png" alt="powerbi ventas inicial">
 </div>
 </div>
 <div class="paragraph">
@@ -1077,7 +1094,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Filtrado de datos</strong>: Se pueden filtrar los datos del informe por producto, marca, continente, canal, región, etc. Al seleccionar un valor en una visualización, el resto de visualizaciones se actualizan automáticamente para mostrar los datos correspondientes. Por ejemplo, si se selecciona una marca en el gráfico de barras con las ventas por marca, el resto de visualizaciones se actualizarán para mostrar las ventas y unidades vendidas de esa marca. Esto permite analizar los datos de forma detallada y obtener información útil para la toma de decisiones. Por ejemplo, si se selecciona la marca <code>Fabrikam</code> en el gráfico de barras de ventas por marca, se pueden ver las ventas y unidades vendidas de esa marca en el resto de visualizaciones.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-filtrado-marca.png" alt="powerbi filtrado marca">
+<img src="../../../images/powerbi-filtrado-marca.png" alt="powerbi filtrado marca">
 </div>
 </div>
 </li>
@@ -1085,7 +1102,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Ordenación de datos</strong>: Se pueden ordenar los datos del informe por importe de ventas, unidades vendidas, marca, continente, canal, etc. Al hacer clic en una columna de una tabla de datos, los datos se ordenan automáticamente en función de esa columna. Por ejemplo, si se hace clic en la columna <code>Total ventas</code> de la tabla de datos con las ventas por continente, los datos se ordenarán automáticamente en función del importe de ventas. Esto permite analizar los datos de forma detallada y obtener información útil para la toma de decisiones. Por ejemplo, si se hace clic en la columna <code>Total ventas</code> de la tabla de datos con las ventas por continente, se pueden ver las ventas y unidades vendidas de cada continente ordenadas por importe de ventas. La figura siguiente muestra la tabla de datos con las ventas por continente ordenadas por importe de ventas para la marca <code>Fabrikam</code>.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-ordenacion-ventas.png" alt="powerbi ordenacion ventas">
+<img src="../../../images/powerbi-ordenacion-ventas.png" alt="powerbi ordenacion ventas">
 </div>
 </div>
 </li>
@@ -1093,7 +1110,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Exploración de datos</strong>: Se pueden explorar los datos del informe de forma interactiva. Al pasar el ratón por encima de una visualización, se muestran los datos correspondientes. Por ejemplo, al pasar el ratón por encima de una burbuja en el mapa con las ventas por región, se muestra el total de ventas y unidades vendidas de esa región. Esto permite analizar los datos de forma detallada y obtener información útil para la toma de decisiones. Por ejemplo, al pasar el ratón por encima de una burbuja en el mapa con las ventas por región, se pueden ver las ventas y unidades vendidas de esa región. La figura siguiente muestra el mapa con las ventas por región y el total de ventas y unidades vendidas de la región <code>Canadá</code> por la marca <code>Fabrikam</code>.</p>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-exploracion-ventas.png" alt="powerbi exploracion ventas">
+<img src="../../../images/powerbi-exploracion-ventas.png" alt="powerbi exploracion ventas">
 </div>
 </div>
 </li>
@@ -1153,7 +1170,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-segmentador-fecha.png" alt="powerbi segmentador fecha">
+<img src="../../../images/powerbi-segmentador-fecha.png" alt="powerbi segmentador fecha">
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1197,7 +1214,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-segmentador-producto.png" alt="powerbi segmentador producto">
+<img src="../../../images/powerbi-segmentador-producto.png" alt="powerbi segmentador producto">
 </div>
 </div>
 </div>
@@ -1227,7 +1244,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../../../images//powerbi-segmentador-tienda.png" alt="powerbi segmentador tienda">
+<img src="../../../images/powerbi-segmentador-tienda.png" alt="powerbi segmentador tienda">
 </div>
 </div>
 <div class="paragraph">
@@ -1236,10 +1253,325 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_informes_con_varias_pestañas">5. Informes con varias pestañas</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Power BI permite crear informes con varias pestañas. Cada pestaña puede contener visualizaciones diferentes y permitir al usuario explorar los datos de forma detallada. En este caso de estudio, se va a crear una nueva pestaña con visualizaciones adicionales. La nueva pestaña permitirá analizar las ventas por país. La creación de informes con varias pestañas es útil para organizar las visualizaciones y facilitar la exploración de los datos. Normalmente se tendrá una pestaña inicial con un resumen de los datos y pestañas adicionales con visualizaciones más detalladas.  A continuación se describen los pasos para crear la nueva pestaña.</p>
+</div>
+<div class="sect2">
+<h3 id="_creación_de_una_nueva_pestaña">5.1. Creación de una nueva pestaña</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Seleccionar la pestaña "Vista de informe".</p>
+</li>
+<li>
+<p>Crear una forma de rectángulo con las esquinas redondeadas que englobe todas las visualizaciones de la pestaña actual. Esta forma servirá de separador entre las visualizaciones de la pestaña actual y las de la nueva pestaña. Enviar atrás la forma para que quede detrás de las visualizaciones.</p>
+</li>
+<li>
+<p>Insertar un botón de navegación entre páginas selecccionando <code>Insertar | Botones | Navegador | Navegador de páginas</code></p>
+</li>
+<li>
+<p>Modificar el formato del botón de navegación. En la pestaña "Dar formato a su objeto visual":</p>
+<div class="ulist">
+<ul>
+<li>
+<p>En <code>Forma</code> seleccionar <code>Pestaña redondeada, ambas partes superiores</code>.</p>
+</li>
+<li>
+<p>Configurar el estilo del botón cuando la pestaña seleccionada. En <code>Estilo</code> seleccionar en <code>Estado</code> el valor <code>Seleccionado</code>. Usar el color verde pastel para cambiar el color de relleno y del borde en las opciones <code>Rellenar</code> y <code>Borde</code>, respectivamente.</p>
+</li>
+<li>
+<p>Configurar el estilo del botón cuando la pestaña no está seleccionada. En <code>Estilo</code> seleccionar en <code>Estado</code> el valor `Valor predeterminado. Mantener el borde y cambiar el color del texto y relleno para que sea texto verde pastel sobre fondo blanco.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cambiar el título de la pestaña a <code>General</code>.</p>
+</li>
+<li>
+<p>Duplicar la pestaña actual. Seleccionar la pestaña duplicada y cambiar el título a <code>Ventas por país</code>.</p>
+</li>
+<li>
+<p>Modificar el ancho de los botones de navegación para que se vean bien.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Las pestañas ya son totalmente funcionales y permiten navegar entre ellas. En modo diseño la navegación se hace con <code>Ctrl</code> + clic en el botón de navegación. En modo de visualización, se puede hacer clic en el botón de navegación para cambiar de pestaña. La figura siguiente muestra el informe con las dos pestañas creadas mostrando la pestaña General.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-pestanas-general.png" alt="powerbi pestanas general">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_personalización_del_informe_de_ventas_por_país">5.2. Personalización del informe de Ventas por país</h3>
+<div class="paragraph">
+<p>Una vez creada la nueva pestaña de ventas por país, realizaremos una serie de cambios para adaptar las visualizaciones a este nuevo contexto. A continuación se describen los pasos para personalizar el informe de ventas por país.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modificar las listas desplegables para dejar la de año en primera posición y una de selección de país. La lista de selección de país está basada en el campo <code>RegionCountryName</code> de la tabla <code>Geography</code>.</p>
+</li>
+<li>
+<p>Eliminar la visualización del mapa.</p>
+</li>
+<li>
+<p>Organizar todos los gráficos de líneas anteriores en una sola fila debajo de las tarjetas de datos y segmentadores.</p>
+</li>
+<li>
+<p>Dejar una única visualización de tabla de datos que muestre el importe de ventas y unidades por tienda (<code>StoreName</code> de la tabla <code>Stores</code>). Modificar el nombre de la columna a <code>Tienda</code>. Modificar el formato de la tabla para que se vea bien y colocarla en el cuadrante inferior derecho.</p>
+</li>
+<li>
+<p>Crear un gráfico de barras con ventas por categoría. Para ello, se selecciona la visualización "Gráfico de barras agrupadas" en la barra de visualizaciones. Esto creará un gráfico de barras vacío en el lienzo. Situaremos el gráfico de barras en la parte izquierda del cuadrante inferior izquierdo ocupando la mitad del cuadrante. Arrastrar el campo <code>ProductCategory</code> de la tabla <code>ProductCategory</code> a <em>Eje Y</em> del gráfico de barras. Arrastrar el campo <code>SalesAmount</code> de la tabla <code>Sales</code> a <em>Eje X</em> del gráfico de barras. Personalizar el gráfico de barras cambiando el color de las barras y añadiéndole un título. En la pestaña "Dar formato a su objeto visual", en la pestaña "Objeto visual" establecer el color de las barras a un tono ocre y el texto del título a "Ventas por categoría". Activar también la opción de <code>Etiquetas de datos</code>.</p>
+</li>
+<li>
+<p>Crear en el espacio libre del cuadrante izquierdo un gráfico de anillos con ventas por canal. Para ello, se selecciona la visualización "Gráfico de anillos" en la barra de visualizaciones. Esto creará un gráfico de anillos vacío en el lienzo. Arrastrar el campo <code>ChannelName</code> de la tabla <code>Channel</code> a <em>Leyenda</em> del gráfico de anillos. Arrastrar el campo <code>SalesAmount</code> de la tabla <code>Sales</code> a <em>Valores</em> del gráfico de anillos. Personalizar el gráfico de anillos cambiando el título a "Ventas por canal". Activar también la opción de <code>Etiquetas de datos</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>La figura siguiente muestra el informe con las dos pestañas creadas mostrando la pestaña Ventas por país.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-pestanas-ventas-pais.png" alt="powerbi pestanas ventas pais">
+</div>
+</div>
+<div class="paragraph">
+<p>Si usamos los segmentadores de año y país combinado con la selección de elementos en las visualizaciones se pueden obtener datos muy interesantes. Por ejemplo, si seleccionamos el país <code>Spain</code> en la lista desplegable y seleccionamos la categoría <code>Computers</code> en el gráfico de barras de ventas por categoría, podemos ver las ventas y unidades vendidas de esa categoría en ese país. La figura siguiente muestra el informe con los resultados.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-ventas-pais.png" alt="powerbi ventas pais">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sincronización_de_segmentadores_entre_pestañas">5.3. Sincronización de segmentadores entre pestañas</h3>
+<div class="paragraph">
+<p>Power BI permite sincronizar los segmentadores entre pestañas para que al seleccionar un valor en un segmentador en una pestaña, se actualicen automáticamente los valores en los segmentadores de las demás pestañas. Esto es útil para explorar los datos de forma detallada y obtener información útil para la toma de decisiones. A continuación se describen los pasos para sincronizar los segmentadores entre pestañas.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Seleccionar la pestaña "Vista de informe".</p>
+</li>
+<li>
+<p>Seleccionar el segmentador de año en la pestaña <code>General</code>.</p>
+</li>
+<li>
+<p>En el menú <code>Ver</code> seleccionar <code>Sincronización de segmentaciones</code>. Aparecerá a la derecha la barra de sincronización de segmentadores. La barra permite seleccionar en qué pestañas está visible el segmentador seleccionado y si se sincroniza con otros segmentadores de otras páginas. En este caso, se seleccionarán las pestañas <code>General</code> y <code>Ventas por país</code> para que el segmentador de año esté visible en esas pestañas y se sincronicen en ambas páginas, de forma que al seleccionar un año en una pestaña, se actualicen automáticamente los valores en la otra pestaña.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-sincronizacion-segmentadores.png" alt="powerbi sincronizacion segmentadores">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Podemos comprobar que al seleccionar un año en la pestaña <code>General</code>, se actualizan automáticamente los valores en la pestaña <code>Ventas por país</code>. Por ejemplo, si seleccionamos el año <code>2011</code> en la pestaña <code>General</code>, se pueden ver las ventas y unidades vendidas de ese año en la pestaña <code>Ventas por país</code>. La figura siguiente muestra el informe con los resultados.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-sincronizacion-ventas-pais.png" alt="powerbi sincronizacion ventas pais">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exclusión_de_visualizaciones_al_filtrar">5.4. Exclusión de visualizaciones al filtrar</h3>
+<div class="paragraph">
+<p>Power BI permite excluir visualizaciones al filtrar los datos para que no se actualicen automáticamente al usar segmentadores. Esto es útil para mantener una visualización fija y compararla con otras visualizaciones. En nuestro caso de estudio vamos a excluir las tarjetas de datos del filtrado. De esta forma, siempre mostrarán los totales absolutos independientemente de los filtros aplicados. A continuación se describen los pasos para excluir visualizaciones al filtrar.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Seleccionar la pestaña "Vista de informe".</p>
+</li>
+<li>
+<p>Seleccionar menú <code>Formato | Editar interacciones</code>.</p>
+</li>
+<li>
+<p>Seleccionar segmentador (p.e. la lista de desplegable de año) y seleccionar la opción <code>Ninguno</code> -el icono con forma de prohibido- para las tarjetas de datos. De esta forma, las tarjetas de datos no se actualizarán automáticamente al usar el segmentador de año.</p>
+</li>
+<li>
+<p>Repetir el proceso para el segmentador de producto y de tienda en la pestaña <code>General</code>.</p>
+</li>
+<li>
+<p>Repetir el proceso para los segmentadores de la pestaña <code>Ventas por país</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>De esta forma, las tarjetas de datos no se actualizarán automáticamente al usar los segmentadores de año, producto y tienda. Esto permite mantener los totales absolutos de ventas y unidades vendidas independientemente de los filtros aplicados. La figura siguiente muestra el informe con los resultados en la pestaña General. Se puede observar que aunque se seleccionen valores en los segmentadores de año, producto y tienda, las tarjetas de datos no se actualizan y muestran los totales absolutos de ventas y unidades vendidas.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-exclusion-visualizaciones.png" alt="powerbi exclusion visualizaciones">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_publicación_del_informe_en_power_bi_service">6. Publicación del informe en Power BI Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Power BI permite publicar informes en Power BI Service para compartirlos con otras personas. Power BI Service es una plataforma en la nube que permite ver y compartir informes de Power BI. En este caso de estudio, se va a publicar el informe de ventas en Power BI Service. A continuación se describen los pasos para publicar el informe en Power BI Service.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Para publicar un informe en Power BI Service, es necesario tener una cuenta de Power BI. En nuestro caso usaremos la cuenta PowerBI disponible en la licencia de estudiante de la UAL.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En la Vista de informe de la vista de escritorio, no la de disponsitivos móviles, seleccionar el botón <code>Publicar</code> en la barra de herramientas. Si no tenemos iniciada la sesión en nuestra cuenta de Microsoft, aparecerá una ventana emergente para iniciar sesión en Power BI. Introducir las credenciales y seleccionar <code>Iniciar sesión</code>. A continuación, aparecerá una ventana emergente para seleccionar el espacio de trabajo en Power BI Service. Seleccionar el espacio de trabajo y seleccionar <code>Seleccionar</code>. Aparecerá una ventana emergente para publicar el informe en Power BI Service. A continuación, se publicará el informe en Power BI Service. El informe está disponible en <code><a href="https://app.powerbi.com/" class="bare">https://app.powerbi.com/</a></code>. Si no está seleccionada el área de trabajo correcta, se puede cambiar en la parte izquierda de la pantalla. El informe se mostrará en la zona de informes. Se trata de informe totalmente funcional que se puede ver y compartir con otras personas en Power BI Service. La figura siguiente muestra el informe de ventas en Power BI Service.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-service.png" alt="powerbi service">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adaptación_del_informe_para_dispositivos_móviles">7. Adaptación del informe para dispositivos móviles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Power BI permite adaptar los informes para dispositivos móviles. Los informes adaptados para dispositivos móviles se pueden ver en la aplicación móvil de Power BI y permiten explorar los datos de forma interactiva en cualquier lugar y en cualquier momento. En este caso de estudio, se va a adaptar el informe de ventas para dispositivos móviles. A continuación se describen los pasos para adaptar el informe para dispositivos móviles.</p>
+</div>
+<div class="sect2">
+<h3 id="_creación_de_una_vista_para_dispositivos_móviles">7.1. Creación de una vista para dispositivos móviles</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Seleccionar la pestaña "Vista de informe".</p>
+</li>
+<li>
+<p>Seleccionar el menú <code>Ver | Diseño para móviles</code>. Esto creará una vista para dispositivos móviles en el lienzo. La vista para dispositivos móviles permite diseñar el informe para que se vea bien en dispositivos móviles.</p>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>La vista para dispositivos móviles es una vista adicional que se puede personalizar para adaptar un informe existente a las dimensiones de los dispositivos móviles. Para crear una vista se añadirán las visualizaciones más importantes del informe original que se quieran mostrar en el informe para dispositivos móviles y se organizarán para que se vean bien en dispositivos móviles.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Para el informe para dispositivos móviles en este caso seleccionaremos las siguientes visualizaciones que colocaremos de arriba a abajo en este orden:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Total de ventas</p>
+</li>
+<li>
+<p>Total de productos, regiones y tiendas</p>
+</li>
+<li>
+<p>Gráfico de barras con ventas por marca</p>
+</li>
+<li>
+<p>Gráfico de líneas con ventas diarias</p>
+</li>
+<li>
+<p>Gráfico de barras con unidades por marca</p>
+</li>
+<li>
+<p>Grácico de líneas con unidades vendidas</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Ajustar el tamaño de las visualizaciones para que se vean bien en dispositivos móviles. Por ejemplo, se pueden reducir el tamaño de las visualizaciones para que se vean bien en dispositivos móviles. También se pueden cambiar el tamaño de las fuentes y los colores para que se vean bien en dispositivos móviles.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>La figura siguiente muestra el informe general adaptado para dispositivos móviles. En el informe para dispositivos móviles, se han seleccionado las visualizaciones más importantes del informe original y se han organizado para que se vean bien en dispositivos móviles. El informe para dispositivos móviles permite explorar los datos de forma interactiva en cualquier lugar y en cualquier momento.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-movil-general.png" alt="powerbi movil general">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uso_de_segmentadores_en_la_vista_para_dispositivos_móviles">7.2. Uso de segmentadores en la vista para dispositivos móviles</h3>
+<div class="paragraph">
+<p>Cada pestaña del informe original se puede adaptar para dispositivos móviles de forma independiente. Para ello, se selecciona la pestaña y se siguen los pasos anteriores para adaptar la pestaña para dispositivos móviles. La figura siguiente muestra el informe de ventas por país adaptado para dispositivos móviles. En el informe para dispositivos móviles, se han seleccionado los segmentadores, las visualizaciones más importantes de la pestaña original y se han organizado para que se vean bien en dispositivos móviles.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-movil-ventas-pais.png" alt="powerbi movil ventas pais">
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Esta misma idea de usar los segmentadores en la vista para dispositivos móviles se podría incorporar en la vista general para que se puedan seleccionar los años, productos y tiendas desde dispositivos móviles.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_incorporación_de_navegadores_entre_páginas_en_la_vista_para_dispositivos_móviles">7.3. Incorporación de navegadores entre páginas en la vista para dispositivos móviles</h3>
+<div class="paragraph">
+<p>Finalmemte, es posible incorporar los navegadores entre páginas en la vista para dispositivos móviles. Para ello, se selecciona el botón de navegación entre páginas y se ajusta el tamaño y la posición para que se vea bien en dispositivos móviles. La figura siguiente muestra el informe de ventas general adaptado para dispositivos móviles con el botón de navegación entre páginas. El informe de ventas para móviles también ha sido modificado para incorporar los segmentadores de año, producto y tienda.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-movil-navegacion.png" alt="powerbi movil navegacion">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Uso de la app de Power BI para visualizar el informe</div>
+<div class="paragraph">
+<p>Power BI permite visualizar los informes en la aplicación móvil de Power BI. La aplicación móvil de Power BI está disponible para dispositivos <a href="https://apps.apple.com/app/microsoft-power-bi/id929738808">iOS</a> y <a href="https://play.google.com/store/apps/details?id=com.microsoft.powerbim">Android</a> y permite explorar los datos de forma interactiva en cualquier lugar y en cualquier momento. El informe adaptado para dispositivos móviles creado. Para ello basta con tener la aplicación de Power BI instalada en el dispositivo móvil y acceder al informe con las credenciales de Power BI.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusiones">8. Conclusiones</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>El uso de herramientas como PowerBI para la visualización de datos es fundamental para la toma de decisiones en la empresa y permite analizar los datos de forma detallada y obtener información útil para la toma de decisiones. Power BI es una herramienta muy potente y versátil que permite crear informes interactivos fáciles de entender y compartirlos con otras personas.</p>
+</div>
+<div class="paragraph">
+<p>En este tutorial se ha creado un informe interactivo con Power BI para mostrar las principales funcionalidades de Power BI. Se ha utilizado un caso de estudio para facilitar la introducción de conceptos y herramientas. El caso de estudio se ha basado en los datos de la empresa Contoso y se ha creado un informe interactivo para analizar las ventas de la empresa Contoso. En el tutorial se han utilizado visualizaciones básicas como las tarjetas de datos, los gráficos de barras, líneas y anillos, los mapas y las tablas de datos. El tutorial también ha introducido el uso de segmentadores mediante listas desplegables para el filtrado de información. Además, se ha mostrado cómo personalizar los informes para su utilización en dispositivos móviles y se ha visto cómo publicar los informes en Power BI Service para compartirlos con otras personas y poder consumirlos con una app móvil.</p>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-09-16 22:22:04 +0200
+Last updated 2024-09-17 11:46:29 +0200
 </div>
 </div>
 </body>
