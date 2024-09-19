@@ -22,6 +22,8 @@ image::../../../images/di.png[]
 
 ## Resumen
 
+En este tutorial se describe cómo realizar transformaciones básicas de datos con Power BI. Power BI es una herramienta de análisis de datos que permite conectar a diferentes fuentes de datos, transformar los datos y visualizarlos. Power BI cuenta con una herramienta llamada Power Query que permite realizar transformaciones de datos de forma sencilla. En este tutorial se describe cómo realizar transformaciones básicas de datos con Power Query. En particular se describirán transformaciones sobre columnas (eliminación, cambios de nombre, transformaciones básicas sobre el contenido y transformación de modelos a lo ancho a modelos a lo largo), creación de medidas y columnas calculadas y creación de relaciones entre tablas. 
+
 :numbered: 
 
 ## Introducción
@@ -30,7 +32,7 @@ Uno de los procesos más comunes en el análisis de datos es la transformación 
 
 ## Caso de estudio. Creación de un cuadro de mandos para Fake Store API
 
-https://fakestoreapi.com/[Fake Store API] es una API de datos abiertos de ejemplo de una plataforma de comercio electrónico con datos ficticios. Esta API proporciona datos de productos, usuarios y pedidos. En este tutorial vamos a crear un informe con Power BI que permita analizar los datos de producos, clientes y sus valoraciones. Para ello, previamente habrá que realizar una serie de transformaciones de los datos, crear un modelo de datos para finalizar creando un informe con visualizaciones que permitan analizar los datos.
+https://fakestoreapi.com/[Fake Store API] es una API de datos abiertos de ejemplo de una plataforma de comercio electrónico con datos ficticios. Esta API proporciona datos de productos, usuarios y pedidos. En este tutorial vamos a crear un informe con Power BI que permita analizar los datos de productos, clientes y sus valoraciones. Para ello, previamente habrá que realizar una serie de transformaciones de los datos, crear un modelo de datos, para finalizar creando un informe con visualizaciones que permitan analizar los datos.
 
 ### Descripción de la API
 
@@ -38,7 +40,7 @@ La API de Fake Store proporciona una serie de endpoints que permiten obtener dat
 
 - `/products`: Devuelve una lista de productos.
 - `/users`: Devuelve una lista de usuarios.
-- `/carts`: Devuelve una lista de pedidos.
+- `/carts`: Devuelve una lista de pedidos (realmente, sesiones de compra).
 
 Los endpoints devuelven los datos en formato JSON. A continuación se muestra un ejemplo de los datos que devuelve cada endpoint.
 
@@ -210,9 +212,9 @@ Para modificar la tabla de productos y eliminar las columnas de imagen y descrip
 image::../../../images/power-query-products-base.png[]
 2. Seleccionar las columnas `image` y `description` haciendo clic en el nombre de la columna y después en `Quitar columnas`. Se añadirá un nuevo paso en el panel de `Pasos aplicados` que indica que se han eliminado las columnas. 
 +
-[INFO]
+[NOTE]
 ====
-Si se ha realizado un paso incorrecto en Power Query, se puede deshacer el paso haciendo clic en el paso eliminando del panel de `Pasos aplicados`.
+Si se ha realizado un paso incorrecto en Power Query, se puede deshacer el paso eliminándolo del panel de `Pasos aplicados`.
 ====
 3. Seleccionar `Cerrar y aplicar` para aplicar los cambios y volver a Power BI.
 4. Comprobar que la tabla de productos ha quedado como se necesitaba mostrándola en la `Vista de datos`.
@@ -228,11 +230,11 @@ Para modificar la tabla de pedidos y eliminar la versión y cambiar los nombres 
 +
 image::../../../images/power-query-carts-base.png[]
 +
-[INFO]
+[NOTE]
 ====
 De forma predeterminada, cuando Power Query se encuentra con un campo que es un objeto, si es un objeto sencillo con un número de campos fijo, Power BI crea una columna para cada campo del objeto añadiéndole el nombre del campo padre como prefijo. En este caso, como el objeto JSON del endpoint tiene un campo `products` que es un objeto con dos campos `productId` y `quantity`, Power BI ha creado dos columnas para estos campos con los nombres `products.productId` y `products.quantity`. Si el objeto es una lista de objetos, Power BI crea una fila por cada objeto de la lista.
 ====
-3. Seleccionar la columna `__v` haciendo clic en el nombre de la columna y después en `Quitar columnas`. Se añadirá un nuevo paso en el panel de `Pasos aplicados` que indica que se ha eliminado la columna `__v`.
+3. Seleccionar la columna `v` haciendo clic en el nombre de la columna y después en `Quitar columnas`. Se añadirá un nuevo paso en el panel de `Pasos aplicados` que indica que se ha eliminado la columna `v`.
 4. Hacer clic con el botón derecho sobre la columna `products.productid` y seleccionar `Cambiar nombre`. Cambiar el nombre de la columna a `productId`. Repetir el proceso para la columna `products.quantity` cambiando el nombre a `quantity`. Se añadirán dos nuevos pasos en el panel de `Pasos aplicados` que indican que se han cambiado los nombres de las columnas.
 5. Seleccionar `Cerrar y aplicar` para aplicar los cambios y volver a Power BI.
 6. Comprobar que la tabla de pedidos ha quedado como se necesitaba mostrándola en la `Vista de datos`.
@@ -258,7 +260,7 @@ image::../../../images/powerbi-model-users.png[]
 
 ## Creación del modelo de datos
 
-El modelo de datos es una representación de los datos que se va a utilizar para crear visualizaciones. En el modelo de datos se definen las relaciones entre las tablas y se crean columnas calculadas. En este caso, existe una relación 1:M entre las tablas de usuarios y pedidos y otra relación 1:M entre las tablas de productos y pedidos. Para crear las relaciones basta con arrastrar la columna de la tabla que actúa como 1 a la columna de la tabla que actúa como M. Power BI detectará automáticamente la relación y la creará. Al crear la relación aparecerá un cuadro de diálogo en el que se puede seleccionar la cardinalidad de relación (1:M, M:1, M:M) y si la dirección de filtro cruzado. Para crear las relaciones vamos a seguir los siguientes pasos:
+El modelo de datos es una representación de los datos que se va a utilizar para crear visualizaciones. En el modelo de datos se definen las relaciones entre las tablas y se crean columnas calculadas. En este caso, existe una relación 1:M entre las tablas de usuarios y pedidos, y otra relación 1:M entre las tablas de productos y pedidos. Para crear las relaciones basta con arrastrar la columna de la tabla que actúa como 1 a la columna de la tabla que actúa como M. Power BI detectará automáticamente la relación y la creará. Al crear la relación aparecerá un cuadro de diálogo en el que se puede seleccionar la cardinalidad de relación (1:M, M:1, M:M) y la dirección de filtro cruzado. Para crear las relaciones vamos a seguir los siguientes pasos:
 
 1. En Power BI, seleccionar la pestaña `Vista de modelo`.
 2. Situar la tabla `Carts` entre las tablas `Products` y `Users`. 
@@ -266,7 +268,7 @@ El modelo de datos es una representación de los datos que se va a utilizar para
 +
 .Dirección de filtro cruzado
 ****
-La dirección de filtro cruzado indica si la relación se puede filtrar en ambas direcciones. Por ejemplo, si se tiene una relación entre la tabla de usuarios y la tabla de pedidos, se puede filtrar la tabla de pedidos por un usuario y la tabla de usuarios por un pedido. Si se selecciona `Unico` como dirección de filtro cruzado se podrá filtrar la tabla de pedidos por un usuario, pero no se podrá filtrar la tabla de usuarios por un pedido. En cambio, si se elecciona `Ambas` como dirección de filtro cruzado se podrá filtrar la tabla de pedidos por un usuario y la tabla de usuarios por un pedido.
+La dirección de filtro cruzado indica si la relación se puede filtrar en ambas direcciones. Por ejemplo, si se tiene una relación entre la tabla de usuarios y la tabla de pedidos, se puede filtrar la tabla de pedidos por un usuario y la tabla de usuarios por un pedido. Si se selecciona `Unico` como dirección de filtro cruzado se podrá filtrar la tabla de pedidos por un usuario, pero no se podrá filtrar la tabla de usuarios por un pedido. En cambio, si se elecciona `Ambas` como dirección de filtro cruzado se podrá filtrar en las dos direcciones.
 ****
 4. Repetir el paso 3 para la tabla `Products` y la tabla `Carts` arrastrando la columna `id` de la tabla `Products` a la columna `productId` de la tabla `Carts`. Al igual que en la relación anterior, la relación tiene cardindalidad 1:M y la dirección de filtro cruzado es `Ambas`. 
 
@@ -280,7 +282,7 @@ Una de las operaciones habituales en los procesos de integración y transformaci
 
 ### Creación de medidas calculadas con DAX
 
-DAX es un lenguaje de fórmulas que se utiliza para crear medidas y columnas calculadas. Las medidas calculadas se crean en función de los datos de la tabla y se utilizan para realizar cálculos agregados. DAX ofrece una serie de funciones que permiten realizar cálculos de forma sencilla. Entre las principales funciones de DAX se encuentran las funciones de agregación, las funciones de filtrado y las funciones de tiempo. A continuación se muestra un ejemplo de una medida calculada que calcula el número de unodades de productos vendidos a partir de la tabla de pedidos.
+DAX es un lenguaje de fórmulas que se utiliza para crear medidas y columnas calculadas de forma sencilla. Las medidas calculadas se crean en función de los datos de la tabla y se utilizan para realizar cálculos agregados. Entre las principales funciones de DAX se encuentran las funciones de agregación, las funciones de filtrado y las funciones de tiempo. A continuación se muestra un ejemplo de una medida calculada que calcula el número de unidades de productos vendidos a partir de la tabla de pedidos.
 
 ```dax
 ProductsSold = SUM('Carts'[quantity])
@@ -289,12 +291,12 @@ ProductsSold = SUM('Carts'[quantity])
 Podemos agrupar las funciones útiles para crear medidas calculadas en las siguientes categorías:
 
 - Funciones de agregación: `SUM`, `AVERAGE`, `MIN`, `MAX`, `COUNT`, `COUNTA`, `COUNTBLANK`, `DISTINCTCOUNT`, `DISTINCTCOUNTNOBLANK`, `SUMX`, `AVERAGEX`, `MINX`, `MAXX`, `COUNTX`, `COUNTAX`, `COUNTAXA`, `DISTINCTCOUNTX`, `DISTINCTCOUNTNOBLANKX`. Por ejemplo, la función `SUM` se utiliza para sumar los valores de una columna. La función `COUNTA` se utiliza para contar los valores no vacíos de una columna. La función `DISTINCTCOUNT` se utiliza para contar los valores distintos de una columna.
-- Funciones de filtrado: `FILTER`, `ALL`, `ALLEXCEPT`, `ALLSELECTED`, `CALCULATE`, `CALCULATETABLE`, `KEEPFILTERS`, `REMOVEFILTERS. Por ejemplo, la función `FILTER` se utiliza para filtrar una tabla en función de una condición. La función `ALL` se utiliza para eliminar los filtros de una tabla. La función `ALL` se utiliza para eliminar los filtros de una tabla. La función `CALCULATE` se utiliza para modificar el contexto de evaluación de una expresión.
+- Funciones de filtrado: `FILTER`, `ALL`, `ALLEXCEPT`, `ALLSELECTED`, `CALCULATE`, `CALCULATETABLE`, `KEEPFILTERS`, `REMOVEFILTERS`. Por ejemplo, la función `FILTER` se utiliza para filtrar una tabla en función de una condición. La función `ALL` se utiliza para eliminar los filtros de una tabla. La función `CALCULATE` se utiliza para modificar el contexto de evaluación de una expresión.
 - Funciones de tiempo: `DATE`, `TIME`, `NOW`, `TODAY`, `YEAR`, `MONTH`, `DAY`, `HOUR`, `MINUTE`, `SECOND`, `WEEKDAY`, `WEEKNUM`, `QUARTER`, `YEARFRAC`, `DATEDIFF`, `DATEADD`, `DATESBETWEEN`, `DATESINPERIOD`, `DATESMTD`, `DATESQTD`, `DATESYTD`, `PREVIOUSDAY`, `PREVIOUSMONTH`, `PREVIOUSQUARTER`, `PREVIOUSYEAR`, `NEXTDAY`, `NEXTMONTH`, `NEXTQUARTER`, `NEXTYEAR`. Por ejemplo, la función `YEAR` se utiliza para obtener el año de una fecha. La función `MONTH` se utiliza para obtener el mes de una fecha. La función `DAY` se utiliza para obtener el día de una fecha.
 
 ### Creación de columnas calculadas con DAX
 
-Las columnas calculadas son nuevas columnas cuyos valores se calculan en función de los datos de la tabla y se utilizan para realizar cálculos a nivel de fila. Las columnas calculadas se crean en función de los datos de la tabla y se utilizan para realizar cálculos a nivel de fila. DAX ofrece una serie de funciones que permiten realizar cálculos de forma sencilla. Entre las principales funciones de DAX se encuentran las funciones de texto, las funciones de fecha y hora, las funciones de lógica y las funciones de matemáticas. A continuación se muestra un ejemplo de una columna calculada que calcula el precio total de un producto vendido a partir de la tabla de pedidos.
+Las columnas calculadas son nuevas columnas cuyos valores se calculan en función de los datos de la tabla y se utilizan para realizar cálculos a nivel de fila. DAX ofrece una serie de funciones que permiten realizar cálculos de forma sencilla. Entre las principales funciones de DAX se encuentran las funciones de texto, las funciones de fecha y hora, las funciones de lógica y las funciones de matemáticas. A continuación se muestra un ejemplo de una columna calculada que calcula el precio total de un producto vendido a partir de la tabla de pedidos.
 
 ```dax
 TotalPrice = 'Carts'[quantity] * RELATED('Products'[price])
@@ -305,14 +307,14 @@ Podemos agrupar las funciones útiles para crear columnas calculadas en las sigu
 - Funciones de texto: `CONCATENATE`, `LEFT`, `RIGHT`, `MID`, `LEN`, `LOWER`, `UPPER`, `PROPER`, `TRIM`, `SUBSTITUTE`, `REPLACE`, `FIND`, `SEARCH`, `EXACT`, `TEXT`, `VALUE`, `FORMAT`. Por ejemplo, la función `CONCATENATE` se utiliza para concatenar dos o más cadenas de texto. La función `LEFT` se utiliza para obtener los primeros caracteres de una cadena de texto. La función `RIGHT` se utiliza para obtener los últimos caracteres de una cadena de texto.
 - Funciones de fecha y hora: `DATE`, `TIME`, `NOW`, `TODAY`, `YEAR`, `MONTH`, `DAY`, `HOUR`, `MINUTE`, `SECOND`, `WEEKDAY`, `WEEKNUM`, `QUARTER`, `YEARFRAC`, `DATEDIFF`, `DATEADD`, `DATESBETWEEN`, `DATESINPERIOD`, `DATESMTD`, `DATESQTD`, `DATESYTD`, `PREVIOUSDAY`, `PREVIOUSMONTH`, `PREVIOUSQUARTER`, `PREVIOUSYEAR`, `NEXTDAY`, `NEXTMONTH`, `NEXTQUARTER`, `NEXTYEAR`. Por ejemplo, la función `YEAR` se utiliza para obtener el año de una fecha. La función `MONTH` se utiliza para obtener el mes de una fecha. La función `DAY` se utiliza para obtener el día de una fecha.
 - Funciones de lógica: `IF`, `AND`, `OR`, `NOT`, `TRUE`, `FALSE`, `SWITCH`, `IFERROR`, `IFNA`, `ISEVEN`, `ISODD`, `ISBLANK`, `ISERROR`, `ISLOGICAL`, `ISNONTEXT`, `ISNUMBER`, `ISTEXT`. Por ejemplo, la función `IF` se utiliza para evaluar una condición y devolver un valor si la condición es verdadera y otro valor si la condición es falsa. La función `AND` se utiliza para evaluar si todas las condiciones son verdaderas. La función `OR` se utiliza para evaluar si alguna de las condiciones es verdadera.
-- Funciones de matemáticas: `SUM`, `AVERAGE`, `MIN`, `MAX`, `COUNT`, `COUNTA`, `COUNTBLANK`, `DISTINCTCOUNT`, `DISTINCTCOUNTNOBLANK`, `SUMX`, `AVERAGEX`, `MINX`, `MAXX`, `COUNTX`, `COUNTAX`, `COUNTAXA`, `DISTINCTCOUNTX`, `DISTINCTCOUNTNOBLANKX`. Por ejemplo, la función `SUM` se utiliza para sumar los valores de una columna. La función `COUNTA` se utiliza para contar los valores no vacíos de una columna. La función `DISTINCTCOUNT` se utiliza para contar los valores distintos de una columna.
+- Funciones de matemáticas: `SUM`, `AVERAGE`, `MIN`, `MAX`, `COUNT`, `COUNTA`, `COUNTBLANK`, `DISTINCTCOUNT`, `DISTINCTCOUNTNOBLANK`, `SUMX`, `AVERAGEX`, `MINX`, `MAXX`, `COUNTX`, `COUNTAX`, `COUNTAXA`, `DISTINCTCOUNTX`, `DISTINCTCOUNTNOBLANKX`. Por ejemplo, la función `SUM` se utiliza para sumar los valores de columnas de una fila. La función `AVERAGE` se utiliza para calcular la media de valores de columnas de una fila. La función `MIN` se utiliza para calcular el valor mínimo de valores de columnas de una fila. La función `MAX` se utiliza para calcular el valor máximo de valores de columnas de una fila.
 +
 [NOTE]
 ====
-Obsérvese que DAX tiene funciones que pueden ser utilizadas tanto para crear medidas como para crear columnas calculadas. Por ejemplo, la función `SUM` se puede utilizar para sumar los valores de una columna y crear una medida calculada o para sumar los valores de una columna y crear una columna calculada.
+Obsérvese que DAX tiene funciones que pueden ser utilizadas tanto para crear medidas como para crear columnas calculadas. Por ejemplo, la función `SUM` se puede utilizar para sumar los valores de una columna y crear una medida calculada o para sumar los valores de columnas de una fila y crear una columna calculada.
 ====
-- Funciones de tablas: `FILTER`, `ALL`, `ALLEXCEPT`, `ALLSELECTED`, `CALCULATE`, `CALCULATETABLE`, `KEEPFILTERS`, `REMOVEFILTERS. Por ejemplo, la función `FILTER` se utiliza para filtrar una tabla en función de una condición. La función `ALL` se utiliza para eliminar los filtros de una tabla. La función `ALL` se utiliza para eliminar los filtros de una tabla. La función `CALCULATE` se utiliza para modificar el contexto de evaluación de una expresión.
-- Funciones de relación: `RELATED`, `RELATEDTABLE`, `LOOKUPVALUE. La función `RELATED` se utiliza para obtener el valor de una columna relacionada. La función `LOOKUPVALUE` se utiliza para buscar un valor en una tabla relacionada.
+- Funciones de tablas: `FILTER`, `ALL`, `ALLEXCEPT`, `ALLSELECTED`, `CALCULATE`, `CALCULATETABLE`, `KEEPFILTERS`, `REMOVEFILTERS`. Por ejemplo, la función `FILTER` se utiliza para filtrar una tabla en función de una condición. La función `ALL` se utiliza para eliminar los filtros de una tabla. La función `ALL` se utiliza para eliminar los filtros de una tabla. La función `CALCULATE` se utiliza para modificar el contexto de evaluación de una expresión.
+- Funciones de relación: `RELATED`, `RELATEDTABLE`, `LOOKUPVALUE`. La función `RELATED` se utiliza para obtener el valor de una columna relacionada. La función `LOOKUPVALUE` se utiliza para buscar un valor en una tabla relacionada.
 - Funciones de manejo de errores: `IFERROR`, `IFNA`, `ISERROR`, `ISERR`, `ISNA`, `ERROR`, `ERROR.TYPE`. Por ejemplo, la función `IFERROR` se utiliza para devolver un valor si se produce un error. La función `IFNA` se utiliza para devolver un valor si se produce un error `#N/A`.
 
 ### Creación de medidas y columnas calculadas para el caso de estudio
@@ -334,12 +336,12 @@ Para crear las medidas y columnas calculadas vamos a seguir los siguientes pasos
 
 1. En Power BI, seleccionar la pestaña `Vista de modelo`.
 2. Seleccionar la tabla `Carts`.
-3. Hacer clic en el botón `Nueva medida` en la barra de herramientas o hacer clic con el botón derecho en la tabla `Carts` y crear la medida desde el menú contextual. La medida se creará en la barra de fórmulas en la parte superior. Estas sería la fórmula de la medida calculada:
+3. Hacer clic en el botón `Nueva medida` en la barra de herramientas o hacer clic con el botón derecho en la tabla `Carts` y crear la medida desde el menú contextual. La medida se creará en la barra de fórmulas en la parte superior. Esta sería la fórmula de la medida calculada usando la función https://learn.microsoft.com/es-es/dax/countrows-function-dax[`COUNTROWS`]:
     - `TotalUsersWithCarts = COUNTROWS('carts')`
-4. Hacer clic en el botón `Nueva columna` en la barra de herramientas o hacer clic con el botón derecho en la tabla `Carts` y crear la columna desde el menú contextual. La columna se creará en la barra de fórmulas en la parte superior. Esta sería la fórmula de la columna calculada:
+4. Hacer clic en el botón `Nueva columna` en la barra de herramientas o hacer clic con el botón derecho en la tabla `Carts` y crear la columna desde el menú contextual. La columna se creará en la barra de fórmulas en la parte superior. Esta sería la fórmula de la columna calculada usando la función https://learn.microsoft.com/es-es/dax/related-function-dax[`RELATED`]:
     - `amount = 'carts'[quantity] * RELATED('products'[price])`
 5. Seleccionar la tabla `Products`.
-6. Hacer clic en el botón `Nueva medida` en la barra de herramientas o hacer clic con el botón derecho en la tabla `Products` y crear la medida desde el menú contextual. La medida se creará en la barra de fórmulas en la parte superior. Estas serían las fórmulas de las medidas calculadas:
+6. Hacer clic en el botón `Nueva medida` en la barra de herramientas o hacer clic con el botón derecho en la tabla `Products` y crear la medida desde el menú contextual. La medida se creará en la barra de fórmulas en la parte superior. Estas serían las fórmulas de las medidas calculadas usando las funciones https://learn.microsoft.com/es-es/dax/sum-function-dax[`SUM`], https://learn.microsoft.com/es-es/dax/average-function-dax[`AVERAGE`], https://learn.microsoft.com/es-es/dax/max-function-dax[`MAX`] y https://learn.microsoft.com/es-es/dax/min-function-dax[`MIN`].
     - `TotalProducts = COUNTROWS('products')`
     - `TotalSales = SUM('carts'[amount])`
     - `MaxRating = MAX('products'[rating.rate])`
@@ -353,31 +355,31 @@ image::../../../images/powerbi-model-calculated.png[]
 
 ## Creación de visualizaciones
 
-Una vez que se han creado las medidas y columnas calculadas, se pueden utilizar para crear visualizaciones. Power BI ofrece una gran variedad de visualizaciones que permiten representar los datos de forma gráfica. Entre las visualizaciones más comunes se encuentran las tablas, los gráficos de barras, los gráficos de líneas, los gráficos de áreas, los gráficos de sectores, los gráficos de dispersión y los mapas. La figura siguiente ilustra el informe que crearemos para el caso de estudio de la API de Fake Store. En la figura se puede ver la distribución de las visualizaciones en el informe.
+Una vez que se han creado las medidas y columnas calculadas, se pueden utilizar para crear visualizaciones. Como vimos en el link:../01-PowerBI/index.html[tutorial de Visualización de datos con Power BI], Power BI ofrece una gran variedad de visualizaciones que permiten representar los datos de forma gráfica. Entre las visualizaciones más comunes se encuentran las tablas, los gráficos de barras, los gráficos de líneas, los gráficos de áreas, los gráficos de sectores, los gráficos de dispersión y los mapas. La figura siguiente ilustra el informe que crearemos para el caso de estudio de la API de Fake Store. En la figura se puede ver la distribución de las visualizaciones en el informe.
 
 image::../../../images/powerbi-fake-store-report.png[]
 
 A continuación se muestran las visualizaciones que crearemos para el caso de estudio de la API de Fake Store:
 
 * Tarjetas: Tarjetas sin etiqueta de categoría, título centrado, fondo y borde celeste, borde redondeado. Como títulos utilizaríamos `Productos`, `Ventas`, `Valoración máxima`, `Valoración mínima`, `Valoración media` y `Valoraciones`. Crearemos una tarjeta inicial para la primera medida calculada `TotalProducts` y después duplicaremos la tarjeta para el resto de medidas calculadas. 
-* Segmentador de datos: Segmentador de valoración para el campo `rating.rate` de la tabla `Products` para crear el segmentador. Cambiar el título a Valoración y dejar el estilo a `Entre` en la pestaña Objeto visual del menú `Dar formato a objeto visual` para que se pueda seleccionar un rango de valoraciones.
+* Segmentador de datos: Segmentador de valoración para el campo `rating.rate` de la tabla `Products` para crear el segmentador. Cambiar el título a `Valoración` y dejar el estilo a `Entre` en la pestaña `Objeto visual` del menú `Dar formato a objeto visual` para que se pueda seleccionar un rango de valoraciones.
 * Gráfico de anillos: Gráfico de anillos para mostrar el total de productos por categoría. Seleccionar el campo `category` de la tabla `Products` para el valor de `Leyenda` y la medida calculada `TotalProducts` para el valor de `Valores`. Cambiar el título a `Productos por categoría`.
 * Gráficos de barras: Gráficos de barras para valoración media por categoría y para total de valoraciones por categoría. 
     - Valoración media por categoría: Seleccionar el campo `category` de la tabla `Products` para el valor de `Eje Y` y la medida calculada `AvgRating` para el valor de `Eje X`. Cambiar el título a `Valoración media por categoría`.
     - Total de valoraciones por categoría: Seleccionar el campo `category` de la tabla `Products` para el valor de `Eje Y` y la medida calculada `TotalRatings` para el valor de `Eje X`. Cambiar el título a `Valoraciones por categoría`.
-* Gráfico de mapa: Compradores por ciudad. Seleccionar el campo `city` de la tabla `Users` para el valor de `Ubicación` y la medida calculada `TotalUsersWithCarts` para el valor de `Tamaño de la burbuja`. Cambiar el título a `Compradores por ciudad`.
-* Gráfico de líneas: Evolución de las ventas. Seleccionar el campo `date` de la tabla `Carts`  para el valor de `Eje X` (seleccionar sólo el mes) y la medida calculada `TotalSales` para el valor de `Eje Y`. Cambiar el título a `Ventas por mes`.
-* Gráfico de barras: Compradores por categoría. Seleccionar el campo `category` de la tabla `Products` para el valor de `Eje X` y la medida calculada `TotalUsersWithCarts` para el valor de `Eje Y`. Cambiar el título a `Compradores por categoría`.
+* Gráfico de mapa para compradores por ciudad. Seleccionar el campo `city` de la tabla `Users` para el valor de `Ubicación` y la medida calculada `TotalUsersWithCarts` para el valor de `Tamaño de la burbuja`. Cambiar el título a `Compradores por ciudad`.
+* Gráfico de líneas para evolución de las ventas. Seleccionar el campo `date` de la tabla `Carts`  para el valor de `Eje X` (seleccionar sólo el mes) y la medida calculada `TotalSales` para el valor de `Eje Y`. Cambiar el título a `Ventas por mes`.
+* Gráfico de barras para compradores por categoría. Seleccionar el campo `category` de la tabla `Products` para el valor de `Eje X` y la medida calculada `TotalUsersWithCarts` para el valor de `Eje Y`. Cambiar el título a `Compradores por categoría`.
 * Tablas de datos: Una tabla de ventas por producto y otra de usuarios.
     - Tabla de ventas por producto: De la tabla `carts` seleccionar los campos `title`, `quantity` y `amount` dos veces (una para mostrar el importe de ventas y otra para mostar ese importe en forma de porcentaje). De la tabla `products` seleccionar los campos `AvgRating` y `TotalRating`. Cambiar los títulos a `Producto`, `Unidades`, `Ventas`, `%Ventas`, `Valoración` y `Valoraciones`.
     - Tabla de usuarios: De la tabla `users` seleccionar los campos `id`, `firstname`, `lastname` y `city` y `phone`. Cambiar los títulos a `id`, `Nombre`, `Apellidos` y `Ciudad`.
-* Crear un cuadro de texto con el título del informe (p.e. Productos - Análisis de ventas y valoraciones. Fake Store).
+* Crear un cuadro de texto con el título del informe (p.e. `Productos - Análisis de ventas y valoraciones. Fake Store`).
 
 Una vez creadas estas visualizaciones obtendremos el informe que aparece en la figura anterior.
 
 ## Otra situación habitual de transformación de datos. Modelado en columnas
 
-Hasta ahora hemos visto un caso de estudio de transformación de datos con Power BI. Sin embargo, existen gran cantidad de situaciones que se pueden presentar, pero hay una a que vamos a prestar especial atención en este tutorial y es el caso de la solución al problema de modelado en columnas. Para ilustrar estos casos, usaremos una fuente de datos de ejemplo que contiene datos que presentan este problema. Se trata de un dataset en formato CSV de https://github.com/MolatoSekgobela/Data-Science-Video-games-sales-dataset[datos de ventas de videojuegos]. 
+Hasta ahora hemos visto un caso de estudio de transformación de datos con Power BI. Como es de esperar, existen gran cantidad de situaciones que se pueden presentar, pero hay una a que vamos a prestar especial atención en este tutorial, y es el caso de la solución al problema del modelado en columnas. Para ilustrar estos casos, usaremos una fuente de datos de ejemplo que contiene datos que presentan este problema. Se trata de un dataset en formato CSV de https://github.com/MolatoSekgobela/Data-Science-Video-games-sales-dataset[datos de ventas de videojuegos, window=_blank]. 
 
 ### Descripción de la fuente de datos
 
@@ -403,14 +405,14 @@ Para solucionar el problema de modelado en columnas vamos a seguir los siguiente
 +
 [NOTE]
 ====
-En el proceso de carga de importación de datos, Power BI ofrece la posibilidad de realizar transformaciones en los datos. Esto nos llevaría directamene a Power Query para definir las transformaciones a realizar sobre los datos. En este caso, cargaremos primero los datos y posteriormente realizaremos las transformaciones necesarias con Power Query. No obstante, se podría realizar la transformación con Power Query directamente en el proceso de importación de datos.
+En el proceso de carga de importación de datos, Power BI ofrece la posibilidad de realizar transformaciones en los datos sobre la marcha en el proceso de importación. Esto nos llevaría directamene a Power Query para definir las transformaciones a realizar sobre los datos. Sin embargo, en este caso cargaremos primero los datos y posteriormente realizaremos las transformaciones necesarias con Power Query. No obstante, se podría haber optado por realizar la transformación con Power Query sobre la marcha en el proceso de importación de datos.
 ====
 5. Una vez importados los datos, seleccionar la tabla de datos en la `Vista de tabla`.
 6. Seleccionar la opción `Transformar datos` del menú `Inicio` para abrir Power Query.
 7. En Power Query, seleccionar las columnas `NA_Sales`, `EU_Sales`, `JP_Sales` y `Other_Sales`.
 8. Hacer clic con el botón derecho sobre las columnas seleccionadas y seleccionar `Anulación de dinamización de columnas`. Power Query eliminará las columnas seleccionadas, y creará una nueva columna con los valores de las ventas y otra columna con los nombres de las regiones.
 9. Cambiar el nombre de las columnas creadas a `Region` y `Sales`.
-10. Aprovecharemos y cambiaremos el nombre de las regiones a un formato más legible. Por ejemplo, cambiaremos `NA_Sales` por `North America`, `EU_Sales` por `European Union`, `JP_Sales` por `Japan` y `Other_Sales` por `Other`. La sustitución de valores está disponible en el `Transformar | Reemplazar valores`.
+10. Aprovecharemos y cambiaremos el nombre de las regiones a un formato más legible. Por ejemplo, cambiaremos `NA_Sales` por `North America`, `EU_Sales` por `European Union`, `JP_Sales` por `Japan` y `Other_Sales` por `Other`. La sustitución de valores está disponible en el menú `Transformar | Reemplazar valores`.
 11. Eliminaremos la columna `Global_Sales` ya que no es necesaria.
 12. Seleccionar `Cerrar y aplicar` para aplicar los cambios y volver a Power BI.
 13. Comprobar que la tabla de datos ha quedado como se necesitaba mostrándola en la `Vista de tabla`.
@@ -419,9 +421,14 @@ La figura siguiente muestra la tabla de datos con las ventas de videojuegos en f
 
 image::../../../images/powerbi-videojuegos-modelado.png[]
 
+.El formato largo de los datos y la redundancia de datos
+****
+Al observar el resultado de la transformación a formato largo de los datos, podemos ver que aparece redundancia en las filas, ya que se repiten los datos de los juegos para cada región. Esto es una característica del formato largo de los datos, en el que cada fila contiene información sobre una observación. En este caso, cada observación es una venta de un juego en una región. Si se optata por un modelo sin redundancia, se podría dejar una tabla con los datos característicos de los juegos y otra tabla con las ventas en las diferentes regiones, que tendría una relación 1:M con la tabla de datos de los juegos. Sin embargo, en entornos de análisis de datos, y en particular en entornos de data warehousing, es común encontrar redundancia de datos en las tablas para facilitar el análisis de los datos. Como la carga de datos al data warehouse es realizada por procesos ETL que están programados para manejar la redundancia de datos, no es un problema en estos entornos y las consideraciones de normalización de bases de datos no son tan importantes como en entornos transaccionales u operacionales.
+****
+
 ### Creación de visualizaciones con los datos transformados
 
-Una vez que se han transformado los datos en formato ancho a formato largo, se pueden utilizar para crear visualizaciones. La figura siguiente ilustra un ejemplo de informe que podríamos crear para el caso de estudio de la fuente de datos de ventas de videojuegos. En la figura se puede ver la distribución de las visualizaciones en el informe.
+Una vez que se han transformado los datos de formato ancho a formato largo, se pueden utilizar los datos obtenidos para crear visualizaciones. La figura siguiente ilustra un ejemplo de informe que podríamos crear para el caso de estudio de la fuente de datos de ventas de videojuegos. En la figura se puede ver la distribución de las visualizaciones en el informe.
 
 image::../../../images/powerbi-videojuegos-report.png[]
 
@@ -434,7 +441,7 @@ Para crear este informe se pueden utilizar las siguientes visualizaciones:
 * Tabla de datos con las columnas de nombre, año, género, plataforma y editorial.
 * Gráfico de columnas con ventas por año ordenado cronológicamente: Usar el campo `Year` para el valor de `Eje X` y el campo `Sales` para el valor de `Eje Y`. Ordenar el eje X de forma cronológica haciendo clic sobre la visualización en los puntos suspensivos y seleccionar `Ordenar eje | Year | Ascendente`.
 * Crear segmentador de datos para filtrar las ventas por región: Usar el campo `Region` para el segmentador de datos. Cambiar el estulo a `Mosaico` en la pestaña `Objeto visual` del menú `Dar formato a objeto visual` dentro de la opción de `Configuración de la segmentación`.
-* Crear segmentadores de lista desplegable para filtrar las ventas por plataforma, género, editorial y año: Usar los campos `Platform`, `Genre`, `Publisher` y `Year`` para los segmentadores de lista. Cambiar el estilo a `Menú desplegable` en la pestaña `Objeto visual` del menú `Dar formato a objeto visual` dentro de la opción de `Configuración de la segmentación`.
+* Crear segmentadores de lista desplegable para filtrar las ventas por plataforma, género, editorial y año: Usar los campos `Platform`, `Genre`, `Publisher` y `Year` para los segmentadores de lista. Cambiar el estilo a `Menú desplegable` en la pestaña `Objeto visual` del menú `Dar formato a objeto visual` dentro de la opción de `Configuración de la segmentación`.
 
 Una vez creadas estas visualizaciones obtendremos el informe que aparece en la figura anterior.
 

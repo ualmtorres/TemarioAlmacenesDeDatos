@@ -491,7 +491,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_resumen">Resumen</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>En este tutorial se describe cómo realizar transformaciones básicas de datos con Power BI. Power BI es una herramienta de análisis de datos que permite conectar a diferentes fuentes de datos, transformar los datos y visualizarlos. Power BI cuenta con una herramienta llamada Power Query que permite realizar transformaciones de datos de forma sencilla. En este tutorial se describe cómo realizar transformaciones básicas de datos con Power Query. En particular se describirán transformaciones sobre columnas (eliminación, cambios de nombre, transformaciones básicas sobre el contenido y transformación de modelos a lo ancho a modelos a lo largo), creación de medidas y columnas calculadas y creación de relaciones entre tablas.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -506,7 +508,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_caso_de_estudio_creación_de_un_cuadro_de_mandos_para_fake_store_api">2. Caso de estudio. Creación de un cuadro de mandos para Fake Store API</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://fakestoreapi.com/">Fake Store API</a> es una API de datos abiertos de ejemplo de una plataforma de comercio electrónico con datos ficticios. Esta API proporciona datos de productos, usuarios y pedidos. En este tutorial vamos a crear un informe con Power BI que permita analizar los datos de producos, clientes y sus valoraciones. Para ello, previamente habrá que realizar una serie de transformaciones de los datos, crear un modelo de datos para finalizar creando un informe con visualizaciones que permitan analizar los datos.</p>
+<p><a href="https://fakestoreapi.com/">Fake Store API</a> es una API de datos abiertos de ejemplo de una plataforma de comercio electrónico con datos ficticios. Esta API proporciona datos de productos, usuarios y pedidos. En este tutorial vamos a crear un informe con Power BI que permita analizar los datos de productos, clientes y sus valoraciones. Para ello, previamente habrá que realizar una serie de transformaciones de los datos, crear un modelo de datos, para finalizar creando un informe con visualizaciones que permitan analizar los datos.</p>
 </div>
 <div class="sect2">
 <h3 id="_descripción_de_la_api">2.1. Descripción de la API</h3>
@@ -522,7 +524,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><code>/users</code>: Devuelve una lista de usuarios.</p>
 </li>
 <li>
-<p><code>/carts</code>: Devuelve una lista de pedidos.</p>
+<p><code>/carts</code>: Devuelve una lista de pedidos (realmente, sesiones de compra).</p>
 </li>
 </ul>
 </div>
@@ -779,12 +781,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li>
 <p>Seleccionar las columnas <code>image</code> y <code>description</code> haciendo clic en el nombre de la columna y después en <code>Quitar columnas</code>. Se añadirá un nuevo paso en el panel de <code>Pasos aplicados</code> que indica que se han eliminado las columnas.</p>
-<div class="exampleblock">
-<div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Si se ha realizado un paso incorrecto en Power Query, se puede deshacer el paso haciendo clic en el paso eliminando del panel de <code>Pasos aplicados</code>.</p>
+<p>Si se ha realizado un paso incorrecto en Power Query, se puede deshacer el paso eliminándolo del panel de <code>Pasos aplicados</code>.</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
@@ -818,16 +827,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <img src="../../../images/power-query-carts-base.png" alt="power query carts base">
 </div>
 </div>
-<div class="exampleblock">
-<div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
 <div class="paragraph">
 <p>De forma predeterminada, cuando Power Query se encuentra con un campo que es un objeto, si es un objeto sencillo con un número de campos fijo, Power BI crea una columna para cada campo del objeto añadiéndole el nombre del campo padre como prefijo. En este caso, como el objeto JSON del endpoint tiene un campo <code>products</code> que es un objeto con dos campos <code>productId</code> y <code>quantity</code>, Power BI ha creado dos columnas para estos campos con los nombres <code>products.productId</code> y <code>products.quantity</code>. Si el objeto es una lista de objetos, Power BI crea una fila por cada objeto de la lista.</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
-<p>Seleccionar la columna <code><em>v</code> haciendo clic en el nombre de la columna y después en <code>Quitar columnas</code>. Se añadirá un nuevo paso en el panel de <code>Pasos aplicados</code> que indica que se ha eliminado la columna <code></em>v</code>.</p>
+<p>Seleccionar la columna <code>v</code> haciendo clic en el nombre de la columna y después en <code>Quitar columnas</code>. Se añadirá un nuevo paso en el panel de <code>Pasos aplicados</code> que indica que se ha eliminado la columna <code>v</code>.</p>
 </li>
 <li>
 <p>Hacer clic con el botón derecho sobre la columna <code>products.productid</code> y seleccionar <code>Cambiar nombre</code>. Cambiar el nombre de la columna a <code>productId</code>. Repetir el proceso para la columna <code>products.quantity</code> cambiando el nombre a <code>quantity</code>. Se añadirán dos nuevos pasos en el panel de <code>Pasos aplicados</code> que indican que se han cambiado los nombres de las columnas.</p>
@@ -897,7 +913,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_creación_del_modelo_de_datos">4. Creación del modelo de datos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>El modelo de datos es una representación de los datos que se va a utilizar para crear visualizaciones. En el modelo de datos se definen las relaciones entre las tablas y se crean columnas calculadas. En este caso, existe una relación 1:M entre las tablas de usuarios y pedidos y otra relación 1:M entre las tablas de productos y pedidos. Para crear las relaciones basta con arrastrar la columna de la tabla que actúa como 1 a la columna de la tabla que actúa como M. Power BI detectará automáticamente la relación y la creará. Al crear la relación aparecerá un cuadro de diálogo en el que se puede seleccionar la cardinalidad de relación (1:M, M:1, M:M) y si la dirección de filtro cruzado. Para crear las relaciones vamos a seguir los siguientes pasos:</p>
+<p>El modelo de datos es una representación de los datos que se va a utilizar para crear visualizaciones. En el modelo de datos se definen las relaciones entre las tablas y se crean columnas calculadas. En este caso, existe una relación 1:M entre las tablas de usuarios y pedidos, y otra relación 1:M entre las tablas de productos y pedidos. Para crear las relaciones basta con arrastrar la columna de la tabla que actúa como 1 a la columna de la tabla que actúa como M. Power BI detectará automáticamente la relación y la creará. Al crear la relación aparecerá un cuadro de diálogo en el que se puede seleccionar la cardinalidad de relación (1:M, M:1, M:M) y la dirección de filtro cruzado. Para crear las relaciones vamos a seguir los siguientes pasos:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -913,7 +929,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <div class="title">Dirección de filtro cruzado</div>
 <div class="paragraph">
-<p>La dirección de filtro cruzado indica si la relación se puede filtrar en ambas direcciones. Por ejemplo, si se tiene una relación entre la tabla de usuarios y la tabla de pedidos, se puede filtrar la tabla de pedidos por un usuario y la tabla de usuarios por un pedido. Si se selecciona <code>Unico</code> como dirección de filtro cruzado se podrá filtrar la tabla de pedidos por un usuario, pero no se podrá filtrar la tabla de usuarios por un pedido. En cambio, si se elecciona <code>Ambas</code> como dirección de filtro cruzado se podrá filtrar la tabla de pedidos por un usuario y la tabla de usuarios por un pedido.</p>
+<p>La dirección de filtro cruzado indica si la relación se puede filtrar en ambas direcciones. Por ejemplo, si se tiene una relación entre la tabla de usuarios y la tabla de pedidos, se puede filtrar la tabla de pedidos por un usuario y la tabla de usuarios por un pedido. Si se selecciona <code>Unico</code> como dirección de filtro cruzado se podrá filtrar la tabla de pedidos por un usuario, pero no se podrá filtrar la tabla de usuarios por un pedido. En cambio, si se elecciona <code>Ambas</code> como dirección de filtro cruzado se podrá filtrar en las dos direcciones.</p>
 </div>
 </div>
 </div>
@@ -942,7 +958,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_creación_de_medidas_calculadas_con_dax">5.1. Creación de medidas calculadas con DAX</h3>
 <div class="paragraph">
-<p>DAX es un lenguaje de fórmulas que se utiliza para crear medidas y columnas calculadas. Las medidas calculadas se crean en función de los datos de la tabla y se utilizan para realizar cálculos agregados. DAX ofrece una serie de funciones que permiten realizar cálculos de forma sencilla. Entre las principales funciones de DAX se encuentran las funciones de agregación, las funciones de filtrado y las funciones de tiempo. A continuación se muestra un ejemplo de una medida calculada que calcula el número de unodades de productos vendidos a partir de la tabla de pedidos.</p>
+<p>DAX es un lenguaje de fórmulas que se utiliza para crear medidas y columnas calculadas de forma sencilla. Las medidas calculadas se crean en función de los datos de la tabla y se utilizan para realizar cálculos agregados. Entre las principales funciones de DAX se encuentran las funciones de agregación, las funciones de filtrado y las funciones de tiempo. A continuación se muestra un ejemplo de una medida calculada que calcula el número de unidades de productos vendidos a partir de la tabla de pedidos.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -958,7 +974,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Funciones de agregación: <code>SUM</code>, <code>AVERAGE</code>, <code>MIN</code>, <code>MAX</code>, <code>COUNT</code>, <code>COUNTA</code>, <code>COUNTBLANK</code>, <code>DISTINCTCOUNT</code>, <code>DISTINCTCOUNTNOBLANK</code>, <code>SUMX</code>, <code>AVERAGEX</code>, <code>MINX</code>, <code>MAXX</code>, <code>COUNTX</code>, <code>COUNTAX</code>, <code>COUNTAXA</code>, <code>DISTINCTCOUNTX</code>, <code>DISTINCTCOUNTNOBLANKX</code>. Por ejemplo, la función <code>SUM</code> se utiliza para sumar los valores de una columna. La función <code>COUNTA</code> se utiliza para contar los valores no vacíos de una columna. La función <code>DISTINCTCOUNT</code> se utiliza para contar los valores distintos de una columna.</p>
 </li>
 <li>
-<p>Funciones de filtrado: <code>FILTER</code>, <code>ALL</code>, <code>ALLEXCEPT</code>, <code>ALLSELECTED</code>, <code>CALCULATE</code>, <code>CALCULATETABLE</code>, <code>KEEPFILTERS</code>, <code>REMOVEFILTERS. Por ejemplo, la función `FILTER</code> se utiliza para filtrar una tabla en función de una condición. La función <code>ALL</code> se utiliza para eliminar los filtros de una tabla. La función <code>ALL</code> se utiliza para eliminar los filtros de una tabla. La función <code>CALCULATE</code> se utiliza para modificar el contexto de evaluación de una expresión.</p>
+<p>Funciones de filtrado: <code>FILTER</code>, <code>ALL</code>, <code>ALLEXCEPT</code>, <code>ALLSELECTED</code>, <code>CALCULATE</code>, <code>CALCULATETABLE</code>, <code>KEEPFILTERS</code>, <code>REMOVEFILTERS</code>. Por ejemplo, la función <code>FILTER</code> se utiliza para filtrar una tabla en función de una condición. La función <code>ALL</code> se utiliza para eliminar los filtros de una tabla. La función <code>CALCULATE</code> se utiliza para modificar el contexto de evaluación de una expresión.</p>
 </li>
 <li>
 <p>Funciones de tiempo: <code>DATE</code>, <code>TIME</code>, <code>NOW</code>, <code>TODAY</code>, <code>YEAR</code>, <code>MONTH</code>, <code>DAY</code>, <code>HOUR</code>, <code>MINUTE</code>, <code>SECOND</code>, <code>WEEKDAY</code>, <code>WEEKNUM</code>, <code>QUARTER</code>, <code>YEARFRAC</code>, <code>DATEDIFF</code>, <code>DATEADD</code>, <code>DATESBETWEEN</code>, <code>DATESINPERIOD</code>, <code>DATESMTD</code>, <code>DATESQTD</code>, <code>DATESYTD</code>, <code>PREVIOUSDAY</code>, <code>PREVIOUSMONTH</code>, <code>PREVIOUSQUARTER</code>, <code>PREVIOUSYEAR</code>, <code>NEXTDAY</code>, <code>NEXTMONTH</code>, <code>NEXTQUARTER</code>, <code>NEXTYEAR</code>. Por ejemplo, la función <code>YEAR</code> se utiliza para obtener el año de una fecha. La función <code>MONTH</code> se utiliza para obtener el mes de una fecha. La función <code>DAY</code> se utiliza para obtener el día de una fecha.</p>
@@ -969,7 +985,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_creación_de_columnas_calculadas_con_dax">5.2. Creación de columnas calculadas con DAX</h3>
 <div class="paragraph">
-<p>Las columnas calculadas son nuevas columnas cuyos valores se calculan en función de los datos de la tabla y se utilizan para realizar cálculos a nivel de fila. Las columnas calculadas se crean en función de los datos de la tabla y se utilizan para realizar cálculos a nivel de fila. DAX ofrece una serie de funciones que permiten realizar cálculos de forma sencilla. Entre las principales funciones de DAX se encuentran las funciones de texto, las funciones de fecha y hora, las funciones de lógica y las funciones de matemáticas. A continuación se muestra un ejemplo de una columna calculada que calcula el precio total de un producto vendido a partir de la tabla de pedidos.</p>
+<p>Las columnas calculadas son nuevas columnas cuyos valores se calculan en función de los datos de la tabla y se utilizan para realizar cálculos a nivel de fila. DAX ofrece una serie de funciones que permiten realizar cálculos de forma sencilla. Entre las principales funciones de DAX se encuentran las funciones de texto, las funciones de fecha y hora, las funciones de lógica y las funciones de matemáticas. A continuación se muestra un ejemplo de una columna calculada que calcula el precio total de un producto vendido a partir de la tabla de pedidos.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -991,7 +1007,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Funciones de lógica: <code>IF</code>, <code>AND</code>, <code>OR</code>, <code>NOT</code>, <code>TRUE</code>, <code>FALSE</code>, <code>SWITCH</code>, <code>IFERROR</code>, <code>IFNA</code>, <code>ISEVEN</code>, <code>ISODD</code>, <code>ISBLANK</code>, <code>ISERROR</code>, <code>ISLOGICAL</code>, <code>ISNONTEXT</code>, <code>ISNUMBER</code>, <code>ISTEXT</code>. Por ejemplo, la función <code>IF</code> se utiliza para evaluar una condición y devolver un valor si la condición es verdadera y otro valor si la condición es falsa. La función <code>AND</code> se utiliza para evaluar si todas las condiciones son verdaderas. La función <code>OR</code> se utiliza para evaluar si alguna de las condiciones es verdadera.</p>
 </li>
 <li>
-<p>Funciones de matemáticas: <code>SUM</code>, <code>AVERAGE</code>, <code>MIN</code>, <code>MAX</code>, <code>COUNT</code>, <code>COUNTA</code>, <code>COUNTBLANK</code>, <code>DISTINCTCOUNT</code>, <code>DISTINCTCOUNTNOBLANK</code>, <code>SUMX</code>, <code>AVERAGEX</code>, <code>MINX</code>, <code>MAXX</code>, <code>COUNTX</code>, <code>COUNTAX</code>, <code>COUNTAXA</code>, <code>DISTINCTCOUNTX</code>, <code>DISTINCTCOUNTNOBLANKX</code>. Por ejemplo, la función <code>SUM</code> se utiliza para sumar los valores de una columna. La función <code>COUNTA</code> se utiliza para contar los valores no vacíos de una columna. La función <code>DISTINCTCOUNT</code> se utiliza para contar los valores distintos de una columna.</p>
+<p>Funciones de matemáticas: <code>SUM</code>, <code>AVERAGE</code>, <code>MIN</code>, <code>MAX</code>, <code>COUNT</code>, <code>COUNTA</code>, <code>COUNTBLANK</code>, <code>DISTINCTCOUNT</code>, <code>DISTINCTCOUNTNOBLANK</code>, <code>SUMX</code>, <code>AVERAGEX</code>, <code>MINX</code>, <code>MAXX</code>, <code>COUNTX</code>, <code>COUNTAX</code>, <code>COUNTAXA</code>, <code>DISTINCTCOUNTX</code>, <code>DISTINCTCOUNTNOBLANKX</code>. Por ejemplo, la función <code>SUM</code> se utiliza para sumar los valores de columnas de una fila. La función <code>AVERAGE</code> se utiliza para calcular la media de valores de columnas de una fila. La función <code>MIN</code> se utiliza para calcular el valor mínimo de valores de columnas de una fila. La función <code>MAX</code> se utiliza para calcular el valor máximo de valores de columnas de una fila.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1000,7 +1016,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Obsérvese que DAX tiene funciones que pueden ser utilizadas tanto para crear medidas como para crear columnas calculadas. Por ejemplo, la función <code>SUM</code> se puede utilizar para sumar los valores de una columna y crear una medida calculada o para sumar los valores de una columna y crear una columna calculada.</p>
+<p>Obsérvese que DAX tiene funciones que pueden ser utilizadas tanto para crear medidas como para crear columnas calculadas. Por ejemplo, la función <code>SUM</code> se puede utilizar para sumar los valores de una columna y crear una medida calculada o para sumar los valores de columnas de una fila y crear una columna calculada.</p>
 </div>
 </td>
 </tr>
@@ -1008,10 +1024,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Funciones de tablas: <code>FILTER</code>, <code>ALL</code>, <code>ALLEXCEPT</code>, <code>ALLSELECTED</code>, <code>CALCULATE</code>, <code>CALCULATETABLE</code>, <code>KEEPFILTERS</code>, <code>REMOVEFILTERS. Por ejemplo, la función `FILTER</code> se utiliza para filtrar una tabla en función de una condición. La función <code>ALL</code> se utiliza para eliminar los filtros de una tabla. La función <code>ALL</code> se utiliza para eliminar los filtros de una tabla. La función <code>CALCULATE</code> se utiliza para modificar el contexto de evaluación de una expresión.</p>
+<p>Funciones de tablas: <code>FILTER</code>, <code>ALL</code>, <code>ALLEXCEPT</code>, <code>ALLSELECTED</code>, <code>CALCULATE</code>, <code>CALCULATETABLE</code>, <code>KEEPFILTERS</code>, <code>REMOVEFILTERS</code>. Por ejemplo, la función <code>FILTER</code> se utiliza para filtrar una tabla en función de una condición. La función <code>ALL</code> se utiliza para eliminar los filtros de una tabla. La función <code>ALL</code> se utiliza para eliminar los filtros de una tabla. La función <code>CALCULATE</code> se utiliza para modificar el contexto de evaluación de una expresión.</p>
 </li>
 <li>
-<p>Funciones de relación: <code>RELATED</code>, <code>RELATEDTABLE</code>, <code>LOOKUPVALUE. La función `RELATED</code> se utiliza para obtener el valor de una columna relacionada. La función <code>LOOKUPVALUE</code> se utiliza para buscar un valor en una tabla relacionada.</p>
+<p>Funciones de relación: <code>RELATED</code>, <code>RELATEDTABLE</code>, <code>LOOKUPVALUE</code>. La función <code>RELATED</code> se utiliza para obtener el valor de una columna relacionada. La función <code>LOOKUPVALUE</code> se utiliza para buscar un valor en una tabla relacionada.</p>
 </li>
 <li>
 <p>Funciones de manejo de errores: <code>IFERROR</code>, <code>IFNA</code>, <code>ISERROR</code>, <code>ISERR</code>, <code>ISNA</code>, <code>ERROR</code>, <code>ERROR.TYPE</code>. Por ejemplo, la función <code>IFERROR</code> se utiliza para devolver un valor si se produce un error. La función <code>IFNA</code> se utiliza para devolver un valor si se produce un error <code>#N/A</code>.</p>
@@ -1078,7 +1094,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Seleccionar la tabla <code>Carts</code>.</p>
 </li>
 <li>
-<p>Hacer clic en el botón <code>Nueva medida</code> en la barra de herramientas o hacer clic con el botón derecho en la tabla <code>Carts</code> y crear la medida desde el menú contextual. La medida se creará en la barra de fórmulas en la parte superior. Estas sería la fórmula de la medida calculada:</p>
+<p>Hacer clic en el botón <code>Nueva medida</code> en la barra de herramientas o hacer clic con el botón derecho en la tabla <code>Carts</code> y crear la medida desde el menú contextual. La medida se creará en la barra de fórmulas en la parte superior. Esta sería la fórmula de la medida calculada usando la función <a href="https://learn.microsoft.com/es-es/dax/countrows-function-dax"><code>COUNTROWS</code></a>:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1088,7 +1104,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Hacer clic en el botón <code>Nueva columna</code> en la barra de herramientas o hacer clic con el botón derecho en la tabla <code>Carts</code> y crear la columna desde el menú contextual. La columna se creará en la barra de fórmulas en la parte superior. Esta sería la fórmula de la columna calculada:</p>
+<p>Hacer clic en el botón <code>Nueva columna</code> en la barra de herramientas o hacer clic con el botón derecho en la tabla <code>Carts</code> y crear la columna desde el menú contextual. La columna se creará en la barra de fórmulas en la parte superior. Esta sería la fórmula de la columna calculada usando la función <a href="https://learn.microsoft.com/es-es/dax/related-function-dax"><code>RELATED</code></a>:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1101,7 +1117,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Seleccionar la tabla <code>Products</code>.</p>
 </li>
 <li>
-<p>Hacer clic en el botón <code>Nueva medida</code> en la barra de herramientas o hacer clic con el botón derecho en la tabla <code>Products</code> y crear la medida desde el menú contextual. La medida se creará en la barra de fórmulas en la parte superior. Estas serían las fórmulas de las medidas calculadas:</p>
+<p>Hacer clic en el botón <code>Nueva medida</code> en la barra de herramientas o hacer clic con el botón derecho en la tabla <code>Products</code> y crear la medida desde el menú contextual. La medida se creará en la barra de fórmulas en la parte superior. Estas serían las fórmulas de las medidas calculadas usando las funciones <a href="https://learn.microsoft.com/es-es/dax/sum-function-dax"><code>SUM</code></a>, <a href="https://learn.microsoft.com/es-es/dax/average-function-dax"><code>AVERAGE</code></a>, <a href="https://learn.microsoft.com/es-es/dax/max-function-dax"><code>MAX</code></a> y <a href="https://learn.microsoft.com/es-es/dax/min-function-dax"><code>MIN</code></a>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1142,7 +1158,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_creación_de_visualizaciones">6. Creación de visualizaciones</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Una vez que se han creado las medidas y columnas calculadas, se pueden utilizar para crear visualizaciones. Power BI ofrece una gran variedad de visualizaciones que permiten representar los datos de forma gráfica. Entre las visualizaciones más comunes se encuentran las tablas, los gráficos de barras, los gráficos de líneas, los gráficos de áreas, los gráficos de sectores, los gráficos de dispersión y los mapas. La figura siguiente ilustra el informe que crearemos para el caso de estudio de la API de Fake Store. En la figura se puede ver la distribución de las visualizaciones en el informe.</p>
+<p>Una vez que se han creado las medidas y columnas calculadas, se pueden utilizar para crear visualizaciones. Como vimos en el <a href="../01-PowerBI/index.html">tutorial de Visualización de datos con Power BI</a>, Power BI ofrece una gran variedad de visualizaciones que permiten representar los datos de forma gráfica. Entre las visualizaciones más comunes se encuentran las tablas, los gráficos de barras, los gráficos de líneas, los gráficos de áreas, los gráficos de sectores, los gráficos de dispersión y los mapas. La figura siguiente ilustra el informe que crearemos para el caso de estudio de la API de Fake Store. En la figura se puede ver la distribución de las visualizaciones en el informe.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1158,7 +1174,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Tarjetas: Tarjetas sin etiqueta de categoría, título centrado, fondo y borde celeste, borde redondeado. Como títulos utilizaríamos <code>Productos</code>, <code>Ventas</code>, <code>Valoración máxima</code>, <code>Valoración mínima</code>, <code>Valoración media</code> y <code>Valoraciones</code>. Crearemos una tarjeta inicial para la primera medida calculada <code>TotalProducts</code> y después duplicaremos la tarjeta para el resto de medidas calculadas.</p>
 </li>
 <li>
-<p>Segmentador de datos: Segmentador de valoración para el campo <code>rating.rate</code> de la tabla <code>Products</code> para crear el segmentador. Cambiar el título a Valoración y dejar el estilo a <code>Entre</code> en la pestaña Objeto visual del menú <code>Dar formato a objeto visual</code> para que se pueda seleccionar un rango de valoraciones.</p>
+<p>Segmentador de datos: Segmentador de valoración para el campo <code>rating.rate</code> de la tabla <code>Products</code> para crear el segmentador. Cambiar el título a <code>Valoración</code> y dejar el estilo a <code>Entre</code> en la pestaña <code>Objeto visual</code> del menú <code>Dar formato a objeto visual</code> para que se pueda seleccionar un rango de valoraciones.</p>
 </li>
 <li>
 <p>Gráfico de anillos: Gráfico de anillos para mostrar el total de productos por categoría. Seleccionar el campo <code>category</code> de la tabla <code>Products</code> para el valor de <code>Leyenda</code> y la medida calculada <code>TotalProducts</code> para el valor de <code>Valores</code>. Cambiar el título a <code>Productos por categoría</code>.</p>
@@ -1177,13 +1193,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Gráfico de mapa: Compradores por ciudad. Seleccionar el campo <code>city</code> de la tabla <code>Users</code> para el valor de <code>Ubicación</code> y la medida calculada <code>TotalUsersWithCarts</code> para el valor de <code>Tamaño de la burbuja</code>. Cambiar el título a <code>Compradores por ciudad</code>.</p>
+<p>Gráfico de mapa para compradores por ciudad. Seleccionar el campo <code>city</code> de la tabla <code>Users</code> para el valor de <code>Ubicación</code> y la medida calculada <code>TotalUsersWithCarts</code> para el valor de <code>Tamaño de la burbuja</code>. Cambiar el título a <code>Compradores por ciudad</code>.</p>
 </li>
 <li>
-<p>Gráfico de líneas: Evolución de las ventas. Seleccionar el campo <code>date</code> de la tabla <code>Carts</code>  para el valor de <code>Eje X</code> (seleccionar sólo el mes) y la medida calculada <code>TotalSales</code> para el valor de <code>Eje Y</code>. Cambiar el título a <code>Ventas por mes</code>.</p>
+<p>Gráfico de líneas para evolución de las ventas. Seleccionar el campo <code>date</code> de la tabla <code>Carts</code>  para el valor de <code>Eje X</code> (seleccionar sólo el mes) y la medida calculada <code>TotalSales</code> para el valor de <code>Eje Y</code>. Cambiar el título a <code>Ventas por mes</code>.</p>
 </li>
 <li>
-<p>Gráfico de barras: Compradores por categoría. Seleccionar el campo <code>category</code> de la tabla <code>Products</code> para el valor de <code>Eje X</code> y la medida calculada <code>TotalUsersWithCarts</code> para el valor de <code>Eje Y</code>. Cambiar el título a <code>Compradores por categoría</code>.</p>
+<p>Gráfico de barras para compradores por categoría. Seleccionar el campo <code>category</code> de la tabla <code>Products</code> para el valor de <code>Eje X</code> y la medida calculada <code>TotalUsersWithCarts</code> para el valor de <code>Eje Y</code>. Cambiar el título a <code>Compradores por categoría</code>.</p>
 </li>
 <li>
 <p>Tablas de datos: Una tabla de ventas por producto y otra de usuarios.</p>
@@ -1199,7 +1215,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Crear un cuadro de texto con el título del informe (p.e. Productos - Análisis de ventas y valoraciones. Fake Store).</p>
+<p>Crear un cuadro de texto con el título del informe (p.e. <code>Productos - Análisis de ventas y valoraciones. Fake Store</code>).</p>
 </li>
 </ul>
 </div>
@@ -1212,7 +1228,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_otra_situación_habitual_de_transformación_de_datos_modelado_en_columnas">7. Otra situación habitual de transformación de datos. Modelado en columnas</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Hasta ahora hemos visto un caso de estudio de transformación de datos con Power BI. Sin embargo, existen gran cantidad de situaciones que se pueden presentar, pero hay una a que vamos a prestar especial atención en este tutorial y es el caso de la solución al problema de modelado en columnas. Para ilustrar estos casos, usaremos una fuente de datos de ejemplo que contiene datos que presentan este problema. Se trata de un dataset en formato CSV de <a href="https://github.com/MolatoSekgobela/Data-Science-Video-games-sales-dataset">datos de ventas de videojuegos</a>.</p>
+<p>Hasta ahora hemos visto un caso de estudio de transformación de datos con Power BI. Como es de esperar, existen gran cantidad de situaciones que se pueden presentar, pero hay una a que vamos a prestar especial atención en este tutorial, y es el caso de la solución al problema del modelado en columnas. Para ilustrar estos casos, usaremos una fuente de datos de ejemplo que contiene datos que presentan este problema. Se trata de un dataset en formato CSV de <a href="https://github.com/MolatoSekgobela/Data-Science-Video-games-sales-dataset" target="_blank" rel="noopener">datos de ventas de videojuegos</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="_descripción_de_la_fuente_de_datos">7.1. Descripción de la fuente de datos</h3>
@@ -1262,7 +1278,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>En el proceso de carga de importación de datos, Power BI ofrece la posibilidad de realizar transformaciones en los datos. Esto nos llevaría directamene a Power Query para definir las transformaciones a realizar sobre los datos. En este caso, cargaremos primero los datos y posteriormente realizaremos las transformaciones necesarias con Power Query. No obstante, se podría realizar la transformación con Power Query directamente en el proceso de importación de datos.</p>
+<p>En el proceso de carga de importación de datos, Power BI ofrece la posibilidad de realizar transformaciones en los datos sobre la marcha en el proceso de importación. Esto nos llevaría directamene a Power Query para definir las transformaciones a realizar sobre los datos. Sin embargo, en este caso cargaremos primero los datos y posteriormente realizaremos las transformaciones necesarias con Power Query. No obstante, se podría haber optado por realizar la transformación con Power Query sobre la marcha en el proceso de importación de datos.</p>
 </div>
 </td>
 </tr>
@@ -1285,7 +1301,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Cambiar el nombre de las columnas creadas a <code>Region</code> y <code>Sales</code>.</p>
 </li>
 <li>
-<p>Aprovecharemos y cambiaremos el nombre de las regiones a un formato más legible. Por ejemplo, cambiaremos <code>NA_Sales</code> por <code>North America</code>, <code>EU_Sales</code> por <code>European Union</code>, <code>JP_Sales</code> por <code>Japan</code> y <code>Other_Sales</code> por <code>Other</code>. La sustitución de valores está disponible en el <code>Transformar | Reemplazar valores</code>.</p>
+<p>Aprovecharemos y cambiaremos el nombre de las regiones a un formato más legible. Por ejemplo, cambiaremos <code>NA_Sales</code> por <code>North America</code>, <code>EU_Sales</code> por <code>European Union</code>, <code>JP_Sales</code> por <code>Japan</code> y <code>Other_Sales</code> por <code>Other</code>. La sustitución de valores está disponible en el menú <code>Transformar | Reemplazar valores</code>.</p>
 </li>
 <li>
 <p>Eliminaremos la columna <code>Global_Sales</code> ya que no es necesaria.</p>
@@ -1306,11 +1322,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <img src="../../../images/powerbi-videojuegos-modelado.png" alt="powerbi videojuegos modelado">
 </div>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">El formato largo de los datos y la redundancia de datos</div>
+<div class="paragraph">
+<p>Al observar el resultado de la transformación a formato largo de los datos, podemos ver que aparece redundancia en las filas, ya que se repiten los datos de los juegos para cada región. Esto es una característica del formato largo de los datos, en el que cada fila contiene información sobre una observación. En este caso, cada observación es una venta de un juego en una región. Si se optata por un modelo sin redundancia, se podría dejar una tabla con los datos característicos de los juegos y otra tabla con las ventas en las diferentes regiones, que tendría una relación 1:M con la tabla de datos de los juegos. Sin embargo, en entornos de análisis de datos, y en particular en entornos de data warehousing, es común encontrar redundancia de datos en las tablas para facilitar el análisis de los datos. Como la carga de datos al data warehouse es realizada por procesos ETL que están programados para manejar la redundancia de datos, no es un problema en estos entornos y las consideraciones de normalización de bases de datos no son tan importantes como en entornos transaccionales u operacionales.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_creación_de_visualizaciones_con_los_datos_transformados">7.3. Creación de visualizaciones con los datos transformados</h3>
 <div class="paragraph">
-<p>Una vez que se han transformado los datos en formato ancho a formato largo, se pueden utilizar para crear visualizaciones. La figura siguiente ilustra un ejemplo de informe que podríamos crear para el caso de estudio de la fuente de datos de ventas de videojuegos. En la figura se puede ver la distribución de las visualizaciones en el informe.</p>
+<p>Una vez que se han transformado los datos de formato ancho a formato largo, se pueden utilizar los datos obtenidos para crear visualizaciones. La figura siguiente ilustra un ejemplo de informe que podríamos crear para el caso de estudio de la fuente de datos de ventas de videojuegos. En la figura se puede ver la distribución de las visualizaciones en el informe.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1344,7 +1368,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Crear segmentador de datos para filtrar las ventas por región: Usar el campo <code>Region</code> para el segmentador de datos. Cambiar el estulo a <code>Mosaico</code> en la pestaña <code>Objeto visual</code> del menú <code>Dar formato a objeto visual</code> dentro de la opción de <code>Configuración de la segmentación</code>.</p>
 </li>
 <li>
-<p>Crear segmentadores de lista desplegable para filtrar las ventas por plataforma, género, editorial y año: Usar los campos <code>Platform</code>, <code>Genre</code>, <code>Publisher</code> y <code>Year`</code> para los segmentadores de lista. Cambiar el estilo a <code>Menú desplegable</code> en la pestaña <code>Objeto visual</code> del menú <code>Dar formato a objeto visual</code> dentro de la opción de <code>Configuración de la segmentación</code>.</p>
+<p>Crear segmentadores de lista desplegable para filtrar las ventas por plataforma, género, editorial y año: Usar los campos <code>Platform</code>, <code>Genre</code>, <code>Publisher</code> y <code>Year</code> para los segmentadores de lista. Cambiar el estilo a <code>Menú desplegable</code> en la pestaña <code>Objeto visual</code> del menú <code>Dar formato a objeto visual</code> dentro de la opción de <code>Configuración de la segmentación</code>.</p>
 </li>
 </ul>
 </div>
@@ -1365,7 +1389,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-09-19 19:22:32 +0200
+Last updated 2024-09-19 20:29:23 +0200
 </div>
 </div>
 </body>
