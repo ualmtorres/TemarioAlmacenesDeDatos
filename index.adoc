@@ -148,9 +148,9 @@ Profesores:
 * link:Docs/Labs/01-PowerBI/index.html[Lab 01. Visualización de datos con Power BI, window=_blank]
 * link:Docs/Labs/02-PowerQuery/index.html[Lab 02. Transformación básica de datos con Power BI, window=_blank]
 
-* link:Docs/Labs/Lab02/index.html[Lab 02. Construcción de cubos OLAP - No disponible, window=_blank] 
-* link:Docs/Labs/Lab03/index.html[Lab 03. Extracción e integración de datos - No disponible, window=_blank]
-* link:Docs/Labs/Lab04/index.html[Lab 04. Consultas en cubos OLAP - No disponible, window=_blank]
+* link:Docs/Labs/Lab03/index.html[Lab 03. Construcción de cubos OLAP - No disponible, window=_blank] 
+* link:Docs/Labs/Lab04/index.html[Lab 04. Extracción e integración de datos - No disponible, window=_blank]
+* link:Docs/Labs/Lab05/index.html[Lab 05. Consultas en cubos OLAP - No disponible, window=_blank]
 
 .Actividades complementarias
 ****
