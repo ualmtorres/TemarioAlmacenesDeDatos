@@ -421,7 +421,7 @@ Power BI permite adaptar los informes para dispositivos móviles. Los informes a
 1. Seleccionar la pestaña "Vista de informe".
 2. Seleccionar el menú `Ver | Diseño para móviles`. Esto creará una vista para dispositivos móviles en el lienzo. La vista para dispositivos móviles permite diseñar el informe para que se vea bien en dispositivos móviles. 
 +
-[INFO]
+[NOTE]
 ====
 La vista para dispositivos móviles es una vista adicional que se puede personalizar para adaptar un informe existente a las dimensiones de los dispositivos móviles. Para crear una vista se añadirán las visualizaciones más importantes del informe original que se quieran mostrar en el informe para dispositivos móviles y se organizarán para que se vean bien en dispositivos móviles.
 ====
@@ -461,6 +461,24 @@ image::../../../images/powerbi-movil-navegacion.png[]
 ****
 Power BI permite visualizar los informes en la aplicación móvil de Power BI. La aplicación móvil de Power BI está disponible para dispositivos https://apps.apple.com/app/microsoft-power-bi/id929738808[iOS] y https://play.google.com/store/apps/details?id=com.microsoft.powerbim[Android] y permite explorar los datos de forma interactiva en cualquier lugar y en cualquier momento. El informe adaptado para dispositivos móviles creado. Para ello basta con tener la aplicación de Power BI instalada en el dispositivo móvil y acceder al informe con las credenciales de Power BI.
 ****
+
+## Consejos para la creación de informes en Power BI
+
+La principal función de informes en Power BI es la de presentar datos de forma visual y atractiva. A continuación se presentan algunos consejos para la creación de informes en Power BI:
+
+1. **Simplicidad**: Los informes deben ser sencillos y fáciles de entender. Es importante no sobrecargar los informes con demasiada información y visualizaciones. Es mejor centrarse en los datos más importantes y presentarlos de forma clara y concisa.
+2. **Seguir un camino lógico**: Los informes deben seguir un camino lógico para que los usuarios puedan entender la información de forma fácil y rápida. Es importante organizar las visualizaciones de forma coherente y presentar los datos de forma ordenada para que los usuarios puedan seguir el flujo de información.
++
+.Informes con detalles en diagonal
+****
+Los informes con detalles en diagonal son más fáciles de leer y entender. Los informes con detalles en diagonal permiten a los usuarios seguir el flujo de información de forma natural y obtener información útil para la toma de decisiones. Para ello los valores más importantes deben intenntar colocarse en la parte superior y en la parte izquierda, mientras que los detalles tienden a colocarse en la parte derecha y en la parte inferior.
+****
+3. **Consistencia**: Es importante mantener la consistencia en los informes para que sean fáciles de leer y entender. Es recomendable utilizar los mismos colores, fuentes y estilos en todas las visualizaciones para que los informes sean coherentes y profesionales. Como consejo práctico también se recomienda el uso de líneas de cuadrícula y usar la opción de ajustar a la cuadrícula.
+4. **Interactividad**: Los informes en Power BI son interactivos y permiten explorar los datos de forma detallada. Es importante aprovechar esta funcionalidad para permitir a los usuarios interactuar con los datos y obtener información útil para la toma de decisiones.
+5. **Personalización**: Power BI permite personalizar los informes para adaptarlos a las necesidades de los usuarios. Es importante personalizar los informes para que se ajusten a los requisitos de los usuarios y presentar los datos de forma clara y atractiva. No obstante, los objetos que no queremos que sean modificados deberán ser bloqueados.
+6. **Optimización para dispositivos móviles**: Es importante optimizar los informes para dispositivos móviles para que se vean bien en pantallas pequeñas. Es recomendable crear vistas específicas para dispositivos móviles y adaptar las visualizaciones para que se vean bien en dispositivos móviles.
+7. **Publicación y uso compartido**: Power BI permite publicar informes en Power BI Service para compartirlos con otras personas. Es importante publicar los informes en Power BI Service y compartirlos con otras personas para que puedan consumirlos con una app móvil y tomar decisiones informadas.
+8. **Actualización de datos**: Power BI permite conectar los informes a fuentes de datos en tiempo real para que los datos se actualicen automáticamente. Es importante mantener los datos actualizados para que los informes reflejen la información más reciente y sean útiles para la toma de decisiones.
 
 ## Conclusiones
 
