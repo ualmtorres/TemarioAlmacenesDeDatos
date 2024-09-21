@@ -10,7 +10,7 @@ Codificación, idioma, tabla de contenidos, tipo de documento
 ////
 Nombre y título del trabajo
 ////
-# Enlaces de interés sobre Introducción al Data Warehousing
+# Enlaces de interés sobre El modelo multidimensional
 Almacenes de datos - Grado en Ingeniería Informática - UAL
 Manuel Torres <mtorres@ual.es>
 
@@ -19,7 +19,12 @@ image::../../images/di.png[]
 
 ## Enlaces de interés
 
-* link:https://aws.amazon.com/what-is/olap/[¿Qué es el procesamiento analítico en línea (OLAP)?, windows=_blank]
-* link:https://www.dremio.com/wiki/heterogeneous-data/[Heterogeneous Data, windows=_blank]
-* link:https://www.ibm.com/es-es/topics/etl[¿Qué es ETL?, windows=_blank]
-* link:https://learn.microsoft.com/en-us/fabric/data-warehouse/tutorial-introduction[Data warehouse tutorial introduction, windows=_blank]
+* link:https://docs.getdbt.com/terms/dimensional-modeling[Dimensional modeling, windows=_blank]
+* link:https://www.datasciencecentral.com/data-modeling-techniques-in-modern-data-warehouse/[Data modeling techniques in modern data warehouse, windows=_blank]
+* link:https://www.databricks.com/glossary/star-schema#:~:text=Star%20schemas%20denormalize%20the%20data,avoiding%20computationally%20expensive%20join%20operations.[Star schema - Databricks, windows=_blank]
+* https://www.databricks.com/glossary/data-mart[Data mart - Databricks, windows=_blank]
+* https://www.databricks.com/glossary/what-is-data-transformation[Data transformation - Databricks, windows=_blank]
+* https://www.databricks.com/discover/etl-vs-elt[ETL - Databricks, windows=_blank]
+* https://www.databricks.com/glossary/snowflake-schema[What is a snowflake schema? - Databricks, windows=_blank]
+* https://www.javatpoint.com/olap-operations[OLAP Operations in the Multidimensional Data Model, windows=_blank]
+* https://www.scaler.com/topics/olap-operations/[OLAP Operations - Scaler, windows=_blank]
