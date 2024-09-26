@@ -126,7 +126,7 @@ Profesores:
 ### Tema 2. El modelo de datos multidimensional
 
 * https://docs.google.com/presentation/d/1gt5tSwrk9Up8tlci1xV8v5LKMoqbTC5-At1BkaAoLRU/edit?usp=sharing[El modelo de datos multidimensional, window=_blank]
-* link:Docs/Tema02/Enlaces.html[Enlaces de interés - No disponible, window=_blank]
+* link:Docs/Tema02/Enlaces.html[Enlaces de interés, window=_blank]
 
 ### Tema 3. Diseño de bases de datos multidimensionales
 
