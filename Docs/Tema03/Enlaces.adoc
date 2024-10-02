@@ -1,0 +1,27 @@
+////
+NO CAMBIAR!!
+Codificación, idioma, tabla de contenidos, tipo de documento
+////
+:encoding: utf-8
+:lang: es
+:doctype: book
+:linkattrs:
+
+////
+Nombre y título del trabajo
+////
+# Enlaces de interés sobre Diseño de bases de datos multidimensionales
+Almacenes de datos - Grado en Ingeniería Informática - UAL
+Manuel Torres <mtorres@ual.es>
+
+
+image::../../images/di.png[]
+
+## Enlaces de interés
+
+* link:https://www.holistics.io/books/setup-analytics/understanding-the-data-warehouse/[Understanding the Data Warehouse - Holistics, window=_blank]
+* https://www.holistics.io/books/setup-analytics/etl-vs-elt-what-s-the-big-deal/[ETL vs ELT: What's the Big Deal? - Holistics, window=_blank]
+* link:https://www.ibm.com/docs/en/informix-servers/14.10?topic=model-concepts-dimensional-data-modeling[Concepts of dimensional data modeling - IBM, window=_blank]
+* link:https://www.ibm.com/docs/en/informix-servers/14.10?topic=modeling-fact-table[The fact table - IBM, window=_blank]
+* link:https://www.ibm.com/docs/en/informix-servers/14.10?topic=modeling-dimensions-data-model[Dimensions in the data model - IBM, window=_blank]
+* link:https://www.holistics.io/books/setup-analytics/kimball-s-dimensional-data-modeling/[Kimball's Dimensional Data Modeling - Holistics, window=_blank]

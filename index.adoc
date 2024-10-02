@@ -130,8 +130,8 @@ Profesores:
 
 ### Tema 3. Diseño de bases de datos multidimensionales
 
-* https://todo.com[Diseño de bases de datos multidimensionales - No disponible, window=_blank]
-* link:Docs/Tema03/Enlaces.html[Enlaces de interés - No disponible, window=_blank]
+* https://docs.google.com/presentation/d/1V-Wq6P28omnkGlOvmZOpleXg0a_-ZR69eF6GNVfmRvY/edit?usp=sharing[Diseño de bases de datos multidimensionales, window=_blank]
+* link:Docs/Tema03/Enlaces.html[Enlaces de interés, window=_blank]
 
 ### Tema 4. Extensiones OLAP de SQL y el lenguaje MDX
 
