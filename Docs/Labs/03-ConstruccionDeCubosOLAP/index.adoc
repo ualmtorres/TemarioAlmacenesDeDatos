@@ -46,6 +46,11 @@ COLOCA A CONTINUACION LOS OBJETIVOS
 * Definir indicadores clave de rendimiento (KPI).
 * Definir perspectivas y traducciones.
 
+[NOTE]
+====
+Disponible https://www.youtube.com/playlist?list=PLoS04oY1FHPPUdsBZ97t-vZG0ULTO7ZHb[lista de reproducción en YouTube] con videotutoriales sobre el modelado multidimensional con Microsoft Analysis Services.
+====
+
 :numbered:
 
 ## Introducción
