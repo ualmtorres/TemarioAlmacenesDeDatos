@@ -1,0 +1,128 @@
+# Modelos tabulares y multidimensionales en Microsoft Analysis Services
+
+## Introducción
+
+Microsoft Analysis Services es una plataforma de análisis de datos que permite a los usuarios modelar y analizar grandes volúmenes de datos. Analysis Services admite dos tipos de modelos: tabulares y multidimensionales. Ambos modelos tienen sus propias ventajas y desventajas, y la elección entre ellos depende de las necesidades específicas de su organización.
+
+En este artículo, exploraremos las diferencias entre los modelos tabulares y multidimensionales de Analysis Services, y discutiremos cuándo es más apropiado utilizar cada uno de ellos.
+
+## Modelos tabulares
+
+Los modelos tabulares de Analysis Services se basan en la tecnología de almacenamiento en columnas y en la compresión de datos para proporcionar un rendimiento rápido y eficiente. Estos modelos son ideales para conjuntos de datos de tamaño mediano a grande, y son especialmente adecuados para aplicaciones de análisis de autoservicio y visualización de datos. Cuando hablamos de autoservicio, nos referimos a la capacidad de los usuarios de negocio de crear sus propios informes y análisis sin depender de los equipos de TI. 
+
+Los modelos tabulares son más fáciles de diseñar y mantener que los modelos multidimensionales, ya que utilizan una estructura de datos más simple y un lenguaje de consulta más intuitivo. Además, los modelos tabulares son más fáciles de escalar y de implementar en la nube, lo que los hace ideales para organizaciones que buscan una solución de análisis de datos ágil y flexible.
+
+
+### Características de los modelos tabulares
+
+* Almacenamiento en Memoria (In-Memory Storage): Los modelos tabulares de SSAS almacenan datos en memoria utilizando un motor de almacenamiento en columnas llamado VertiPaq. Esto permite un acceso extremadamente rápido a los datos y la capacidad de manejar grandes volúmenes de datos con rapidez.
++
+[NOTE]
+====
+VertiPaq es un motor de almacenamiento y compresión de datos que se utiliza en los modelos tabulares de Microsoft Analysis Services (SSAS), Power BI y Power Pivot. Fue diseñado para mejorar el rendimiento de las consultas y la eficiencia del almacenamiento en sistemas de análisis de datos.
+====
+
+* Almacenamiento en Columnas (Columnar Storage): Aunque los datos se estructuran de manera similar a un modelo relacional con tablas y relaciones, el almacenamiento es en columnas. Esto significa que los datos se almacenan en columnas, optimizando las operaciones de agregación y análisis.
++
+.Almacenamiento en columnas
+****
+El almacenamiento en columnas es eficiente para operaciones de agregación y análisis porque permite leer solo las columnas necesarias para una consulta, reduciendo la cantidad de datos leídos.
+
+Supongamos que tenemos una tabla de ventas con millones de registros. Cada registro incluye columnas como fecha de venta, producto, cantidad vendida, precio, y región. Con un motor de almacenamiento tradicional, cada consulta que suma las ventas por región y fecha tendría que las filas completas, lo cual es ineficiente. 
+
+En cambio, con un motor de almacenamiento en columnas, cada columna (fecha, región, cantidad vendida, etc.) se almacena por separado, lo que permite leer solo las columnas necesarias para una consulta. Por ejemplo, si queremos sumar las ventas por región y fecha, la consulta solo tendría que leer las columnas de fecha, región y cantidad vendida, lo cual es mucho más eficiente. Los motores de almacenamiento en columnas también utilizan técnicas de compresión para reducir el tamaño de los datos (p.e. eliminando datos repetidos), lo que mejora aún más el rendimiento de las consultas.
+****
+
+* Lenguaje de Consulta DAX (Data Analysis Expressions): Los modelos tabulares utilizan DAX para definir cálculos y medidas. DAX es un lenguaje poderoso y expresivo, similar a las fórmulas de Excel, pero optimizado para análisis de datos.
++
+.Ejemplo de una medida en DAX
+[source,dax]
+----
+`Total Ventas = SUM(Sales[Amount])`
+
+En este ejemplo, la medida Total Ventas calcula la suma de la columna `Amount` de la tabla `Sales`.
+
+Ejemplo de uso de la función `SUMMARIZE` en DAX
+`TablaResumen = SUMMARIZE(Sales, Sales[Product], "Total Ventas", SUM(Sales[Amount]))`
+
+En este ejemplo, la función `SUMMARIZE` agrupa los datos de la tabla `Sales` por la columna `Product` y calcula la suma de la columna `Amount` para cada grupo.
+
+Sintaxis de la función `SUMMARIZE`:
+`SUMMARIZE (<table>, <groupBy_columnName>[, <groupBy_columnName>]…[, <name>, <expression>]…)`
+----
+
+.DirectQuery
+****
+Los modelos tabulares también admiten la opción de DirectQuery, que permite a los usuarios consultar directamente la base de datos subyacente en lugar de cargar los datos en memoria. Esto es útil cuando se trabaja con datos ya de cierto volumen que no caben en memoria o cuando se necesita acceso en tiempo real a los datos. Sin embargo, el rendimiento de DirectQuery puede ser más lento que el almacenamiento en memoria, ya que las consultas deben ejecutarse en la base de datos subyacente. DirectQuery es un producto de Microsoft y es compatible con varios tipos de bases de datos, incluidas SQL Server, Oracle, Teradata y otros.
+****
+
+* Modelado Simplificado: Los modelos tabulares son generalmente más fáciles de desarrollar y mantener en comparación con los modelos multidimensionales. En resumen, son más adecuados para escenarios de autoservicio y análisis rápido.
+
+## Modelos multidimensionales
+
+Los modelos multidimensionales de Analysis Services se basan en la tecnología de almacenamiento en cubos y en el lenguaje de consulta MDX (Multidimensional Expressions) para proporcionar un rendimiento rápido y eficiente. Estos modelos son ideales para conjuntos de datos de gran tamaño y complejidad, y son especialmente adecuados para aplicaciones de inteligencia empresarial y análisis avanzado.
+
+En el mismo escenario de ventas podemos plantear una consulta MDX para obtener el total de ventas por año y mes para la categoría de productos electrónicos en el mes de Julio de 2024.
+
+.Ejemplo de una consulta MDX
+[source,mdx]
+----
+`SELECT [Measures].[Total Ventas] ON COLUMNS,
+[Date].[Year].[2024].[July] ON ROWS
+FROM [SalesCube]
+WHERE [Product].[Category] = 'Electronics'
+----
+
+Los modelos multidimensionales son más complejos de diseñar y mantener que los modelos tabulares, ya que requieren un mayor nivel de experiencia técnica y un conocimiento más profundo de los conceptos de modelado de datos. Sin embargo, los modelos multidimensionales ofrecen una mayor flexibilidad y capacidad de análisis que los modelos tabulares, lo que los hace ideales para organizaciones que necesitan realizar análisis avanzados y complejos sobre grandes volúmenes de datos.
+
+## Comparación resumida entre modelos tabulares y multidimensionales
+
+A continuación se muestra una comparación resumida entre los modelos tabulares y multidimensionales de Analysis Services:
+
+[cols="3,2,2",options="header"]
+|===
+| Característica | Modelos Tabulares | Modelos Multidimensionales 
+
+| Almacenamiento | Almacenamiento en memoria y en columnas | Almacenamiento en cubos multidimensionales 
+
+| Lenguaje de Consulta | DAX (Data Analysis Expressions) | MDX (Multidimensional Expressions) 
+
+| Procesamiento | En memoria | MOLAP (Multidimensional OLAP) 
+
+| Rendimiento | Rápido y eficiente para consultas analíticas y operaciones de agregación | Optimizado para análisis avanzados y complejos sobre grandes volúmenes de datos 
+
+| Modelado | Más fácil de desarrollar y mantener | Más complejo y requiere un mayor nivel de experiencia técnica
+
+| Integración | Ideal para Power BI y Power Pivot | Ideal para SQL Server Reporting Services (SSRS) y otras herramientas de BI
+
+| Casos de Uso | Ideal para análisis de autoservicio y Power BI | Ideal para Enterprise BI y análisis avanzado 
+
+|===
+
+## ¿Los modelos tabulares son equivalentes a los modelos ROLAP?
+
+Los modelos tabulares de Microsoft Analysis Services (SSAS) no se corresponden exactamente con los modelos ROLAP (Relational OLAP). Los modelos tabulares y los modelos ROLAP tienen diferencias fundamentales en su arquitectura y funcionamiento. A continuación se muestran algunas de las diferencias clave entre los modelos tabulares y ROLAP:
+
+* Almacenamiento: 
+    ** Los modelos tabulares almacenan los datos en memoria y aunque los datos se estructuran de manera similar a un modelo relacional con tablas y relaciones, el almacenamiento es en columnas. Esto ofrece un rendimiento rápido y eficiente para consultas analíticas y operaciones de agregación.
+    ** En los modelos ROLAP los cubos multidimensionales se implementan sobre una base de datos relacional. Las consultas OLAP se traducen a SQL y se ejecutan directamente sobre las tablas relacionales subyacentes.
+
+* Lenguaje de Consulta:
+    ** Los modelos tabulares utilizan DAX (Data Analysis Expressions) para definir cálculos y medidas. DAX es un lenguaje poderoso y expresivo, similar a las fórmulas de Excel, pero optimizado para análisis de datos. Un ejemplo de una medida en DAX sería 
++
+[source,dax]
+----
+Total Ventas = SUM(Sales[Amount])
+----
+    ** Los modelos ROLAP utilizan MDX (Multidimensional Expressions) para definir cálculos y consultas. MDX es un lenguaje de consulta multidimensional que permite realizar operaciones analíticas complejas sobre cubos multidimensionales. El mismo cálculo en MDX sería
++
+[source,mdx]
+----
+CREATE MEMBER [Measures].[Total Ventas] AS
+'SUM([Sales].[Amount])'
+----
+
+* Rendimento:
+    ** Los modelos tabulares ofrecen un rendimiento rápido y eficiente para consultas analíticas y operaciones de agregación debido a su almacenamiento en memoria y en columnas.
+    ** Los modelos ROLAP pueden tener un rendimiento más lento en comparación con los modelos tabulares, ya que las consultas OLAP se traducen a SQL y se ejecutan directamente sobre la base de datos relacional subyacente, **pero refiriéndonos siempre en la que implementa el cubo, no a la que soporta las operaciones cotidianas de negocio**. Por tanto, el rendimiento de las consultas ROLAP depende en gran medida de la eficiencia de la base de datos subyacente. Los índices, las vistas materializadas y otras técnicas de optimización de bases de datos pueden mejorar el rendimiento de las consultas ROLAP, pero pueden requerir un mayor esfuerzo de desarrollo y mantenimiento.
+

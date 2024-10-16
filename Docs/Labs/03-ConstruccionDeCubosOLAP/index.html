@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.22">
-<meta name="author" content="Almacenes de datos - Grado en Ingeniería Informática - UAL">
-<title>Almacenes de datos</title>
+<meta name="author" content="Grado en Ingeniería Informática. Universidad de Almería">
+<title>Construcción de cubos OLAP con Microsoft Analysis Services - Almacenes de datos</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -434,12 +434,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="book toc2 toc-right">
 <div id="header">
-<h1>Almacenes de datos</h1>
+<h1>Construcción de cubos OLAP con Microsoft Analysis Services - Almacenes de datos</h1>
 <div class="details">
-<span id="author" class="author">Almacenes de datos - Grado en Ingeniería Informática - UAL</span><br>
+<span id="author" class="author">Grado en Ingeniería Informática. Universidad de Almería</span><br>
 <span id="revdate">Manuel Torres &lt;mtorres@ual.es&gt;</span>
 </div>
 <div id="toc" class="toc2">
@@ -447,32 +448,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_resumen">Resumen</a></li>
 <li><a href="#_introducción">1. Introducción</a></li>
-<li><a href="#_sobre_la_guía_docente">2. Sobre la Guía docente</a>
+<li><a href="#_requisitos_previos">2. Requisitos previos</a></li>
+<li><a href="#_creación_de_una_solución_de_analysis_services_para_el_modelado_multidimensional">3. Creación de una solución de Analysis Services para el modelado multidimensional</a>
 <ul class="sectlevel2">
-<li><a href="#_materia_con_la_que_se_relaciona_en_el_plan_de_estudios">2.1. Materia con la que se relaciona en el Plan de estudios:</a></li>
-<li><a href="#_conocimientos_recomendables">2.2. Conocimientos recomendables</a></li>
+<li><a href="#_creación_de_un_cubo_multidimensional_en_analysis_services">3.1. Creación de un cubo multidimensional en Analysis Services</a></li>
+<li><a href="#_modificación_de_medidas_atributos_y_jerarquías">3.2. Modificación de medidas, atributos y jerarquías</a></li>
+<li><a href="#_mejora_de_la_definición_de_dimensiones_y_atributos">3.3. Mejora de la definición de dimensiones y atributos</a></li>
 </ul>
 </li>
-<li><a href="#_contenidos">3. Contenidos</a>
-<ul class="sectlevel2">
-<li><a href="#_grupo_docente">3.1. Grupo docente</a></li>
-<li><a href="#_grupo_de_trabajo">3.2. Grupo de trabajo</a></li>
-</ul>
-</li>
-<li><a href="#_horario_de_clase_y_de_tutorias">4. Horario de clase y de tutorías</a></li>
-<li><a href="#_como_seguir_la_asignatura">5. Cómo seguir la asignatura</a></li>
-<li><a href="#_cómo_superar_la_asignatura">6. Cómo superar la asignatura</a></li>
-<li><a href="#_antes_de_comenzar">7. Antes de comenzar</a></li>
-<li><a href="#_recursos">8. Recursos</a>
-<ul class="sectlevel2">
-<li><a href="#_tema_1_introducción_al_data_warehousing">8.1. Tema 1. Introducción al Data Warehousing</a></li>
-<li><a href="#_tema_2_el_modelo_de_datos_multidimensional">8.2. Tema 2. El modelo de datos multidimensional</a></li>
-<li><a href="#_tema_3_diseño_de_bases_de_datos_multidimensionales">8.3. Tema 3. Diseño de bases de datos multidimensionales</a></li>
-<li><a href="#_tema_4_extensiones_olap_de_sql_y_el_lenguaje_mdx">8.4. Tema 4. Extensiones OLAP de SQL y el lenguaje MDX</a></li>
-<li><a href="#_tema_5_tendencias_actuales">8.5. Tema 5. Tendencias actuales</a></li>
-</ul>
-</li>
-<li><a href="#_trabajo_autónomo">9. Trabajo autónomo</a></li>
+<li><a href="#_conclusiones">4. Conclusiones</a></li>
 </ul>
 </div>
 </div>
@@ -481,7 +465,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="images/di.png" alt="di">
+<img src="../../../images/di.png" alt="di">
 </div>
 </div>
 </div>
@@ -490,28 +474,40 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_resumen">Resumen</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La asignatura Almacenes de datos es una asignatura optativa de la mención de Sistemas de Información del <a href="https://www.ual.es/estudios/grados/presentacion/4015" target="_blank" rel="noopener">Grado en Ingeniería Informática de la Universidad de Almería</a>. En la asignatura se estudian los conceptos y técnicas necesarios para el diseño e implementación de almacenes de datos y sistemas OLAP. Se estudian los conceptos básicos del Modelo de datos Multidimensional, las operaciones OLAP, técnicas de diseño dimensional, extensiones OLAP de SQL y el lenguaje MDX. Se desarrollan módulos ETL para la inicialización y mantenimiento de cubos OLAP.</p>
+<p>Este tutorial describe cómo usar SQL Server Data Tools para desarrollar e implementar un proyecto de SQL Server Analysis Services, usando la empresa ficticia Adventure Works Cycles para todos los ejemplos. Este tutorial se corresponde con el <a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/multidimensional-modeling-adventure-works-tutorial?view=sql-analysis-services-2019">Tutorial oficial de Adventure Works de Modelado multidimensional de Microsoft</a>.</p>
 </div>
 <div class="ulist">
 <div class="title">Objetivos</div>
 <ul>
 <li>
-<p>Conocer el papel que juegan los Sistemas OLTP y OLAP en los Sistemas de Información</p>
+<p>Crear un proyecto de SQL Server Analysis Services.</p>
 </li>
 <li>
-<p>Conocer los conceptos básicos del Modelo de datos Multidimensional (Cubos, dimensiones, hechos, medidas)</p>
+<p>Definir dimensiones y jerarquías.</p>
 </li>
 <li>
-<p>Saber utilizar las operaciones OLAP</p>
+<p>Definir un cubo.</p>
 </li>
 <li>
-<p>Saber utilizar técnicas de diseño dimensional (Dimensiones poco cambiantes, minidimensiones, Outriggers, Diseño de jerarquías, &#8230;&#8203;)</p>
+<p>Conocer el proceso de implementación de un proyecto de Analysis Services.</p>
 </li>
 <li>
-<p>Utilizar las extensiones OLAP de SQL y el lenguaje MDX para interactuar con cubos OLAP</p>
+<p>Modificar medidas, atributos y jerarquías.</p>
 </li>
 <li>
-<p>Desarrollar módulos ETL para la inicialización y mantenimiento decubos OLAP</p>
+<p>Definir propiedades de dimensiones y de atributos avanzados.</p>
+</li>
+<li>
+<p>Definir relaciones entre dimensiones y grupos de medida.</p>
+</li>
+<li>
+<p>Definir cálculos.</p>
+</li>
+<li>
+<p>Definir indicadores clave de rendimiento (KPI).</p>
+</li>
+<li>
+<p>Definir perspectivas y traducciones.</p>
 </li>
 </ul>
 </div>
@@ -521,325 +517,415 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_introducción">1. Introducción</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Las bases de datos que soportan las operaciones de una organización se denominan bases de datos operacionales o transaccionales (OLTP). Estas bases de datos están optimizadas para soportar operaciones de inserción, actualización y borrado de datos. Sin embargo, estas bases de datos no son adecuadas para soportar operaciones de análisis de datos. Para ello se utilizan los almacenes de datos (Data Warehouses) y los sistemas OLAP (On-Line Analytical Processing). Este tipo de sistemas permiten realizar análisis de datos de forma eficiente y rápida. Para la construcción de almacenes de datos y sistemas OLAP se utilizan técnicas de diseño específicas, como el modelo de datos multidimensional, se usan procesos ETL (Extracción, Transformación y Carga) para la inicialización y mantenimiento de los datos y se utilizan lenguajes específicos para realizar consultas OLAP, como el lenguaje MDX.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_sobre_la_guía_docente">2. Sobre la Guía docente</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_materia_con_la_que_se_relaciona_en_el_plan_de_estudios">2.1. Materia con la que se relaciona en el Plan de estudios:</h3>
-<div class="paragraph">
-<p>Gestión y análisis de la información en la organización. Esto comprende asignaturas obligatorias, como Bases de Datos, Estructuras de datos, y asignturas de la mención de Sistemas de Información, como Sistemas de Información para las organizaciones, Ingeniería de Sistema de Información, Inteligencia de Negocio, etc.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_conocimientos_recomendables">2.2. Conocimientos recomendables</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Diseño de bases de datos</p>
-</li>
-<li>
-<p>SQL</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_contenidos">3. Contenidos</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_grupo_docente">3.1. Grupo docente</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Tema 1. Introduccion al Data Warehousing</p>
-</li>
-<li>
-<p>Tema 2. El modelo de datos multidimensional</p>
-</li>
-<li>
-<p>Tema 3. Diseño de bases de datos multidimensionales</p>
-</li>
-<li>
-<p>Tema 4. Extensiones OLAP de SQL y el lenguaje MDX</p>
-</li>
-<li>
-<p>Tema 5. Tendencias actules</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_grupo_de_trabajo">3.2. Grupo de trabajo</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Práctica 1. Construcción de cubos OLAP</p>
-</li>
-<li>
-<p>Práctica 2. Extracción e integración de datos</p>
-</li>
-<li>
-<p>Práctica 3. Consultas en cubos OLAP</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_horario_de_clase_y_de_tutorias">4. Horario de clase y de tutorías</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Grupo docente: Aula 12 - Aulario III</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Horario de clase: Miércoles de 16h a 18h</p>
-</li>
-<li>
-<p>13 sesiones presenciales = 26 horas.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Grupo de trabajo: Aula - Aulario V (Aulas de Informática)</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Horario de clase: Miércoles de 18h a 20h</p>
-</li>
-<li>
-<p>10 sesiones presenciales = 20 horas.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="Docs/PlanificacionAD.html" target="_blank" rel="noopener">Planificación de la asignatura</a></p>
-</li>
-</ul>
+<p>El modelado multidimensional es una técnica de diseño de bases de datos que se utiliza para analizar datos de negocios. En lugar de utilizar un modelo relacional orientado a transacciones del negocio, el modelado multidimensional utiliza un modelo de estrella o copo de nieve para organizar los datos del negocio en dimensiones y hechos. Las dimensiones son las categorías de datos que se utilizan para analizar los hechos, que son los datos numéricos que se miden. Por ejemplo, en un caso de estudio de ventas, las dimensiones podrían ser la fecha, el producto, la tienda y el cliente, mientras que los hechos podrían ser las ventas y los beneficios. El modelado multidimensional facilita la creación de informes y análisis de datos, ya que los datos se organizan de una manera que refleja la forma en que las personas piensan sobre ellos.</p>
 </div>
 <div class="paragraph">
-<p>Profesores:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Manuel Torres Gil</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Tutorías: Martes y Miércoles de 10h a 13h. Solicitar cita previa</p>
-</li>
-<li>
-<p>Despacho: 2.19.5 CITE III (2a planta)</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>En este tutorial, se mostrará cómo crear un proyecto de SQL Server Analysis Services (SSAS) y cómo definir dimensiones, jerarquías, cubos, medidas, atributos, relaciones y cálculos. También se mostrará cómo implementar un proyecto de Analysis Services y cómo explorar los datos en un cubo implementado. Este tutorial se basa en el <a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/multidimensional-modeling-adventure-works-tutorial?view=sql-analysis-services-2019">Tutorial oficial de Adventure Works de Modelado multidimensional de Microsoft</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_como_seguir_la_asignatura">5. Cómo seguir la asignatura</h2>
+<h2 id="_requisitos_previos">2. Requisitos previos</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Material disponible en</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Aula Virtual UAL</p>
-</li>
-<li>
-<p><a href="https://ualmtorres.github.io/Asignatura-Almacenes-De-Datos/" target="_blank" rel="noopener">Repositorio GitHub</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Metodología docente</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Clases participativas</p>
-</li>
-<li>
-<p>Contenido práctico</p>
-</li>
-<li>
-<p>Elaboración de trabajos prácticos</p>
-</li>
-<li>
-<p>Actividades no presenciales</p>
-</li>
-<li>
-<p>Tutorías</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<div class="paragraph">
+<p>Para completar este tutorial, necesitarás tener instalado SQL Server Data Tools (SSDT) y SQL Server Management Studio (SSMS). También necesitarás tener instalada la base de datos de ejemplo AdventureWorksDW2019 en tu servidor SQL Server. Toda esta información está disponible en el documento de <a href="../00-ConfiguracionEntorno/index.html">Configuración del entorno de la asignatura</a></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cómo_superar_la_asignatura">6. Cómo superar la asignatura</h2>
+<h2 id="_creación_de_una_solución_de_analysis_services_para_el_modelado_multidimensional">3. Creación de una solución de Analysis Services para el modelado multidimensional</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>El escenario de este laboratorio está basado en el <a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/analysis-services-tutorial-scenario?view=sql-analysis-services-2019">Tutorial de Analysis Services de Adventure Works de Microsoft</a>. Se trata de una compañía ficticia llamada Adventure Works Cycles que vende bicicletas y accesorios. La empresa tiene una base de datos de ventas que contiene información sobre los pedidos, los productos, los clientes y las fechas de los pedidos. El objetivo de este laboratorio es crear un cubo multidimensional que permita analizar las ventas de la compañia en distintas situaciones. Para ello, realizaremos las siguientes tareas:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Completar con éxito y a tiempo todas las actividades propuestas de Trabajo autónomo en el Grupo de trabajo (70% de la nota final)</p>
+<p>Creación de un cubo multidimensional en Analysis Services.</p>
 </li>
 <li>
-<p>Examen final de contenidos teóricos (30% de la nota final)</p>
+<p>Modificación de medidas, atributos y jerarquías.</p>
+</li>
+<li>
+<p>Mejora de la definición de dimensiones y atributos.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>De cara al desarrollo del grupo de trabajo de la asignatura, se realizará cada una de estas tareas en una sesión de clase.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_creación_de_un_cubo_multidimensional_en_analysis_services">3.1. Creación de un cubo multidimensional en Analysis Services</h3>
+<div class="paragraph">
+<p>En este apartado se describen los pasos necesarios para crear un proyecto de SSAS, definir una vista del origen de datos, definir una dimensión y un cubo, y explorar el cubo implementado.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-defining-a-data-source-view-within-an-analysis-services-project?view=sql-analysis-services-2019">Definir una vista del origen de datos en un proyecto de Analysis Services</a></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-1-creating-an-analysis-services-project?view=sql-analysis-services-2019">Crear un proyecto de Analysis Services</a></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A la hora de crear el proyecto en SSAS puede que nos de a elegir entre un proyecto multidimensional o tabular. Para más información, consultar el siguiente enlace: <a href="./TabularVsMultidimensional.html">Modelos tabulares y multidimensionales en Microsoft Analysis Services</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-2-defining-a-data-source?view=sql-analysis-services-2019">Definir un origen de datos</a></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En el apartado de Información de suplantación (<code>Impersonation Information</code>), seleccionar la opción <code>Utilizar un nombre de usuario y una contraseña de Windows específicos</code> y proporcionar las credenciales de acceso al equipo. Así fue como configuramos el acceso a SQL Server en la instalación.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-3-defining-a-data-source-view?view=sql-analysis-services-2019">Definir una vista del origen de datos</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-4-modifying-default-table-names?view=sql-analysis-services-2019">Modificar los nombres de tabla predeterminados</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-defining-and-deploying-a-cube?view=sql-analysis-services-2019">Definir e implementar un cubo</a></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-1-defining-a-dimension?view=sql-analysis-services-2019">Definir una dimensión</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-2-defining-a-cube?view=sql-analysis-services-2019">Definir un cubo</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-3-adding-attributes-to-dimensions?view=sql-analysis-services-2019">Agregar atributos a dimensiones</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-4-reviewing-cube-and-dimension-properties?view=sql-analysis-services-2019">Revisar las propiedades de cubo y dimensión</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-5-deploying-an-analysis-services-project?view=sql-analysis-services-2019">Implementar un proyecto de Analysis Services</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-6-browsing-the-cube?view=sql-analysis-services-2019">Examinar el cubo</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_caso_de_estudio">3.1.1. Caso de estudio</h4>
+<div class="paragraph">
+<p>Estamos interesados en conocer el comportamiento de las ventas de la empresa Adventure Works Cycles. En concreto, necesitamos saber cuáles han sido las ventas realizadas y las unidades vendidas por clase de producto y género de cliente. Estas ventas se quieren analizar para aquellos pedidos realizados en los años comprendidos entre 2010 y 2014 y que han sido realizados por clientes del estado de California.</p>
 </div>
 <div class="paragraph">
-<p><strong>Es necesario obtener una calificación mínima de 5/10 en cada una de las partes para superar la asignatura.</strong></p>
+<p>Con el Examinador de cubos haremos lo siguiente:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_antes_de_comenzar">7. Antes de comenzar</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><a href="Docs/Labs/00-ConfiguracionEntorno/index.html" target="_blank" rel="noopener">Configuración del entorno de trabajo</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_recursos">8. Recursos</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_tema_1_introducción_al_data_warehousing">8.1. Tema 1. Introducción al Data Warehousing</h3>
-<div class="ulist">
-<ul>
+<p>Definir los campos del informe arrastrando a la zona central:</p>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><a href="https://docs.google.com/presentation/d/1PAMdC9DJWYN-BegeYcoj4zQC3B2ISraQ_lJiDbVAZUU/edit?usp=sharing" target="_blank" rel="noopener">Introducción al Data Warehousing</a></p>
+<p>El atributo <code>Class</code> de la dimensión <code>Product</code> y el atributo <code>Gender</code> de la dimensión <code>Customer</code>.</p>
 </li>
 <li>
-<p><a href="Docs/Tema01/Enlaces.html" target="_blank" rel="noopener">Enlaces de interés</a></p>
+<p>La medida <code>Sales Amount</code> y la medida <code>Order Quantity</code> del cubo <code>Adventure Works</code>.</p>
 </li>
-</ul>
+</ol>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_tema_2_el_modelo_de_datos_multidimensional">8.2. Tema 2. El modelo de datos multidimensional</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://docs.google.com/presentation/d/1gt5tSwrk9Up8tlci1xV8v5LKMoqbTC5-At1BkaAoLRU/edit?usp=sharing" target="_blank" rel="noopener">El modelo de datos multidimensional</a></p>
 </li>
 <li>
-<p><a href="Docs/Tema02/Enlaces.html" target="_blank" rel="noopener">Enlaces de interés</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_tema_3_diseño_de_bases_de_datos_multidimensionales">8.3. Tema 3. Diseño de bases de datos multidimensionales</h3>
-<div class="ulist">
-<ul>
+<p>Filtrar los datos arrastrando a la parte superior:</p>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><a href="https://docs.google.com/presentation/d/1V-Wq6P28omnkGlOvmZOpleXg0a_-ZR69eF6GNVfmRvY/edit?usp=sharing" target="_blank" rel="noopener">Diseño de bases de datos multidimensionales</a></p>
+<p>La dimensión <code>Order Date</code> y seleccionar los años 2010 a 2014 de la jerarquía <code>Order Date.Calendar Year</code>.</p>
 </li>
 <li>
-<p><a href="Docs/Tema03/Enlaces.html" target="_blank" rel="noopener">Enlaces de interés</a></p>
+<p>La dimensión <code>Customer</code> y seleccionar el estado <code>California</code> de la jerarquía <code>State Province Name</code>.</p>
 </li>
-</ul>
+</ol>
 </div>
+</li>
+</ol>
 </div>
-<div class="sect2">
-<h3 id="_tema_4_extensiones_olap_de_sql_y_el_lenguaje_mdx">8.4. Tema 4. Extensiones OLAP de SQL y el lenguaje MDX</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://todo.com" target="_blank" rel="noopener">Extensiones OLAP de SQL y el lenguaje MDX - No disponible</a></p>
-</li>
-<li>
-<p><a href="Docs/Tema04/Enlaces.html" target="_blank" rel="noopener">Enlaces de interés - No disponible</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>El Examinador de cubos mostrará un resultado similar al siguiente:</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_tema_5_tendencias_actuales">8.5. Tema 5. Tendencias actuales</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="Docs/Tema05/Evolucion.html" target="_blank" rel="noopener">Evolución de las arquitecturas de datos. De los almacenes de datos relacionales a los Data Lakehouses</a></p>
-</li>
-<li>
-<p><a href="Docs/Tema05/Enlaces.html" target="_blank" rel="noopener">Enlaces de interés - No disponible</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_trabajo_autónomo">9. Trabajo autónomo</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="Docs/Labs/01-PowerBI/index.html" target="_blank" rel="noopener">Lab 01. Visualización de datos con Power BI</a></p>
-</li>
-<li>
-<p><a href="Docs/Labs/02-PowerQuery/index.html" target="_blank" rel="noopener">Lab 02. Transformación básica de datos con Power BI</a></p>
-</li>
-<li>
-<p><a href="Docs/Labs/03-ConstruccionDeCubosOLAP/index.html" target="_blank" rel="noopener">Lab 03. Construcción de cubos OLAP</a></p>
-</li>
-<li>
-<p><a href="Docs/Labs/Lab04/index.html" target="_blank" rel="noopener">Lab 04. Extracción e integración de datos - No disponible</a></p>
-</li>
-<li>
-<p><a href="Docs/Labs/Lab05/index.html" target="_blank" rel="noopener">Lab 05. Consultas en cubos OLAP - No disponible</a></p>
-</li>
-</ul>
-</div>
-<div class="sidebarblock">
+<div class="imageblock">
 <div class="content">
-<div class="title">Actividades complementarias</div>
+<img src="../../../images/ssas-examinador-de-cubos.png" alt="ssas examinador de cubos">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modificación_de_medidas_atributos_y_jerarquías">3.2. Modificación de medidas, atributos y jerarquías</h3>
 <div class="paragraph">
-<p>Puedes profundizar en contenidos de la asignatura a través de estos recursos:</p>
+<p>En este apartado se describen los pasos necesarios para modificar medidas, atributos, dimensiones y analizar el cubo implementado.</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><a href="https://learn.microsoft.com/en-us/fabric/data-warehouse/">Data warehousing documentation in Microsoft Fabric</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-modifying-measures-attributes-and-hierarchies?view=sql-analysis-services-2019">Modificar medidas, atributos y jerarquías</a></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-1-modifying-measures?view=sql-analysis-services-2019">Modificar medidas</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/en-us/power-bi/">Power BI documentation</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-2-modifying-the-customer-dimension?view=sql-analysis-services-2019">Modificar la dimensión Customer</a></p>
 </li>
-</ul>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-3-modifying-the-product-dimension?view=sql-analysis-services-2019">Modificar la dimensión Product</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-4-modifying-the-date-dimension?view=sql-analysis-services-2019">Modificar la dimensión Date</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-5-browsing-the-deployed-cube?view=sql-analysis-services-2019">Examinar el cubo implementado</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_conexión_de_excel_con_el_cubo">3.2.1. .Conexión de Excel con el cubo</h4>
+<div class="paragraph">
+<p>Excel es una herramienta muy utilizada para la creación de informes y análisis de datos. En este apartado, vamos a conectar Excel con el cubo implementado en Analysis Services.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Abrir Excel y seleccionar la pestaña "Datos".</p>
+</li>
+<li>
+<p>Seleccionar "Obtener datos", "De una base de datos" y "De Analysis Services".</p>
+</li>
+<li>
+<p>En el paso "Conectar con el servidor de la base de datos" del asistente, introducir <code>localhost</code> en el nombre del servidor y seleccionar "Utilizar autenticación de Windows".`</p>
+</li>
+<li>
+<p>En el paso "Seleccionar la base de datos y tabla", seleccionar la base de datos (p.e. <code>Adventure Works</code>) y el cubo (p.e. <code>Adventure Works</code>).</p>
+</li>
+<li>
+<p>En el paso "Guardar archivo de datos y finalizar", seleccionar "Finalizar".</p>
+</li>
+<li>
+<p>Excel mostrará una cuadro de diálogo para indicar c´ómo se quiere visualizar los datos. Seleccionar "Informe de tabla dinámica", situar en la celda que indica en la hoja actual y pulsar "Aceptar".</p>
+</li>
+<li>
+<p>Excel mostrará una tabla dinámica con los campos de la dimensión y las medidas del cubo a la derecha. Arrastrar los campos a las zonas de filas, columnas y valores para crear el informe deseado.</p>
+</li>
+</ol>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_caso_de_estudio_2">3.2.2. Caso de estudio</h4>
+<div class="paragraph">
+<p>Estamos interesados en conocer el comportamiento de las ventas de la empresa Adventure Works Cycles. En este caso usaremos Excel para resolver el problema. En concreto, necesitamos saber cuáles han sido las ventas realizadas y las unidades vendidas por clase de producto y género de cliente. Estas ventas se quieren analizar para aquellos pedidos realizados en los años comprendidos entre 2010 y 2014 y que han sido realizados por clientes del estado de California.</p>
+</div>
+<div class="paragraph">
+<p>Con Excel haremos lo siguiente:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Crear una conexión con el cubo <code>Adventure Works</code> implementado en Analysis Services.</p>
+</li>
+<li>
+<p>Crear una tabla dinámica con los campos de la dimensión y las medidas del cubo.</p>
+</li>
+<li>
+<p>Definir los campos del informe arrastrando:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>a las filas de la tabla dinámica el atributo <code>Product Line</code> de la jerarquía <code>Líneas de modelo de producto</code> de la dimensión <code>Product</code></p>
+</li>
+<li>
+<p>a las columnas de la tabla dinámica el atributo <code>Gender</code> de la carpeta de atributos <code>Demographic</code> de la dimensión <code>Customer</code></p>
+</li>
+<li>
+<p>a los valores de la tabla dinámica la medida <code>Sales Amount</code> y la medida <code>Order Quantity</code> del cubo <code>Adventure Works</code>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Filtrar los datos arrastrando a la zona de filtro:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>la dimensión <code>Order Date</code> y seleccionar los años 2010 a 2014 de la jerarquía <code>Order Date.Calendar Year</code>.</p>
+</li>
+<li>
+<p>la dimensión <code>Customer</code> y seleccionar el estado <code>California</code> de la carpeta <code>Location</code> de la dimensión <code>Customer</code>.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Excel mostrará un resultado similar al siguiente:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/excel-caso-de-estudio.png" alt="excel caso de estudio">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mejora_de_la_definición_de_dimensiones_y_atributos">3.3. Mejora de la definición de dimensiones y atributos</h3>
+<div class="paragraph">
+<p>En este apartado se describen los pasos para definir propiedades de dimensiones y de atributo avanzados, definir relaciones entre dimensiones y grupos de medida, definir cálculos, definir indicadores clave de rendimiento (KPI) y definir perspectivas y traducciones.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-defining-advanced-attribute-and-dimension-properties?view=sql-analysis-services-2019">Definir propiedades de dimensiones y de atributos avanzados</a></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-1-using-a-modified-version-of-the-analysis-services-tutorial-project?view=sql-analysis-services-2019">Usar una versión modificada del proyecto Tutorial de Analysis Services</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-2-defining-parent-attribute-properties-in-a-parent-child-hierarchy?view=sql-analysis-services-2019">Definir propiedades de atributo primario en una jerarquía de elementos primarios y secundarios</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-3-automatically-grouping-attribute-members?view=sql-analysis-services-2019">Agrupar miembros de atributo automáticamente</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-4-hiding-and-disabling-attribute-hierarchies?view=sql-analysis-services-2019">Ocultar y deshabilitar jerarquías de atributo</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-5-sorting-attribute-members-based-on-a-secondary-attribute?view=sql-analysis-services-2019">Ordenar los miembros de atributo en función de un atributo secundario</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-6-specifying-attribute-relationships-in-user-defined-hierarchy?view=sql-analysis-services-2019">Especificar relaciones de atributo entre los atributos de una jerarquía definida por el usuario</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-7-defining-the-unknown-member-and-null-processing-properties?view=sql-analysis-services-2019">Definir las propiedades de miembro desconocido y de procesamiento de valores NULL</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-defining-relationships-between-dimensions-and-measure-groups?view=sql-analysis-services-2019">Definir relaciones entre dimensiones y grupos de medida</a></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-1-defining-a-referenced-relationship?view=sql-analysis-services-2019">Definir una relación referenciada</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-2-defining-a-fact-relationship?view=sql-analysis-services-2019">Definir una relación de hechos</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-3-defining-a-many-to-many-relationship?view=sql-analysis-services-2019">Definir una relación de varios a varios</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-4-defining-dimension-granularity-within-a-measure-group?view=sql-analysis-services-2019">Definir la granularidad de las dimensiones en un grupo de medida</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-6-defining-calculations?view=sql-analysis-services-2019">Definir cálculos</a></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-6-1-defining-calculated-members?view=sql-analysis-services-2019">Definir miembros calculados</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-6-2-defining-named-sets?view=sql-analysis-services-2019">Definir conjuntos con nombre</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-7-defining-key-performance-indicators-kpis?view=sql-analysis-services-2019">Definir indicadores clave de rendimiento (KPI)</a></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-7-1-defining-and-browsing-kpis?view=sql-analysis-services-2019">Definir y examinar KPI</a></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-9-defining-perspectives-and-translations?view=sql-analysis-services-2019">Definir perspectivas y traducciones</a></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-9-1-defining-and-browsing-perspectives?view=sql-analysis-services-2019">Definir y examinar perspectivas</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-9-2-defining-and-browsing-translations?view=sql-analysis-services-2019">Definir y examinar traducciones</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_caso_de_estudio_3">3.3.1. Caso de estudio</h4>
+<div class="paragraph">
+<p>En curso&#8230;&#8203;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusiones">4. Conclusiones</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En este tutorial hemos aprendido cómo usar SQL Server Data Tools para desarrollar e implementar un proyecto de SQL Server Analysis Services, usando la empresa ficticia Adventure Works Cycles para todos los ejemplos. Hemos visto cómo crear un proyecto de SSAS, definir dimensiones y jerarquías, definir un cubo, conocer el proceso de implementación de un proyecto de Analysis Services, modificar medidas, atributos y jerarquías, definir propiedades de dimensiones y de atributos avanzados, definir relaciones entre dimensiones y grupos de medida, definir cálculos, definir indicadores clave de rendimiento (KPI), definir perspectivas y traducciones.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-16 13:02:37 +0200
+Last updated 2024-10-16 13:01:40 +0200
 </div>
 </div>
 </body>

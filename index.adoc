@@ -114,7 +114,7 @@ Profesores:
 
 ## Antes de comenzar
 
-** link:Docs/00-ConfiguracionEntorno/configuracion-entorno.html[Configuración del entorno de trabajo, window=_blank]
+** link:Docs/Labs/00-ConfiguracionEntorno/index.html[Configuración del entorno de trabajo, window=_blank]
 
 ## Recursos
 
@@ -148,7 +148,7 @@ Profesores:
 * link:Docs/Labs/01-PowerBI/index.html[Lab 01. Visualización de datos con Power BI, window=_blank]
 * link:Docs/Labs/02-PowerQuery/index.html[Lab 02. Transformación básica de datos con Power BI, window=_blank]
 
-* link:Docs/Labs/Lab03/index.html[Lab 03. Construcción de cubos OLAP - No disponible, window=_blank] 
+* link:Docs/Labs/03-ConstruccionDeCubosOLAP/index.html[Lab 03. Construcción de cubos OLAP, window=_blank] 
 * link:Docs/Labs/Lab04/index.html[Lab 04. Extracción e integración de datos - No disponible, window=_blank]
 * link:Docs/Labs/Lab05/index.html[Lab 05. Consultas en cubos OLAP - No disponible, window=_blank]
 
