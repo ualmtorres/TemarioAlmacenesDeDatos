@@ -519,7 +519,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Disponible <a href="https://www.youtube.com/playlist?list=PLoS04oY1FHPPUdsBZ97t-vZG0ULTO7ZHb">lista de reproducción en YouTube</a> con videotutoriales sobre el modelado multidimensional con Microsoft Analysis Services.</p>
+<p>Disponible <a href="https://www.youtube.com/playlist?list=PLoS04oY1FHPPUdsBZ97t-vZG0ULTO7ZHb" target="blank">lista de reproducción en YouTube</a> con videotutoriales sobre el modelado multidimensional con Microsoft Analysis Services.</p>
 </div>
 </td>
 </tr>
@@ -534,7 +534,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>El modelado multidimensional es una técnica de diseño de bases de datos que se utiliza para analizar datos de negocios. En lugar de utilizar un modelo relacional orientado a transacciones del negocio, el modelado multidimensional utiliza un modelo de estrella o copo de nieve para organizar los datos del negocio en dimensiones y hechos. Las dimensiones son las categorías de datos que se utilizan para analizar los hechos, que son los datos numéricos que se miden. Por ejemplo, en un caso de estudio de ventas, las dimensiones podrían ser la fecha, el producto, la tienda y el cliente, mientras que los hechos podrían ser las ventas y los beneficios. El modelado multidimensional facilita la creación de informes y análisis de datos, ya que los datos se organizan de una manera que refleja la forma en que las personas piensan sobre ellos.</p>
 </div>
 <div class="paragraph">
-<p>En este tutorial, se mostrará cómo crear un proyecto de SQL Server Analysis Services (SSAS) y cómo definir dimensiones, jerarquías, cubos, medidas, atributos, relaciones y cálculos. También se mostrará cómo implementar un proyecto de Analysis Services y cómo explorar los datos en un cubo implementado. Este tutorial se basa en el <a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/multidimensional-modeling-adventure-works-tutorial?view=sql-analysis-services-2019">Tutorial oficial de Adventure Works de Modelado multidimensional de Microsoft</a>.</p>
+<p>En este tutorial, se mostrará cómo crear un proyecto de SQL Server Analysis Services (SSAS) y cómo definir dimensiones, jerarquías, cubos, medidas, atributos, relaciones y cálculos. También se mostrará cómo implementar un proyecto de Analysis Services y cómo explorar los datos en un cubo implementado. Este tutorial se basa en el <a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/multidimensional-modeling-adventure-works-tutorial?view=sql-analysis-services-2019" target="blank">Tutorial oficial de Adventure Works de Modelado multidimensional de Microsoft</a>.</p>
 </div>
 </div>
 </div>
@@ -542,7 +542,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_requisitos_previos">2. Requisitos previos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Para completar este tutorial, necesitarás tener instalado SQL Server Data Tools (SSDT) y SQL Server Management Studio (SSMS). También necesitarás tener instalada la base de datos de ejemplo AdventureWorksDW2019 en tu servidor SQL Server. Toda esta información está disponible en el documento de <a href="../00-ConfiguracionEntorno/index.html">Configuración del entorno de la asignatura</a></p>
+<p>Para completar este tutorial, necesitarás tener instalado SQL Server Data Tools (SSDT) y SQL Server Management Studio (SSMS). También necesitarás tener instalada la base de datos de ejemplo AdventureWorksDW2019 en tu servidor SQL Server. Toda esta información está disponible en el documento de <a href="../00-ConfiguracionEntorno/index.html" target="blank">Configuración del entorno de la asignatura</a></p>
 </div>
 </div>
 </div>
@@ -550,7 +550,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_creación_de_una_solución_de_analysis_services_para_el_modelado_multidimensional">3. Creación de una solución de Analysis Services para el modelado multidimensional</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>El escenario de este laboratorio está basado en el <a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/analysis-services-tutorial-scenario?view=sql-analysis-services-2019">Tutorial de Analysis Services de Adventure Works de Microsoft</a>. Se trata de una compañía ficticia llamada Adventure Works Cycles que vende bicicletas y accesorios. La empresa tiene una base de datos de ventas que contiene información sobre los pedidos, los productos, los clientes y las fechas de los pedidos. El objetivo de este laboratorio es crear un cubo multidimensional que permita analizar las ventas de la compañia en distintas situaciones. Para ello, realizaremos las siguientes tareas:</p>
+<p>El escenario de este laboratorio está basado en el <a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/analysis-services-tutorial-scenario?view=sql-analysis-services-2019" target="blank">Tutorial de Analysis Services de Adventure Works de Microsoft</a>. Se trata de una compañía ficticia llamada Adventure Works Cycles que vende bicicletas y accesorios. La empresa tiene una base de datos de ventas que contiene información sobre los pedidos, los productos, los clientes y las fechas de los pedidos. El objetivo de este laboratorio es crear un cubo multidimensional que permita analizar las ventas de la compañia en distintas situaciones. Para ello, realizaremos las siguientes tareas:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -587,11 +587,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-defining-a-data-source-view-within-an-analysis-services-project?view=sql-analysis-services-2019">Definir una vista del origen de datos en un proyecto de Analysis Services</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-defining-a-data-source-view-within-an-analysis-services-project?view=sql-analysis-services-2019" target="blank">Definir una vista del origen de datos en un proyecto de Analysis Services</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-1-creating-an-analysis-services-project?view=sql-analysis-services-2019">Crear un proyecto de Analysis Services</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-1-creating-an-analysis-services-project?view=sql-analysis-services-2019" target="blank">Crear un proyecto de Analysis Services</a></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -600,7 +600,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </td>
 <td class="content">
 <div class="paragraph">
-<p>A la hora de crear el proyecto en SSAS puede que nos de a elegir entre un proyecto multidimensional o tabular. Para más información, consultar el siguiente enlace: <a href="./TabularVsMultidimensional.html">Modelos tabulares y multidimensionales en Microsoft Analysis Services</a></p>
+<p>A la hora de crear el proyecto en SSAS puede que nos de a elegir entre un proyecto multidimensional o tabular. Para más información, consultar el siguiente enlace: <a href="./TabularVsMultidimensional.html" target="blank">Modelos tabulares y multidimensionales en Microsoft Analysis Services</a></p>
 </div>
 </td>
 </tr>
@@ -608,7 +608,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-2-defining-a-data-source?view=sql-analysis-services-2019">Definir un origen de datos</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-2-defining-a-data-source?view=sql-analysis-services-2019" target="blank">Definir un origen de datos</a></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -625,35 +625,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-3-defining-a-data-source-view?view=sql-analysis-services-2019">Definir una vista del origen de datos</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-3-defining-a-data-source-view?view=sql-analysis-services-2019" target="blank">Definir una vista del origen de datos</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-4-modifying-default-table-names?view=sql-analysis-services-2019">Modificar los nombres de tabla predeterminados</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-1-4-modifying-default-table-names?view=sql-analysis-services-2019" target="blank">Modificar los nombres de tabla predeterminados</a></p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-defining-and-deploying-a-cube?view=sql-analysis-services-2019">Definir e implementar un cubo</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-defining-and-deploying-a-cube?view=sql-analysis-services-2019" target="blank">Definir e implementar un cubo</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-1-defining-a-dimension?view=sql-analysis-services-2019">Definir una dimensión</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-1-defining-a-dimension?view=sql-analysis-services-2019" target="blank">Definir una dimensión</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-2-defining-a-cube?view=sql-analysis-services-2019">Definir un cubo</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-2-defining-a-cube?view=sql-analysis-services-2019" target="blank">Definir un cubo</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-3-adding-attributes-to-dimensions?view=sql-analysis-services-2019">Agregar atributos a dimensiones</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-3-adding-attributes-to-dimensions?view=sql-analysis-services-2019" target="blank">Agregar atributos a dimensiones</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-4-reviewing-cube-and-dimension-properties?view=sql-analysis-services-2019">Revisar las propiedades de cubo y dimensión</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-4-reviewing-cube-and-dimension-properties?view=sql-analysis-services-2019" target="blank">Revisar las propiedades de cubo y dimensión</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-5-deploying-an-analysis-services-project?view=sql-analysis-services-2019">Implementar un proyecto de Analysis Services</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-5-deploying-an-analysis-services-project?view=sql-analysis-services-2019" target="blank">Implementar un proyecto de Analysis Services</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-6-browsing-the-cube?view=sql-analysis-services-2019">Examinar el cubo</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-2-6-browsing-the-cube?view=sql-analysis-services-2019" target="blank">Examinar el cubo</a></p>
 </li>
 </ol>
 </div>
@@ -707,6 +707,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_creación_de_un_informe_en_power_bi">3.1.2. Creación de un informe en Power BI</h4>
+<div class="paragraph">
+<p>Podemos crear un informe en Power BI sobre el cubo creado en Analysis Services para que ofrezca una forma de interacción más elaborada que la realizada en el caso de estudio anteior. Para ello, haremos lo siguiente:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Abrir Power BI y seleccionar "Obtener datos" y "Base de datos Analysis Services".</p>
+</li>
+<li>
+<p>Introducir <code>localhost</code> en la dirección del servidor y seleccionar la base de datos y el cubo.</p>
+</li>
+<li>
+<p>En la pestaña de datos aparecerán las tablas de dimensiones y hechos del cubo. La Vista de modelo mostrará las relaciones entre las tablas.</p>
+</li>
+<li>
+<p>Crear un informe de ventas por clase de producto y género con varias visualizaciones como el de la figura siguiente. Incluir en el informe los segmentadores para filtrar por año y estado.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/powerbi-adventure-works-basico.png" alt="powerbi adventure works basico">
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_modificación_de_medidas_atributos_y_jerarquías">3.2. Modificación de medidas, atributos y jerarquías</h3>
@@ -716,23 +743,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-modifying-measures-attributes-and-hierarchies?view=sql-analysis-services-2019">Modificar medidas, atributos y jerarquías</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-modifying-measures-attributes-and-hierarchies?view=sql-analysis-services-2019" target="blank">Modificar medidas</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-1-modifying-measures?view=sql-analysis-services-2019">Modificar medidas</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-1-modifying-measures?view=sql-analysis-services-2019" target="blank">Modificar medidas</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-2-modifying-the-customer-dimension?view=sql-analysis-services-2019">Modificar la dimensión Customer</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-2-modifying-the-customer-dimension?view=sql-analysis-services-2019" target="blank">Modificar la dimensión Customer</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-3-modifying-the-product-dimension?view=sql-analysis-services-2019">Modificar la dimensión Product</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-3-modifying-the-product-dimension?view=sql-analysis-services-2019" target="blank">Modificar la dimensión Product</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-4-modifying-the-date-dimension?view=sql-analysis-services-2019">Modificar la dimensión Date</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-4-modifying-the-date-dimension?view=sql-analysis-services-2019" target="blank">Modificar la dimensión Date</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-5-browsing-the-deployed-cube?view=sql-analysis-services-2019">Examinar el cubo implementado</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-5-browsing-the-deployed-cube?view=sql-analysis-services-2019" target="blank">Examinar el cubo implementado</a></p>
 </li>
 </ol>
 </div>
@@ -835,84 +862,84 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-defining-advanced-attribute-and-dimension-properties?view=sql-analysis-services-2019">Definir propiedades de dimensiones y de atributos avanzados</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-defining-advanced-attribute-and-dimension-properties?view=sql-analysis-services-2019" target="blank">Definir propiedades de dimensiones y de atributos avanzados</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-1-using-a-modified-version-of-the-analysis-services-tutorial-project?view=sql-analysis-services-2019">Usar una versión modificada del proyecto Tutorial de Analysis Services</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-1-using-a-modified-version-of-the-analysis-services-tutorial-project?view=sql-analysis-services-2019" target="blank">Usar una versión modificada del proyecto Tutorial de Analysis Services</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-2-defining-parent-attribute-properties-in-a-parent-child-hierarchy?view=sql-analysis-services-2019">Definir propiedades de atributo primario en una jerarquía de elementos primarios y secundarios</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-2-defining-parent-attribute-properties-in-a-parent-child-hierarchy?view=sql-analysis-services-2019" target="blank">Definir propiedades de atributo primario en una jerarquía de elementos primarios y secundarios</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-3-automatically-grouping-attribute-members?view=sql-analysis-services-2019">Agrupar miembros de atributo automáticamente</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-3-automatically-grouping-attribute-members?view=sql-analysis-services-2019" target="blank">Agrupar miembros de atributo automáticamente</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-4-hiding-and-disabling-attribute-hierarchies?view=sql-analysis-services-2019">Ocultar y deshabilitar jerarquías de atributo</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-4-hiding-and-disabling-attribute-hierarchies?view=sql-analysis-services-2019" target="blank">Ocultar y deshabilitar jerarquías de atributo</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-5-sorting-attribute-members-based-on-a-secondary-attribute?view=sql-analysis-services-2019">Ordenar los miembros de atributo en función de un atributo secundario</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-5-sorting-attribute-members-based-on-a-secondary-attribute?view=sql-analysis-services-2019" target="blank">Ordenar los miembros de atributo en función de un atributo secundario</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-6-specifying-attribute-relationships-in-user-defined-hierarchy?view=sql-analysis-services-2019">Especificar relaciones de atributo entre los atributos de una jerarquía definida por el usuario</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-6-specifying-attribute-relationships-in-user-defined-hierarchy?view=sql-analysis-services-2019" target="blank">Especificar relaciones de atributo entre los atributos de una jerarquía definida por el usuario</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-7-defining-the-unknown-member-and-null-processing-properties?view=sql-analysis-services-2019">Definir las propiedades de miembro desconocido y de procesamiento de valores NULL</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-4-7-defining-the-unknown-member-and-null-processing-properties?view=sql-analysis-services-2019" target="blank">Definir las propiedades de miembro desconocido y de procesamiento de valores NULL</a></p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-defining-relationships-between-dimensions-and-measure-groups?view=sql-analysis-services-2019">Definir relaciones entre dimensiones y grupos de medida</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-defining-relationships-between-dimensions-and-measure-groups?view=sql-analysis-services-2019" target="blank">Definir relaciones entre dimensiones y grupos de medida</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-1-defining-a-referenced-relationship?view=sql-analysis-services-2019">Definir una relación referenciada</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-1-defining-a-referenced-relationship?view=sql-analysis-services-2019" target="blank">Definir una relación referenciada</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-2-defining-a-fact-relationship?view=sql-analysis-services-2019">Definir una relación de hechos</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-2-defining-a-fact-relationship?view=sql-analysis-services-2019" target="blank">Definir una relación de hechos</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-3-defining-a-many-to-many-relationship?view=sql-analysis-services-2019">Definir una relación de varios a varios</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-3-defining-a-many-to-many-relationship?view=sql-analysis-services-2019" target="blank">Definir una relación de varios a varios</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-4-defining-dimension-granularity-within-a-measure-group?view=sql-analysis-services-2019">Definir la granularidad de las dimensiones en un grupo de medida</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-5-4-defining-dimension-granularity-within-a-measure-group?view=sql-analysis-services-2019" target="blank">Definir la granularidad de las dimensiones en un grupo de medida</a></p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-6-defining-calculations?view=sql-analysis-services-2019">Definir cálculos</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-6-defining-calculations?view=sql-analysis-services-2019" target="blank">Definir cálculos</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-6-1-defining-calculated-members?view=sql-analysis-services-2019">Definir miembros calculados</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-6-1-defining-calculated-members?view=sql-analysis-services-2019" target="blank">Definir miembros calculados</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-6-2-defining-named-sets?view=sql-analysis-services-2019">Definir conjuntos con nombre</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-6-2-defining-named-sets?view=sql-analysis-services-2019" target="blank">Definir conjuntos con nombre</a></p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-7-defining-key-performance-indicators-kpis?view=sql-analysis-services-2019">Definir indicadores clave de rendimiento (KPI)</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-7-defining-key-performance-indicators-kpis?view=sql-analysis-services-2019" target="blank">Definir indicadores clave de rendimiento (KPI)</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-7-1-defining-and-browsing-kpis?view=sql-analysis-services-2019">Definir y examinar KPI</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-7-1-defining-and-browsing-kpis?view=sql-analysis-services-2019" target="blank">Definir y examinar KPI</a></p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-9-defining-perspectives-and-translations?view=sql-analysis-services-2019">Definir perspectivas y traducciones</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-9-defining-perspectives-and-translations?view=sql-analysis-services-2019" target="blank">Definir perspectivas y traducciones</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-9-1-defining-and-browsing-perspectives?view=sql-analysis-services-2019">Definir y examinar perspectivas</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-9-1-defining-and-browsing-perspectives?view=sql-analysis-services-2019" target="blank">Definir y examinar perspectivas</a></p>
 </li>
 <li>
-<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-9-2-defining-and-browsing-translations?view=sql-analysis-services-2019">Definir y examinar traducciones</a></p>
+<p><a href="https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-9-2-defining-and-browsing-translations?view=sql-analysis-services-2019" target="blank">Definir y examinar traducciones</a></p>
 </li>
 </ol>
 </div>
@@ -939,7 +966,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-16 13:33:33 +0200
+Last updated 2024-10-23 14:40:49 +0200
 </div>
 </div>
 </body>
