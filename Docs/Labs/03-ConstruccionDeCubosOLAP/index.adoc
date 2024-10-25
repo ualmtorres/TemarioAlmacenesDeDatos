@@ -135,6 +135,50 @@ Podemos crear un informe en Power BI sobre el cubo creado en Analysis Services p
 
 image::../../../images/powerbi-adventure-works-basico.png[]
 
+#### Creación de un informe en Excel
+
+Excel es una herramienta muy utilizada para la creación de informes y análisis de datos. En este apartado, vamos a conectar Excel con el cubo implementado en Analysis Services. Antes de comenzar, comentar que como aún no tenemos definida ninguna jerarquía en las dimensiones, Excel mostrará los atributos con valores individuales. Cometaremos cómo crear jerarquías en el siguiente apartado. Para conectar Excel con el cubo, haremos lo siguiente:
+
+1. Abrir Excel y seleccionar la pestaña "Insertar", "Tabla dinámica" y "Origen de datos de tabla dinámica de Analysis Services".
+2. Aparecerá un cuadro de diálogo para elegir la conexión. Como aún no tenemos definida ninguna, pulsaremos "Aceptar" para crear una nueva conexión.
++
+image::../../../images/excel-elegir-conexion.png[]
+3. Aparecerá un cuadro de diálogo que da a elegir entre crear nuevas conexiones con un nuevo origen de datos, con SQL Server o seleccionar entre algunas conexiones recientes. Seleccionar "Conectar con nuevo origen de datos".
++
+image::../../../images/excel-elegir-origen.png[]
+4. Aparecerá un cuadro de diálogo para elegir el tipo de origen de datos. Seleccionar "Microsoft Analysis Services" y pulsar "Aceptar".
++
+image::../../../images/excel-asistente-para-la-conexion.png[]
+5. En el paso siguiente del asistente hay que introducir los datos para la conexión con el servidor. Introducir `localhost` en el nombre del servidor y seleccionar "Utilizar autenticación de Windows" para conectar.
++
+image::../../../images/excel-conexion-con-el-servidor.png[]
+6. En el paso siguiente del asistente, seleccionar la base de datos (p.e. `Adventure Works`) y el cubo (p.e. `Adventure Works`).
++
+image::../../../images/excel-seleccionar-base-de-datos-y-cubo.png[]
+7. Finalizar el asistente en el paso siguiente para guardar las conexión.
++
+[NOTE]
+====
+La conexión creada queda almacenada en Excel y se puede reutilizar en futuras ocasiones.
+====
+8. Una vez creada la conexión, volveremos al paso inicial del asistente y ya aparecerá la conexión creada y seleccionada. Como vamos a crear una tabla dinámica, dejaremos los valores predeterminados y pulsaremos "Aceptar".
++
+image::../../../images/excel-crear-tabla-dinamica.png[]
+9. Excel mostrará una tabla dinámica con los campos de la dimensión y las medidas del cubo a la derecha. Basta con arrastrar los campos a las zonas de filas, columnas y valores para crear el informe deseado.
++
+image::../../../images/excel-tabla-dinamica.png[]
+
+Por ejemplo, a modo ilustrativo y para comparar con el caso de estudio anterior, crearemos una tabla dinámica con:
+
+- Dimensión `Product`, atributo `Product Line` en la zona de filas.
+- Dimensión `Customer`, atributo `Gender` en la zona de columnas.
+- Medida `Sales Amount` y medida `Order Quantity` en la zona de valores.
+- Dimensión `Order date`, atributo `Calendar Year` en la zona de filtro y Dimensión `Customer`, atributo `State Province Name` en la zona de filtro. Filtrar por los años 2010 a 2014 y por el estado `California`.
+
+Excel mostrará un resultado similar al siguiente:
+
+image::../../../images/excel-caso-de-estudio-basico.png[]
+
 ### Modificación de medidas, atributos y jerarquías
 
 En este apartado se describen los pasos necesarios para modificar medidas, atributos, dimensiones y analizar el cubo implementado.
@@ -147,16 +191,16 @@ En este apartado se describen los pasos necesarios para modificar medidas, atrib
 .. https://learn.microsoft.com/es-es/analysis-services/multidimensional-tutorial/lesson-3-5-browsing-the-deployed-cube?view=sql-analysis-services-2019[Examinar el cubo implementado, window=blank]
 
 
-#### .Conexión de Excel con el cubo
+#### Conexión de Excel con el cubo
 
-Excel es una herramienta muy utilizada para la creación de informes y análisis de datos. En este apartado, vamos a conectar Excel con el cubo implementado en Analysis Services.
+Una vez incorporadas las jerarquías y medidas al cubo, podemos conectar Excel con el cubo para realizar análisis de datos. Ahora veremos, que a diferencia del caso anterior, Excel mostrará las jerarquías y no sólo los atributos con varlores individuales. Para ello, haremos lo siguiente:
 
 1. Abrir Excel y seleccionar la pestaña "Datos".
 2. Seleccionar "Obtener datos", "De una base de datos" y "De Analysis Services".
-3. En el paso "Conectar con el servidor de la base de datos" del asistente, introducir `localhost` en el nombre del servidor y seleccionar "Utilizar autenticación de Windows".`
+3. En el paso "Conectar con el servidor de la base de datos" del asistente, introducir `localhost` en el nombre del servidor y seleccionar "Usas mis credenciales actuales" para conectar.
 4. En el paso "Seleccionar la base de datos y tabla", seleccionar la base de datos (p.e. `Adventure Works`) y el cubo (p.e. `Adventure Works`).
 5. En el paso "Guardar archivo de datos y finalizar", seleccionar "Finalizar".
-6. Excel mostrará una cuadro de diálogo para indicar c´ómo se quiere visualizar los datos. Seleccionar "Informe de tabla dinámica", situar en la celda que indica en la hoja actual y pulsar "Aceptar".
+6. Excel mostrará una cuadro de diálogo para indicar cómo se quiere visualizar los datos. Seleccionar "Informe de tabla dinámica", situar en la celda que indica en la hoja actual y pulsar "Aceptar".
 7. Excel mostrará una tabla dinámica con los campos de la dimensión y las medidas del cubo a la derecha. Arrastrar los campos a las zonas de filas, columnas y valores para crear el informe deseado.
 
 #### Caso de estudio

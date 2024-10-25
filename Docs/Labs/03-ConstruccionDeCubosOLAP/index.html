@@ -734,6 +734,119 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_creación_de_un_informe_en_excel">3.1.3. Creación de un informe en Excel</h4>
+<div class="paragraph">
+<p>Excel es una herramienta muy utilizada para la creación de informes y análisis de datos. En este apartado, vamos a conectar Excel con el cubo implementado en Analysis Services. Antes de comenzar, comentar que como aún no tenemos definida ninguna jerarquía en las dimensiones, Excel mostrará los atributos con valores individuales. Cometaremos cómo crear jerarquías en el siguiente apartado. Para conectar Excel con el cubo, haremos lo siguiente:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Abrir Excel y seleccionar la pestaña "Insertar", "Tabla dinámica" y "Origen de datos de tabla dinámica de Analysis Services".</p>
+</li>
+<li>
+<p>Aparecerá un cuadro de diálogo para elegir la conexión. Como aún no tenemos definida ninguna, pulsaremos "Aceptar" para crear una nueva conexión.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/excel-elegir-conexion.png" alt="excel elegir conexion">
+</div>
+</div>
+</li>
+<li>
+<p>Aparecerá un cuadro de diálogo que da a elegir entre crear nuevas conexiones con un nuevo origen de datos, con SQL Server o seleccionar entre algunas conexiones recientes. Seleccionar "Conectar con nuevo origen de datos".</p>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/excel-elegir-origen.png" alt="excel elegir origen">
+</div>
+</div>
+</li>
+<li>
+<p>Aparecerá un cuadro de diálogo para elegir el tipo de origen de datos. Seleccionar "Microsoft Analysis Services" y pulsar "Aceptar".</p>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/excel-asistente-para-la-conexion.png" alt="excel asistente para la conexion">
+</div>
+</div>
+</li>
+<li>
+<p>En el paso siguiente del asistente hay que introducir los datos para la conexión con el servidor. Introducir <code>localhost</code> en el nombre del servidor y seleccionar "Utilizar autenticación de Windows" para conectar.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/excel-conexion-con-el-servidor.png" alt="excel conexion con el servidor">
+</div>
+</div>
+</li>
+<li>
+<p>En el paso siguiente del asistente, seleccionar la base de datos (p.e. <code>Adventure Works</code>) y el cubo (p.e. <code>Adventure Works</code>).</p>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/excel-seleccionar-base-de-datos-y-cubo.png" alt="excel seleccionar base de datos y cubo">
+</div>
+</div>
+</li>
+<li>
+<p>Finalizar el asistente en el paso siguiente para guardar las conexión.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>La conexión creada queda almacenada en Excel y se puede reutilizar en futuras ocasiones.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Una vez creada la conexión, volveremos al paso inicial del asistente y ya aparecerá la conexión creada y seleccionada. Como vamos a crear una tabla dinámica, dejaremos los valores predeterminados y pulsaremos "Aceptar".</p>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/excel-crear-tabla-dinamica.png" alt="excel crear tabla dinamica">
+</div>
+</div>
+</li>
+<li>
+<p>Excel mostrará una tabla dinámica con los campos de la dimensión y las medidas del cubo a la derecha. Basta con arrastrar los campos a las zonas de filas, columnas y valores para crear el informe deseado.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/excel-tabla-dinamica.png" alt="excel tabla dinamica">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, a modo ilustrativo y para comparar con el caso de estudio anterior, crearemos una tabla dinámica con:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Dimensión <code>Product</code>, atributo <code>Product Line</code> en la zona de filas.</p>
+</li>
+<li>
+<p>Dimensión <code>Customer</code>, atributo <code>Gender</code> en la zona de columnas.</p>
+</li>
+<li>
+<p>Medida <code>Sales Amount</code> y medida <code>Order Quantity</code> en la zona de valores.</p>
+</li>
+<li>
+<p>Dimensión <code>Order date</code>, atributo <code>Calendar Year</code> en la zona de filtro y Dimensión <code>Customer</code>, atributo <code>State Province Name</code> en la zona de filtro. Filtrar por los años 2010 a 2014 y por el estado <code>California</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Excel mostrará un resultado similar al siguiente:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/excel-caso-de-estudio-basico.png" alt="excel caso de estudio basico">
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_modificación_de_medidas_atributos_y_jerarquías">3.2. Modificación de medidas, atributos y jerarquías</h3>
@@ -767,9 +880,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ol>
 </div>
 <div class="sect3">
-<h4 id="_conexión_de_excel_con_el_cubo">3.2.1. .Conexión de Excel con el cubo</h4>
+<h4 id="_conexión_de_excel_con_el_cubo">3.2.1. Conexión de Excel con el cubo</h4>
 <div class="paragraph">
-<p>Excel es una herramienta muy utilizada para la creación de informes y análisis de datos. En este apartado, vamos a conectar Excel con el cubo implementado en Analysis Services.</p>
+<p>Una vez incorporadas las jerarquías y medidas al cubo, podemos conectar Excel con el cubo para realizar análisis de datos. Ahora veremos, que a diferencia del caso anterior, Excel mostrará las jerarquías y no sólo los atributos con varlores individuales. Para ello, haremos lo siguiente:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -780,7 +893,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Seleccionar "Obtener datos", "De una base de datos" y "De Analysis Services".</p>
 </li>
 <li>
-<p>En el paso "Conectar con el servidor de la base de datos" del asistente, introducir <code>localhost</code> en el nombre del servidor y seleccionar "Utilizar autenticación de Windows".`</p>
+<p>En el paso "Conectar con el servidor de la base de datos" del asistente, introducir <code>localhost</code> en el nombre del servidor y seleccionar "Usas mis credenciales actuales" para conectar.</p>
 </li>
 <li>
 <p>En el paso "Seleccionar la base de datos y tabla", seleccionar la base de datos (p.e. <code>Adventure Works</code>) y el cubo (p.e. <code>Adventure Works</code>).</p>
@@ -789,7 +902,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>En el paso "Guardar archivo de datos y finalizar", seleccionar "Finalizar".</p>
 </li>
 <li>
-<p>Excel mostrará una cuadro de diálogo para indicar c´ómo se quiere visualizar los datos. Seleccionar "Informe de tabla dinámica", situar en la celda que indica en la hoja actual y pulsar "Aceptar".</p>
+<p>Excel mostrará una cuadro de diálogo para indicar cómo se quiere visualizar los datos. Seleccionar "Informe de tabla dinámica", situar en la celda que indica en la hoja actual y pulsar "Aceptar".</p>
 </li>
 <li>
 <p>Excel mostrará una tabla dinámica con los campos de la dimensión y las medidas del cubo a la derecha. Arrastrar los campos a las zonas de filas, columnas y valores para crear el informe deseado.</p>
@@ -966,7 +1079,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-23 14:40:49 +0200
+Last updated 2024-10-25 13:57:49 +0200
 </div>
 </div>
 </body>
