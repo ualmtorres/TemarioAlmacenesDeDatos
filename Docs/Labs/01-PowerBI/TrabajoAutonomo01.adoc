@@ -24,9 +24,21 @@ image::../../../images/di.png[]
 // NO CAMBIAR!! (Entrar en modo no numerado de apartados)
 :numbered!: 
 
+## Resumen
+
+En esta actividad se va a realizar un informe con Power BI a partir de una base de datos de ejemplo de ventas en una cadena de supermercados. El informe estará formado por dos páginas que mostrarán información variada sobre ventas. Se incluirán segmentadores para filtrar por distintos campos. Se probarán distintos tipos de gráficos y se usará la funcionalidad de sincronización de segmentadores entre páginas. Además se creará una vista móvil y finalmente se publicará en Power BI Service.
+
+.Objetivos
+* Crear un informe con Power BI a partir de una base de datos de ejemplo.
+* Crear distintos tipos de gráficos y tablas de datos.
+* Usar segmentadores para filtrar la información.
+* Sincronizar segmentadores entre páginas.
+* Crear una vista móvil.
+* Publicar el informe en Power BI Service.
+
 :numbered:
 
-## Trabajo autónomo
+## Descripción de la actividad
 
 Clonar el https://github.com/ualmtorres/SampleDatabases.git[repositorio SampleDatabases de GitHub]. La carpeta `Tienda` contiene una serie de archivos en formato CSV de una base de datos de ejemplo de ventas en una cadena de supermercados.
 
@@ -40,7 +52,7 @@ Clonar el https://github.com/ualmtorres/SampleDatabases.git[repositorio SampleDa
 
 El informe estará formado por dos páginas, que se describen a continuación.
 
-### Página 1 del informe
+### Creación de la página 1 del informe
 
 Crear los objetos siguientes (usar la figura siguiente como referencia):
 
@@ -63,9 +75,14 @@ La figura siguiete muestra un ejemplo de la página 1 del informe seleccionando 
 
 image::../../../images/ta-lab01-pagina1.png[]
 
-### Página 2 del informe
+### Creación de la página 2 del informe
 
 Las dos páginas del informe compartirán los segmentadores de la parte superior, así como el logo y el cuadro de texto. Para ello, basta con seleccionar los objetos a compartir y copiarlos en la página 2. Aparecerá un mensaje en un cuadro de diálogo preguntando si se desean mantener sincronizados los valores de los segmentadores. Seleccionar la opción `Sincronizar`. Esto permitirá que al cambiar los valores de los segmentadores en una página, se reflejen en la otra.
+
+[NOTE]
+====
+La configuración de sincronización de segmentadores también se puede realizar seleccionando el segmentador y en el menú `Ver` en la opción `Sincronización de segmentadores` se indica las páginas en las que se desea que se sincronicen los valores. Además se indica si el segmentador es visible en la página.
+====
 
 Además de los objetos compartidos, la página 2 del informe estará formada por los objetos siguientes (usar la figura siguiente como referencia):
 
@@ -132,5 +149,6 @@ A continuación se muestra un ejemplo de la vista en formato móvil de la págin
 
 image::../../../images/ta-lab01-movil-pagina2.png[]
 
+## Conclusiones
 
-
+En esta actividad se ha creado un informe con Power BI a partir de una base de datos de ejemplo de ventas en una cadena de supermercados. Se han creado distintos tipos de gráficos y tablas de datos, se han usado segmentadores para filtrar la información y se ha sincronizado los segmentadores entre páginas. Se ha creado una vista móvil y finalmente se ha publicado en Power BI Service.

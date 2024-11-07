@@ -446,13 +446,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de contenidos</div>
 <ul class="sectlevel1">
-<li><a href="#_trabajo_autónomo">1. Trabajo autónomo</a>
+<li><a href="#_resumen">Resumen</a></li>
+<li><a href="#_descripción_de_la_actividad">1. Descripción de la actividad</a>
 <ul class="sectlevel2">
-<li><a href="#_página_1_del_informe">1.1. Página 1 del informe</a></li>
-<li><a href="#_página_2_del_informe">1.2. Página 2 del informe</a></li>
+<li><a href="#_creación_de_la_página_1_del_informe">1.1. Creación de la página 1 del informe</a></li>
+<li><a href="#_creación_de_la_página_2_del_informe">1.2. Creación de la página 2 del informe</a></li>
 </ul>
 </li>
 <li><a href="#_actividades_complementarias">2. Actividades complementarias</a></li>
+<li><a href="#_conclusiones">3. Conclusiones</a></li>
 </ul>
 </div>
 </div>
@@ -467,7 +469,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_trabajo_autónomo">1. Trabajo autónomo</h2>
+<h2 id="_resumen">Resumen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En esta actividad se va a realizar un informe con Power BI a partir de una base de datos de ejemplo de ventas en una cadena de supermercados. El informe estará formado por dos páginas que mostrarán información variada sobre ventas. Se incluirán segmentadores para filtrar por distintos campos. Se probarán distintos tipos de gráficos y se usará la funcionalidad de sincronización de segmentadores entre páginas. Además se creará una vista móvil y finalmente se publicará en Power BI Service.</p>
+</div>
+<div class="ulist">
+<div class="title">Objetivos</div>
+<ul>
+<li>
+<p>Crear un informe con Power BI a partir de una base de datos de ejemplo.</p>
+</li>
+<li>
+<p>Crear distintos tipos de gráficos y tablas de datos.</p>
+</li>
+<li>
+<p>Usar segmentadores para filtrar la información.</p>
+</li>
+<li>
+<p>Sincronizar segmentadores entre páginas.</p>
+</li>
+<li>
+<p>Crear una vista móvil.</p>
+</li>
+<li>
+<p>Publicar el informe en Power BI Service.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_descripción_de_la_actividad">1. Descripción de la actividad</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Clonar el <a href="https://github.com/ualmtorres/SampleDatabases.git">repositorio SampleDatabases de GitHub</a>. La carpeta <code>Tienda</code> contiene una serie de archivos en formato CSV de una base de datos de ejemplo de ventas en una cadena de supermercados.</p>
@@ -505,7 +538,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>El informe estará formado por dos páginas, que se describen a continuación.</p>
 </div>
 <div class="sect2">
-<h3 id="_página_1_del_informe">1.1. Página 1 del informe</h3>
+<h3 id="_creación_de_la_página_1_del_informe">1.1. Creación de la página 1 del informe</h3>
 <div class="paragraph">
 <p>Crear los objetos siguientes (usar la figura siguiente como referencia):</p>
 </div>
@@ -564,9 +597,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_página_2_del_informe">1.2. Página 2 del informe</h3>
+<h3 id="_creación_de_la_página_2_del_informe">1.2. Creación de la página 2 del informe</h3>
 <div class="paragraph">
 <p>Las dos páginas del informe compartirán los segmentadores de la parte superior, así como el logo y el cuadro de texto. Para ello, basta con seleccionar los objetos a compartir y copiarlos en la página 2. Aparecerá un mensaje en un cuadro de diálogo preguntando si se desean mantener sincronizados los valores de los segmentadores. Seleccionar la opción <code>Sincronizar</code>. Esto permitirá que al cambiar los valores de los segmentadores en una página, se reflejen en la otra.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>La configuración de sincronización de segmentadores también se puede realizar seleccionando el segmentador y en el menú <code>Ver</code> en la opción <code>Sincronización de segmentadores</code> se indica las páginas en las que se desea que se sincronicen los valores. Además se indica si el segmentador es visible en la página.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Además de los objetos compartidos, la página 2 del informe estará formada por los objetos siguientes (usar la figura siguiente como referencia):</p>
@@ -746,10 +793,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_conclusiones">3. Conclusiones</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En esta actividad se ha creado un informe con Power BI a partir de una base de datos de ejemplo de ventas en una cadena de supermercados. Se han creado distintos tipos de gráficos y tablas de datos, se han usado segmentadores para filtrar la información y se ha sincronizado los segmentadores entre páginas. Se ha creado una vista móvil y finalmente se ha publicado en Power BI Service.</p>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-07 14:26:27 +0100
+Last updated 2024-11-07 17:55:37 +0100
 </div>
 </div>
 </body>

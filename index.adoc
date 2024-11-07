@@ -145,7 +145,11 @@ Profesores:
 
 ## Trabajo autónomo
 
-* link:Docs/Labs/01-PowerBI/index.html[Lab 01. Visualización de datos con Power BI, window=_blank]
+* Lab01
+
+** link:Docs/Labs/01-PowerBI/index.html[Tutorial: Visualización de datos con Power BI, window=_blank]
+** link:Docs/Labs/01-PowerBI/TrabajoAutonomo01.html[Actividad: Creación de un dashboard con Power BI, window=_blank]
+
 * link:Docs/Labs/02-PowerQuery/index.html[Lab 02. Transformación básica de datos con Power BI, window=_blank]
 
 * link:Docs/Labs/03-ConstruccionDeCubosOLAP/index.html[Lab 03. Construcción de cubos OLAP, window=_blank] 
