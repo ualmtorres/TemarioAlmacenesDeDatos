@@ -146,15 +146,21 @@ Profesores:
 ## Trabajo autónomo
 
 * Lab01
-
 ** link:Docs/Labs/01-PowerBI/index.html[Tutorial: Visualización de datos con Power BI, window=_blank]
 ** link:Docs/Labs/01-PowerBI/TrabajoAutonomo01.html[Actividad: Creación de un dashboard con Power BI, window=_blank]
 
-* link:Docs/Labs/02-PowerQuery/index.html[Lab 02. Transformación básica de datos con Power BI, window=_blank]
+* Lab02
+** link:Docs/Labs/02-PowerQuery/index.html[Tutorial: Transformación básica de datos con Power BI, window=_blank]
 
-* link:Docs/Labs/03-ConstruccionDeCubosOLAP/index.html[Lab 03. Construcción de cubos OLAP, window=_blank] 
-* link:Docs/Labs/Lab04/index.html[Lab 04. Extracción e integración de datos - No disponible, window=_blank]
-* link:Docs/Labs/Lab05/index.html[Lab 05. Consultas en cubos OLAP - No disponible, window=_blank]
+* Lab03
+** link:Docs/Labs/03-ConstruccionDeCubosOLAP/index.html[Tutorial: Construcción de cubos OLAP, window=_blank] 
+** link:Docs/Labs/03-ConstruccionDeCubosOLAP/TrabajoAutonomo03.html[Actividad: Creación de cubos con Microsoft Analysis Services, window=_blank]
+
+* Lab04
+** link:Docs/Labs/Lab04/index.html[Tutorial: Extracción e integración de datos - No disponible, window=_blank]
+
+* Lab05
+** link:Docs/Labs/Lab05/index.html[Tutorial: Consultas en cubos OLAP - No disponible, window=_blank]
 
 .Actividades complementarias
 ****
