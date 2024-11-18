@@ -46,6 +46,8 @@ COLOCA A CONTINUACION LOS OBJETIVOS
 * Aprender a visualizar datos con Power BI en Fabric.
 * Realizar ejemplos sencillos de tratamiento de datos con PySpark y Spark SQL.
 
+:numbered: 
+
 ## Introducción
 
 Las soluciones de análisis de datos tradicionales estaban construidas sobre la base de un almacén de datos, en la que los datos se almancenan siguiendo un modelo multidimensional. Es habitual encontrar implementaciones ROLAP en la que los datos se almacenan en tablas relacionales siguiendo un esquema en estrella y son consultadas mediante SQL. pero con la aparición del fenómeno de _Big data_ o macrodatos, (caracterizados por las 3 V: volumen, velocidad y variedad) las organizaciones han tenido que adaptar sus soluciones de análisis de datos para poder procesar y analizar grandes volúmenes de datos de diferentes fuentes y formatos. Esto normalmente nos lleba a tecnologías de almacenamiento y procesamiento a escala cloud, lo que da pie a la aparición de soluciones de almacenamiento como Azure Data Lake y de procesamiento como Spark. En un data lake, los datos se almacenan en su formatoi natico, como archivos sin imponer un esquema fijo para su almacenamiento. Y esto puede ser llevado más allá con la aparición de los lakehouses, que combinan la flexibilidad de los data lakes (almacenando los datos en archivos en un data lake) con la capacidad de consulta y análisis de los almacenes de datos (se crea una capa de metadatos adicional ofreciendo un acceso mediante un esquema relacional que puede ser consultado en SQL)

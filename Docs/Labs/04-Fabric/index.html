@@ -447,37 +447,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Tabla de contenidos</div>
 <ul class="sectlevel1">
 <li><a href="#_resumen">Resumen</a></li>
-<li><a href="#_introducción">Introducción</a></li>
-<li><a href="#_conceptos_clave">Conceptos clave</a>
+<li><a href="#_introducción">1. Introducción</a></li>
+<li><a href="#_conceptos_clave">2. Conceptos clave</a>
 <ul class="sectlevel2">
-<li><a href="#_fabric">Fabric</a></li>
-<li><a href="#_data_lakes">Data Lakes</a></li>
-<li><a href="#_onelake">OneLake</a></li>
-<li><a href="#_lakehouse">Lakehouse</a></li>
-<li><a href="#_apache_spark">Apache Spark</a></li>
+<li><a href="#_fabric">2.1. Fabric</a></li>
+<li><a href="#_data_lakes">2.2. Data Lakes</a></li>
+<li><a href="#_onelake">2.3. OneLake</a></li>
+<li><a href="#_lakehouse">2.4. Lakehouse</a></li>
+<li><a href="#_apache_spark">2.5. Apache Spark</a></li>
 </ul>
 </li>
-<li><a href="#_creación_de_un_lakehouse">Creación de un lakehouse</a>
+<li><a href="#_creación_de_un_lakehouse">3. Creación de un lakehouse</a>
 <ul class="sectlevel2">
-<li><a href="#_consulta_de_la_tabla_con_sql">Consulta de la tabla con SQL</a></li>
-<li><a href="#_creación_de_una_vista">Creación de una vista</a></li>
-<li><a href="#_administrar_el_modelo_semántico_predeterminado">Administrar el modelo semántico predeterminado</a></li>
-<li><a href="#_creación_de_un_informe_con_power_bi">Creación de un informe con Power BI</a></li>
+<li><a href="#_consulta_de_la_tabla_con_sql">3.1. Consulta de la tabla con SQL</a></li>
+<li><a href="#_creación_de_una_vista">3.2. Creación de una vista</a></li>
+<li><a href="#_administrar_el_modelo_semántico_predeterminado">3.3. Administrar el modelo semántico predeterminado</a></li>
+<li><a href="#_creación_de_un_informe_con_power_bi">3.4. Creación de un informe con Power BI</a></li>
 </ul>
 </li>
-<li><a href="#_análisis_y_transformación_de_datos_con_spark">Análisis y transformación de datos con Spark</a>
+<li><a href="#_análisis_y_transformación_de_datos_con_spark">4. Análisis y transformación de datos con Spark</a>
 <ul class="sectlevel2">
-<li><a href="#_preparación_del_trabajo">Preparación del trabajo</a></li>
-<li><a href="#_carga_de_datos_en_un_dataframe_de_spark">Carga de datos en un DataFrame de Spark</a></li>
-<li><a href="#_exploración_de_datos">Exploración de datos</a></li>
-<li><a href="#_transformación_de_datos">Transformación de datos</a></li>
-<li><a href="#_guardar_los_datos_transformados">Guardar los datos transformados</a></li>
-<li><a href="#_uso_de_sql_en_spark">Uso de SQL en Spark</a></li>
-<li><a href="#_visualización_de_datos_con_spark">Visualización de datos con Spark</a></li>
+<li><a href="#_preparación_del_trabajo">4.1. Preparación del trabajo</a></li>
+<li><a href="#_carga_de_datos_en_un_dataframe_de_spark">4.2. Carga de datos en un DataFrame de Spark</a></li>
+<li><a href="#_exploración_de_datos">4.3. Exploración de datos</a></li>
+<li><a href="#_transformación_de_datos">4.4. Transformación de datos</a></li>
+<li><a href="#_guardar_los_datos_transformados">4.5. Guardar los datos transformados</a></li>
+<li><a href="#_uso_de_sql_en_spark">4.6. Uso de SQL en Spark</a></li>
+<li><a href="#_visualización_de_datos_con_spark">4.7. Visualización de datos con Spark</a></li>
 </ul>
 </li>
-<li><a href="#_creación_de_un_informe_con_power_bi_2">Creación de un informe con Power BI</a></li>
-<li><a href="#_conclusiones">Conclusiones</a></li>
+<li><a href="#_creación_de_un_informe_con_power_bi_2">5. Creación de un informe con Power BI</a></li>
+<li><a href="#_conclusiones">6. Conclusiones</a></li>
 </ul>
 </div>
 </div>
@@ -523,7 +523,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_introducción">Introducción</h2>
+<h2 id="_introducción">1. Introducción</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Las soluciones de análisis de datos tradicionales estaban construidas sobre la base de un almacén de datos, en la que los datos se almancenan siguiendo un modelo multidimensional. Es habitual encontrar implementaciones ROLAP en la que los datos se almacenan en tablas relacionales siguiendo un esquema en estrella y son consultadas mediante SQL. pero con la aparición del fenómeno de <em>Big data</em> o macrodatos, (caracterizados por las 3 V: volumen, velocidad y variedad) las organizaciones han tenido que adaptar sus soluciones de análisis de datos para poder procesar y analizar grandes volúmenes de datos de diferentes fuentes y formatos. Esto normalmente nos lleba a tecnologías de almacenamiento y procesamiento a escala cloud, lo que da pie a la aparición de soluciones de almacenamiento como Azure Data Lake y de procesamiento como Spark. En un data lake, los datos se almacenan en su formatoi natico, como archivos sin imponer un esquema fijo para su almacenamiento. Y esto puede ser llevado más allá con la aparición de los lakehouses, que combinan la flexibilidad de los data lakes (almacenando los datos en archivos en un data lake) con la capacidad de consulta y análisis de los almacenes de datos (se crea una capa de metadatos adicional ofreciendo un acceso mediante un esquema relacional que puede ser consultado en SQL)</p>
@@ -552,28 +552,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_conceptos_clave">Conceptos clave</h2>
+<h2 id="_conceptos_clave">2. Conceptos clave</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_fabric">Fabric</h3>
+<h3 id="_fabric">2.1. Fabric</h3>
 <div class="paragraph">
 <p>La plataforma unificada de análisis de datos de Microsoft Fabric facilita que los profesionales de datos trabajen juntos en proyectos de datos. Fabric quita los silos de datos y la necesidad de acceso a varios sistemas, lo que mejora la colaboración entre profesionales de datos. Así, podemos considerar que Fabric es una plataforma de colaboración de datos y que proporciona un conjunto de servicios integrados que permiten ingerir, almacenar, procesar y analizar datos en un solo entorno.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_data_lakes">Data Lakes</h3>
+<h3 id="_data_lakes">2.2. Data Lakes</h3>
 <div class="paragraph">
 <p>Un lago de datos es un repositorio de almacenamiento que contiene una gran cantidad de datos en bruto en su formato nativo. Los datos no se procesan ni se transforman antes de ser almacenados en el lago de datos. Los datos se almacenan en su formato nativo, lo que permite a los científicos de datos y a los analistas de datos acceder a los datos sin tener que preocuparse por la estructura de los datos.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_onelake">OneLake</h3>
+<h3 id="_onelake">2.3. OneLake</h3>
 <div class="paragraph">
 <p>OneLake es una arquitectura de Fabric centrada en lagos de datos que proporciona un único entorno integrado para que los profesionales de datos y la empresa puedan colaborar en proyectos de datos. Se puede considerar como OneDrive para datos. De forma similar a la que las aplicaciones de Office están preconfiguradas para usar OneDrive de la organización, todas las cargas de trabajo de proceso de Fabric están preconfiguradas para trabajar con OneLake. Los ingenieros de datos ahora pueden ingerir, transformar y cargar grandes cantidades de datos en OneLake y presentarlos en cualquier sistema de almacenamiento de datos que tenga más sentido. Los científicos de datos pueden acceder a los datos en OneLake y usarlos para crear modelos de aprendizaje automático y análisis avanzados.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lakehouse">Lakehouse</h3>
+<h3 id="_lakehouse">2.4. Lakehouse</h3>
 <div class="paragraph">
 <p>Un lakehouse combina la flexibilidad del almacenamiento en data lakes con el análisis de almacenamiento de datos. Microsoft Fabric ofrece una solución de lakehouse para un análisis exhaustivo en una sola plataforma SaaS.</p>
 </div>
@@ -600,7 +600,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_apache_spark">Apache Spark</h3>
+<h3 id="_apache_spark">2.5. Apache Spark</h3>
 <div class="paragraph">
 <p>Apache Spark forma parte del ecosistema de big data de Apache y es un motor de análisis unificado para el procesamiento de datos a gran escala. Spark se integra en Fabric para proporcionar una plataforma de procesamiento de datos en un lakehouse. Spark se puede usar para procesar datos en tiempo real, realizar análisis de datos, realizar aprendizaje automático y realizar análisis de gráficos. Spark permite el uso de distintos lenguajes de programación, como Scala, Java, Python y SQL, para escribir programas de procesamiento de datos.</p>
 </div>
@@ -608,7 +608,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creación_de_un_lakehouse">Creación de un lakehouse</h2>
+<h2 id="_creación_de_un_lakehouse">3. Creación de un lakehouse</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>En este apartado veremos cómo crear un lakehouse en Fabric y cómo cargar datos en el lakehouse. Para ello, seguiremos los siguientes pasos:</p>
@@ -698,7 +698,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_consulta_de_la_tabla_con_sql">Consulta de la tabla con SQL</h3>
+<h3 id="_consulta_de_la_tabla_con_sql">3.1. Consulta de la tabla con SQL</h3>
 <div class="paragraph">
 <p>Para consultar la tabla con SQL, cambiar del modo Explorador al modo SQL en el botón de la parte superior derecha. Se podrá escribir una consulta SQL para consultar la tabla <code>sales</code>. A modo de ejemplo, como la tabla <code>sales</code> tiene un campo <code>Item</code> que contiene el nombre del producto, y campos <code>Quantity</code> y <code>UnitPrice</code> que contienen la cantidad vendida y el precio del producto, se puede escribir una consulta SQL para calcular el total de ventas por producto. El resultado lo mostraremos ordenado de mayor a menor por el total de ventas.</p>
 </div>
@@ -720,7 +720,7 @@ ORDER BY SalesByItem DESC;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_creación_de_una_vista">Creación de una vista</h3>
+<h3 id="_creación_de_una_vista">3.2. Creación de una vista</h3>
 <div class="paragraph">
 <p>Las vistas permiten personalizar la forma en que se ven los datos en el lakehouse. En nuestro caso crearemos una vista a partir de la tabla <code>sales</code> que añada una columna con el subtotal por fila. Para crear la vista, basta con seleccionar la opción <code>Crear vista</code> desde el menú de puntos suspensivos del explorador del lakehouse. Se abrirá un editor para escribir la consulta SQL que define la vista. A modo de ejemplo, la consulta SQL para crear la vista sería la siguiente:</p>
 </div>
@@ -736,7 +736,7 @@ FROM [sales]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_administrar_el_modelo_semántico_predeterminado">Administrar el modelo semántico predeterminado</h3>
+<h3 id="_administrar_el_modelo_semántico_predeterminado">3.3. Administrar el modelo semántico predeterminado</h3>
 <div class="paragraph">
 <p>El modelo semántico predeterminado es un modelo de datos que se crea automáticamente cuando se carga un archivo en un lakehouse. El modelo semántico predeterminado se crea a partir de los metadatos del archivo y se puede personalizar para satisfacer las necesidades de análisis de datos. Inicialmente, no contiene nada. Comenzaremos por añadirle la tabla <code>sales</code> y la vista que hemos creado anteriormente. Para ello, en la pestaña <code>Creación de informes</code> selecionamos <code>Administrar modelo semántico predeterminado</code>. Aparecerá un cuadro de diálogo para que podamos añadir los objetos deseados. En nuestro caso añadiremos la tabla <code>sales</code>, la vista <code>salesWithSubtotals</code> y pulsaremos el botón <code>Confirmar</code>.</p>
 </div>
@@ -750,7 +750,7 @@ FROM [sales]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_creación_de_un_informe_con_power_bi">Creación de un informe con Power BI</h3>
+<h3 id="_creación_de_un_informe_con_power_bi">3.4. Creación de un informe con Power BI</h3>
 <div class="paragraph">
 <p>Desde el lakehouse se puede crear un informe con Power BI. Para ello, seleccionar la pestaña <code>Creación de informes</code> de la parte superior y pulsar el botón <code>Nuevo informe</code>.</p>
 </div>
@@ -796,7 +796,7 @@ FROM [sales]</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_análisis_y_transformación_de_datos_con_spark">Análisis y transformación de datos con Spark</h2>
+<h2 id="_análisis_y_transformación_de_datos_con_spark">4. Análisis y transformación de datos con Spark</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Apache Spark es un motor de análisis unificado y distribuido para el procesamiento de datos a gran escala. Al ser distribuido, el procesamiento es realizado en varios nodos de lo que se conoce como un clúster de Spark. Ese cluster en conocido en Fabric como <em>grupo de Spark</em>. En ese enfoque de procesamiento distribuido, unos nodos denominados <em>nodos de trabajo</em> se encargan de realizar las tareas de procesamiento de datos y otros nodos denominados _nodos principales se encargan de coordinar las tareas de los nodos de trabajo.
@@ -819,12 +819,12 @@ En este apartado veremos cómo usar Spark para ingerir, procesar y analizar dato
 <p>A partir del workspace y el lakehouse creados anteriormente, en este apartado vamos a desarrollar un ejemplo de procesamiento de datos con Spark.</p>
 </div>
 <div class="sect2">
-<h3 id="_preparación_del_trabajo">Preparación del trabajo</h3>
+<h3 id="_preparación_del_trabajo">4.1. Preparación del trabajo</h3>
 <div class="paragraph">
 <p>Para llevar a cabo el ejemplo necesitaremos una serie de datos con los que trabajar y un cuaderno de Spark. A continuación realizaremos la carga de datos en el lakehouse, la creación de un cuaderno de Spark y la carga de los datos.</p>
 </div>
 <div class="sect3">
-<h4 id="_carga_de_datos_en_el_lakehouse">Carga de datos en el lakehouse</h4>
+<h4 id="_carga_de_datos_en_el_lakehouse">4.1.1. Carga de datos en el lakehouse</h4>
 <div class="paragraph">
 <p>Descargaremos en nuestro equipo este [archivo .zip de ventas](<a href="https://github.com/MicrosoftLearning/dp-data/raw/main/orders.zip" class="bare">https://github.com/MicrosoftLearning/dp-data/raw/main/orders.zip</a>) y lo subiremos a una carpeta <code>orders</code> del lakehouse. El archivo contiene datos de ventas en formato CSV de los años 2019, 2020 y 2021. La figura siguiente muestra los tres archivos en la carpeta <code>orders</code> del exploradore del lakehouse.</p>
 </div>
@@ -835,7 +835,7 @@ En este apartado veremos cómo usar Spark para ingerir, procesar y analizar dato
 </div>
 </div>
 <div class="sect3">
-<h4 id="_creación_de_un_cuaderno_de_spark">Creación de un cuaderno de Spark</h4>
+<h4 id="_creación_de_un_cuaderno_de_spark">4.1.2. Creación de un cuaderno de Spark</h4>
 <div class="paragraph">
 <p>Un cuaderno de Spark es un entorno interactivo que permite escribir y ejecutar código de Spark en diferentes lenguajes y permite añadir notas para explicaciones y comentarios. Para crear el cuaderno en Facric, desde el explorador del lakehouse y teniendo seleccionada la carpeta <code>orders</code> seleccionaremos de la barra de herramientas <code>Abrir cuaderno | Nuevo cuaderno</code>. Aparecerá un cuaderno de Spark con una celda en blanco en el que podremos escribir y ejecutar código de Spark.</p>
 </div>
@@ -874,7 +874,7 @@ Utilizar el código de este cuaderno para explorar los datos de pedidos y realiz
 </div>
 </div>
 <div class="sect2">
-<h3 id="_carga_de_datos_en_un_dataframe_de_spark">Carga de datos en un DataFrame de Spark</h3>
+<h3 id="_carga_de_datos_en_un_dataframe_de_spark">4.2. Carga de datos en un DataFrame de Spark</h3>
 <div class="paragraph">
 <p>Un <em>Dataframe</em> es una estructura de datos tabular que se puede utilizar para representar datos en Spark. En el cuaderno de Spark, crearemos una nueva celda situando el ratón debajo de la celda Markdown creada en el paso anterior. En la nueva celda escribiremos el siguiente código en PySpark para cargar los datos de ventas en un DataFrame de Spark:</p>
 </div>
@@ -998,7 +998,7 @@ display(df)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exploración_de_datos">Exploración de datos</h3>
+<h3 id="_exploración_de_datos">4.3. Exploración de datos</h3>
 <div class="paragraph">
 <p>Los objetos dataframe ofrecen una serie de métodos para explorar y analizar los datos. A continuuación veremos algunos ejemplos de cómo explorar los datos de ventas con Spark.</p>
 </div>
@@ -1070,7 +1070,7 @@ display(yearlySales)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_transformación_de_datos">Transformación de datos</h3>
+<h3 id="_transformación_de_datos">4.4. Transformación de datos</h3>
 <div class="paragraph">
 <p>A la hora de tratar con datos es muy habitual tener que realizar transformaciones sobre ellos. En Spark, las transformaciones se realizan mediante la función <code>withColumn</code> que permite añadir una nueva columna al DataFrame o modificar una columna existente. A continuación veremos algunos ejemplos de cómo realizar transformaciones sobre los datos de ventas con Spark.</p>
 </div>
@@ -1097,7 +1097,7 @@ display(transformed_df.limit(10))</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_guardar_los_datos_transformados">Guardar los datos transformados</h3>
+<h3 id="_guardar_los_datos_transformados">4.5. Guardar los datos transformados</h3>
 <div class="paragraph">
 <p>Una vez realizadas las transformaciones necesarias sobre los datos, es posible guardar los datos transformados en un nuevo archivo. En entornos de procesamiento de datos suele ser habitual utilizar otros formatos de datos más eficientes que el CSV, como el formato [Parquet](<a href="https://parquet.apache.org/" class="bare">https://parquet.apache.org/</a>). El formato Parquet es un formato de archivo de almacenamiento de columnas que es muy eficiente para el análisis de datos y es compatible con Spark. A continuación veremos cómo guardar los datos transformados en un archivo Parquet.</p>
 </div>
@@ -1151,7 +1151,7 @@ display(orders_2019_df)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_uso_de_sql_en_spark">Uso de SQL en Spark</h3>
+<h3 id="_uso_de_sql_en_spark">4.6. Uso de SQL en Spark</h3>
 <div class="paragraph">
 <p>Spark SQL es un módulo de Spark que permite ejecutar consultas SQL sobre los datos de Spark. Spark SQL permite trabajar con datos estructurados y semiestructurados y ofrece una serie de funciones y operadores para trabajar con los datos. A continuación veremos cómo utilizar Spark SQL para realizar consultas sobre los datos de ventas.</p>
 </div>
@@ -1220,7 +1220,7 @@ ORDER BY OrderYear;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_visualización_de_datos_con_spark">Visualización de datos con Spark</h3>
+<h3 id="_visualización_de_datos_con_spark">4.7. Visualización de datos con Spark</h3>
 <div class="paragraph">
 <p>De forma predeterminada, la ejecución de una consulta SQL o de un comando que muestre un dataframe puede ser visualizado como un gráfico en Fabric. Para ello, basta con pulsar sobre la pestaña <code>Chart</code> de la salida de la celda. La figura siguiente muestra el gráfico de barras que muestra el total de ventas por año incluyendo impuestos. Además, se puede observar que también es posible personalizar el gráfico pulsando sobre <code>Personalizar gráfico</code>.</p>
 </div>
@@ -1233,7 +1233,7 @@ ORDER BY OrderYear;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creación_de_un_informe_con_power_bi_2">Creación de un informe con Power BI</h2>
+<h2 id="_creación_de_un_informe_con_power_bi_2">5. Creación de un informe con Power BI</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Una vez que hemos explorado y transformado los datos de ventas con Spark, podemos crear un informe con Power BI para visualizar los datos de ventas. El informe lo podemos realizar sobre la tabla o la vista que creamos mediante la importación de un archivo CSV, o sobre la tabla <code>salesorders</code> que creamos mediante Spark SQL a partir de un dataframe de Spark. De una forma o de otra, el origen de datos será el lakehouse de Fabric y será transparente para Power BI. Eso sí, para que Power BI puede acceder a los datos transformados, primero deberemos añadirlos al modelo semántico predeterminado. Si no están añadididos, desde el explorador del lakehouse seleccionaremos la opción <code>Administrar modelo semántico predeterminado</code> en la pestaña <code>Creación de informes</code>. Aparecerá un cuadro de diálogo para que podamos añadir los objetos deseados. En nuestro caso añadiremos la tabla <code>salesorders</code> y pulsaremos el botón <code>Confirmar</code>. La figura siguiente muestra cómo añadir la tabla <code>salesorders</code> al modelo semántico predeterminado.</p>
@@ -1296,7 +1296,7 @@ ORDER BY OrderYear;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_conclusiones">Conclusiones</h2>
+<h2 id="_conclusiones">6. Conclusiones</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>En este tutorial hemos trabajado con Fabric para realizar un ejemplo descriptivo de operaciones habituales en un entorno de procesamiento de datos. Entre las tareas hemos creado un lakehouse, hemos cargado datos, hemos creado un cuaderno Spark para realizar operaciones básicas de tratamiento de datos, hemos practicado con archivos Parquet. Finalmente, dado que Fabric permite la integración con Power BI a través de un modelo semántico, hemos definido el modelo semántico y hemos creado un informe con Power BI.</p>
@@ -1306,7 +1306,7 @@ ORDER BY OrderYear;</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-18 18:33:04 +0100
+Last updated 2024-11-18 18:37:29 +0100
 </div>
 </div>
 </body>
