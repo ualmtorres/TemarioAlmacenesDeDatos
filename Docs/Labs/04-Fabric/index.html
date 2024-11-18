@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.22">
+<meta name="author" content="Grado en Ingeniería Informática. Universidad de Almería">
+<title>Procesamiento de datos con Microsoft Fabric - Almacenes de datos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="book toc2 toc-right">
+<div id="header">
+<h1>Procesamiento de datos con Microsoft Fabric - Almacenes de datos</h1>
+<div class="details">
+<span id="author" class="author">Grado en Ingeniería Informática. Universidad de Almería</span><br>
+<span id="revdate">Manuel Torres &lt;mtorres@ual.es&gt;</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de contenidos</div>
+<ul class="sectlevel1">
+<li><a href="#_resumen">Resumen</a></li>
+<li><a href="#_introducción">Introducción</a></li>
+<li><a href="#_conceptos_clave">Conceptos clave</a>
+<ul class="sectlevel2">
+<li><a href="#_fabric">Fabric</a></li>
+<li><a href="#_data_lakes">Data Lakes</a></li>
+<li><a href="#_onelake">OneLake</a></li>
+<li><a href="#_lakehouse">Lakehouse</a></li>
+<li><a href="#_apache_spark">Apache Spark</a></li>
+</ul>
+</li>
+<li><a href="#_creación_de_un_lakehouse">Creación de un lakehouse</a>
+<ul class="sectlevel2">
+<li><a href="#_consulta_de_la_tabla_con_sql">Consulta de la tabla con SQL</a></li>
+<li><a href="#_creación_de_una_vista">Creación de una vista</a></li>
+<li><a href="#_administrar_el_modelo_semántico_predeterminado">Administrar el modelo semántico predeterminado</a></li>
+<li><a href="#_creación_de_un_informe_con_power_bi">Creación de un informe con Power BI</a></li>
+</ul>
+</li>
+<li><a href="#_análisis_y_transformación_de_datos_con_spark">Análisis y transformación de datos con Spark</a>
+<ul class="sectlevel2">
+<li><a href="#_preparación_del_trabajo">Preparación del trabajo</a></li>
+<li><a href="#_carga_de_datos_en_un_dataframe_de_spark">Carga de datos en un DataFrame de Spark</a></li>
+<li><a href="#_exploración_de_datos">Exploración de datos</a></li>
+<li><a href="#_transformación_de_datos">Transformación de datos</a></li>
+<li><a href="#_guardar_los_datos_transformados">Guardar los datos transformados</a></li>
+<li><a href="#_uso_de_sql_en_spark">Uso de SQL en Spark</a></li>
+<li><a href="#_visualización_de_datos_con_spark">Visualización de datos con Spark</a></li>
+</ul>
+</li>
+<li><a href="#_creación_de_un_informe_con_power_bi_2">Creación de un informe con Power BI</a></li>
+<li><a href="#_conclusiones">Conclusiones</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/di.png" alt="di">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resumen">Resumen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Microsoft Fabric es una plataforma unificada de análisis de datos que facilita que los profesionales de datos trabajen juntos en proyectos de datos. Fabric favorece la desaparición de silos aislados de datos lo que mejora la colaboración entre profesionales de datos. Fabric proporciona un conjunto de servicios integrados que permiten ingerir, almacenar, procesar y analizar datos en un solo entorno. Fabric se basa en un lakehouse que combina la flexibilidad del almacenamiento en data lakes con la capacidad de consulta y análisis de almacenamiento de datos. Fabric usa Spark para el procesamiento de datos y permite la integración con Power BI para la creación de informes.</p>
+</div>
+<div class="paragraph">
+<p>Este tutorial describe cómo tratar con lakehouses en Fabric, cómo transformar datos con Spark, presenta los modelos semánticos para Power BI y cómo visualizar datos con Power BI. A modo de introducción al uso de Spark para el tratamiento de datos, se realizarán algunos ejemplos sencillos con PySpark y Spark SQL.</p>
+</div>
+<div class="ulist">
+<div class="title">Objetivos</div>
+<ul>
+<li>
+<p>Conocer los conceptos clave de los lakehouses en Fabric.</p>
+</li>
+<li>
+<p>Aprender a transformar datos con Spark en Fabric.</p>
+</li>
+<li>
+<p>Conocer cómo crear modelos semánticos para Power BI en Fabric.</p>
+</li>
+<li>
+<p>Aprender a visualizar datos con Power BI en Fabric.</p>
+</li>
+<li>
+<p>Realizar ejemplos sencillos de tratamiento de datos con PySpark y Spark SQL.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introducción">Introducción</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Las soluciones de análisis de datos tradicionales estaban construidas sobre la base de un almacén de datos, en la que los datos se almancenan siguiendo un modelo multidimensional. Es habitual encontrar implementaciones ROLAP en la que los datos se almacenan en tablas relacionales siguiendo un esquema en estrella y son consultadas mediante SQL. pero con la aparición del fenómeno de <em>Big data</em> o macrodatos, (caracterizados por las 3 V: volumen, velocidad y variedad) las organizaciones han tenido que adaptar sus soluciones de análisis de datos para poder procesar y analizar grandes volúmenes de datos de diferentes fuentes y formatos. Esto normalmente nos lleba a tecnologías de almacenamiento y procesamiento a escala cloud, lo que da pie a la aparición de soluciones de almacenamiento como Azure Data Lake y de procesamiento como Spark. En un data lake, los datos se almacenan en su formatoi natico, como archivos sin imponer un esquema fijo para su almacenamiento. Y esto puede ser llevado más allá con la aparición de los lakehouses, que combinan la flexibilidad de los data lakes (almacenando los datos en archivos en un data lake) con la capacidad de consulta y análisis de los almacenes de datos (se crea una capa de metadatos adicional ofreciendo un acceso mediante un esquema relacional que puede ser consultado en SQL)</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Las tres V de los macrodatos o del big data</div>
+<div class="paragraph">
+<p>Los macrodatos son conjuntos de datos que son tan grandes o complejos que no se pueden procesar con las herramientas de procesamiento de datos tradicionales. Los macrodatos se asocian a lo que se conoce como las 3 V: volumen, velocidad y variedad. A los macrodatos también se les conoce como big data.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Volumen</strong>: Los macrodatos se caracterizan por tener un volumen de datos muy grande. Los datos se generan a una velocidad muy alta y provienen de una variedad de fuentes.</p>
+</li>
+<li>
+<p><strong>Velocidad</strong>: Los macrodatos se generan a una velocidad muy alta. Los datos se generan en tiempo real y se deben procesar rápidamente.</p>
+</li>
+<li>
+<p><strong>Variedad</strong>: Los macrodatos provienen de una variedad de fuentes y están en una variedad de formatos. Los datos pueden ser estructurados, semiestructurados o no estructurados.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conceptos_clave">Conceptos clave</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_fabric">Fabric</h3>
+<div class="paragraph">
+<p>La plataforma unificada de análisis de datos de Microsoft Fabric facilita que los profesionales de datos trabajen juntos en proyectos de datos. Fabric quita los silos de datos y la necesidad de acceso a varios sistemas, lo que mejora la colaboración entre profesionales de datos. Así, podemos considerar que Fabric es una plataforma de colaboración de datos y que proporciona un conjunto de servicios integrados que permiten ingerir, almacenar, procesar y analizar datos en un solo entorno.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_lakes">Data Lakes</h3>
+<div class="paragraph">
+<p>Un lago de datos es un repositorio de almacenamiento que contiene una gran cantidad de datos en bruto en su formato nativo. Los datos no se procesan ni se transforman antes de ser almacenados en el lago de datos. Los datos se almacenan en su formato nativo, lo que permite a los científicos de datos y a los analistas de datos acceder a los datos sin tener que preocuparse por la estructura de los datos.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_onelake">OneLake</h3>
+<div class="paragraph">
+<p>OneLake es una arquitectura de Fabric centrada en lagos de datos que proporciona un único entorno integrado para que los profesionales de datos y la empresa puedan colaborar en proyectos de datos. Se puede considerar como OneDrive para datos. De forma similar a la que las aplicaciones de Office están preconfiguradas para usar OneDrive de la organización, todas las cargas de trabajo de proceso de Fabric están preconfiguradas para trabajar con OneLake. Los ingenieros de datos ahora pueden ingerir, transformar y cargar grandes cantidades de datos en OneLake y presentarlos en cualquier sistema de almacenamiento de datos que tenga más sentido. Los científicos de datos pueden acceder a los datos en OneLake y usarlos para crear modelos de aprendizaje automático y análisis avanzados.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lakehouse">Lakehouse</h3>
+<div class="paragraph">
+<p>Un lakehouse combina la flexibilidad del almacenamiento en data lakes con el análisis de almacenamiento de datos. Microsoft Fabric ofrece una solución de lakehouse para un análisis exhaustivo en una sola plataforma SaaS.</p>
+</div>
+<div class="paragraph">
+<p>La base de Fabric es un lakehouse, creado sobre la capa de almacenamiento escalable de OneLake, y usa Spark y SQL para el procesamiento de datos. Un lakehouese es una plataforma unificada que combina:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El almacenamiento flexible y escalable de un data lake.</p>
+</li>
+<li>
+<p>La capacidad de consulta y análisis de datos de un data warehouse.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Imaginemos un caso de una organización que ha estado usando data warehousing para almacenar datos estructurados de sus sistemas transaccionales, como el historial de pedidos, los niveles de inventario y la información de los clientes. También ha recopilado datos no estructurados de las redes sociales, registros de sitios web y orígenes de terceros que son difíciles de administrar y de analizar con la infraestructura de data warehousing existente. La nueva directiva de la empresa es mejorar la capacidad de toma de decisiones mediante el análisis de datos de varios orígenes y formatos de datos. Es decir, la organización necesita una plataforma de análisis de datos que pueda manejar datos estructurados y no estructurados. Para esto, se puede usar Fabric, que proporciona un lakehouse para un análisis exhaustivo en una sola plataforma SaaS.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-lakehouse.png" alt="fabric lakehouse">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_apache_spark">Apache Spark</h3>
+<div class="paragraph">
+<p>Apache Spark forma parte del ecosistema de big data de Apache y es un motor de análisis unificado para el procesamiento de datos a gran escala. Spark se integra en Fabric para proporcionar una plataforma de procesamiento de datos en un lakehouse. Spark se puede usar para procesar datos en tiempo real, realizar análisis de datos, realizar aprendizaje automático y realizar análisis de gráficos. Spark permite el uso de distintos lenguajes de programación, como Scala, Java, Python y SQL, para escribir programas de procesamiento de datos.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creación_de_un_lakehouse">Creación de un lakehouse</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En este apartado veremos cómo crear un lakehouse en Fabric y cómo cargar datos en el lakehouse. Para ello, seguiremos los siguientes pasos:</p>
+</div>
+<div class="paragraph">
+<p>Comenzaremos abriendo [Data Factory](<a href="https://app.fabric.microsoft.com/home?experience=data-factory" class="bare">https://app.fabric.microsoft.com/home?experience=data-factory</a>) en Fabric. Data Factory es una herramienta de Fabric que permite crear y programar flujos de trabajo de datos. Data Factory se puede usar para ingerir, transformar y cargar datos en un lakehouse. Data Factory proporciona una interfaz gráfica para crear flujos de trabajo de datos y permite la integración con otros servicios de Fabric, como OneLake y Spark. Una vez abierta Data Factory, se mostrará la página de inicio de Fabric.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-welcome.png" alt="fabric welcome">
+</div>
+</div>
+<div class="paragraph">
+<p>A continuación, crearemos un espacio de trabajo nuevo (p.e. <code>ws-fabric</code>). Un espacio de trabajo es un contenedor lógico que se utiliza para organizar y administrar los recursos de Fabric, como los lakehouses, los grupos de Spark y los cuadernos de Spark. Para crear un espacio de trabajo, pulsaremos el botón <code>Nuevo espacio de trabajo</code> y seguiremos los pasos del asistente para crear un espacio de trabajo. La figura muestra la creación de un espacio de trabajo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-create-workspace.png" alt="fabric create workspace">
+</div>
+</div>
+<div class="paragraph">
+<p>Nos pedirá actualizar a una licencia de pago, pero también ofrece una versión de evaluación de 60 días. La elegiremos para poder seguir con el tutorial. La figura muestra la activación de la versión de evaluación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-trial.png" alt="fabric trial">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Si no se ha creado el espacio de trabajo correctamente mientras se ha activado la versión de evaluación, se puede volver a intentar creando un nuevo espacio de trabajo.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>El espacio de trabajo se creará y se podrá empezar a trabajar con él, como se muestra en la figura.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-workspace.png" alt="fabric workspace">
+</div>
+</div>
+<div class="paragraph">
+<p>Para crear el lakehouse, desde el espacio de trabajo creado pulsar el botón <code>Nuevo elemento</code>. Aparecerá un menú de varias opciones organizadas por categorías (Obtener datos, Almacenar datos, Preparación de datos, &#8230;&#8203;). Seleccionar la opción <code>Lakehouse</code> en la categoría  <code>Almacenar datos</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-new-lakehouse.png" alt="fabric new lakehouse">
+</div>
+</div>
+<div class="paragraph">
+<p>Aparecerá un cuadro de diálogo para introducir un nombre para el lakehouse. Introducir un nombre (p.e. <code>test</code>) y pulsar el botón <code>Crear</code>. Se creará el lakehouse y se podrá empezar a trabajar con él.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-lakehouse-created.png" alt="fabric lakehouse created">
+</div>
+</div>
+<div class="paragraph">
+<p>La parte izquierda muestra un explorador para examinar las tablas y archivos del lakehouse. Las tablas se podrán consultar en SQL. Los archivos estarán almacenados en OneLake. Crear una carpeta <code>data</code> en la carpeta <code>Files</code> y subir un archivo [sales.csv](<a href="https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/sales.csv" class="bare">https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/sales.csv</a>) con datos de ejemplo.</p>
+</div>
+<div class="paragraph">
+<p>Este archivo sería procesable con Spark. Ver cómo hacerlo<strong><strong></strong><strong></strong></strong></p>
+</div>
+<div class="paragraph">
+<p>Una vez cargado el archivo en el lakehouse, lo cargaremos en una tabla. Para ello, elegiremos la opción desde el menú que aparece en los puntos suspensivos de la tabla <code>sales.csv</code> y seleccionaremos la opción <code>Cargar en tablas &#8594; Nueva tabla</code>. Nos pedirá un nombre para la tabla y que indiquemos el separador de campos del archivo CSV. Introducir un nombre (p.e. <code>sales</code>), mantener la coma como separador y pulsar el botón <code>Cargar</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-load-table.png" alt="fabric load table">
+</div>
+</div>
+<div class="paragraph">
+<p>La tabla <code>sales</code> se creará correctamente, se almacenará en formato <code>Parquet</code> y se mostrarán los campos creados en la tabla. Al seleccionarla se podrá ver el contenido de la tabla.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-table-created.png" alt="fabric table created">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_consulta_de_la_tabla_con_sql">Consulta de la tabla con SQL</h3>
+<div class="paragraph">
+<p>Para consultar la tabla con SQL, cambiar del modo Explorador al modo SQL en el botón de la parte superior derecha. Se podrá escribir una consulta SQL para consultar la tabla <code>sales</code>. A modo de ejemplo, como la tabla <code>sales</code> tiene un campo <code>Item</code> que contiene el nombre del producto, y campos <code>Quantity</code> y <code>UnitPrice</code> que contienen la cantidad vendida y el precio del producto, se puede escribir una consulta SQL para calcular el total de ventas por producto. El resultado lo mostraremos ordenado de mayor a menor por el total de ventas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT Item, SUM(Quantity * UnitPrice) AS SalesByItem
+FROM sales
+GROUP BY Item
+ORDER BY SalesByItem DESC;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La figura muestra el resultado de la consulta SQL.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-sql-query.png" alt="fabric sql query">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creación_de_una_vista">Creación de una vista</h3>
+<div class="paragraph">
+<p>Las vistas permiten personalizar la forma en que se ven los datos en el lakehouse. En nuestro caso crearemos una vista a partir de la tabla <code>sales</code> que añada una columna con el subtotal por fila. Para crear la vista, basta con seleccionar la opción <code>Crear vista</code> desde el menú de puntos suspensivos del explorador del lakehouse. Se abrirá un editor para escribir la consulta SQL que define la vista. A modo de ejemplo, la consulta SQL para crear la vista sería la siguiente:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE VIEW [dbo].[salesWithSubtotals]
+AS SELECT *, Quantity * UnitPrice AS Subtotal
+FROM [sales]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La vista <code>salesWithSubtotals</code> se creará correctamente y se podrá consultar en el explorador del lakehouse.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_administrar_el_modelo_semántico_predeterminado">Administrar el modelo semántico predeterminado</h3>
+<div class="paragraph">
+<p>El modelo semántico predeterminado es un modelo de datos que se crea automáticamente cuando se carga un archivo en un lakehouse. El modelo semántico predeterminado se crea a partir de los metadatos del archivo y se puede personalizar para satisfacer las necesidades de análisis de datos. Inicialmente, no contiene nada. Comenzaremos por añadirle la tabla <code>sales</code> y la vista que hemos creado anteriormente. Para ello, en la pestaña <code>Creación de informes</code> selecionamos <code>Administrar modelo semántico predeterminado</code>. Aparecerá un cuadro de diálogo para que podamos añadir los objetos deseados. En nuestro caso añadiremos la tabla <code>sales</code>, la vista <code>salesWithSubtotals</code> y pulsaremos el botón <code>Confirmar</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-add-table.png" alt="fabric add table">
+</div>
+</div>
+<div class="paragraph">
+<p>La tabla y la vista se añadirán al modelo semántico predeterminado. Una vez añadidos los objetos, se podrán utilizar en la creación de informes con Power BI.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creación_de_un_informe_con_power_bi">Creación de un informe con Power BI</h3>
+<div class="paragraph">
+<p>Desde el lakehouse se puede crear un informe con Power BI. Para ello, seleccionar la pestaña <code>Creación de informes</code> de la parte superior y pulsar el botón <code>Nuevo informe</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Si no se ha añadido nada al modelo semántico predeterminado, aparecerá un mensaje indicando que no hay objetos en el modelo semántico. En este caso, añadir la tabla <code>sales</code> y la vista <code>salesWithSubtotals</code> al modelo semántico predeterminado.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A modo de ilustración, crearemos un informe de ventas con Power BI sobre la vista <code>salesWithSubtotals</code> que muestre lo siguiente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tres tarjetas de datos en la parte superior para: total de ventas (<code>Subtotal</code>), clientes diferentes y productos diferentes.</p>
+</li>
+<li>
+<p>Un gráfico de barras que muestre el total de ventas (<code>Subtotal</code>) por producto.</p>
+</li>
+<li>
+<p>Dos gráficos de líneas que muestren las ventas (<code>Subtotal</code>) y unidades vendidas (<code>Quantity</code>) por fecha.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La figura muestra el informe de ventas creado con Power BI. Guardaremos el informe con el nombre de <code>sales-report</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-powerbi-report.png" alt="fabric powerbi report">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_análisis_y_transformación_de_datos_con_spark">Análisis y transformación de datos con Spark</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Apache Spark es un motor de análisis unificado y distribuido para el procesamiento de datos a gran escala. Al ser distribuido, el procesamiento es realizado en varios nodos de lo que se conoce como un clúster de Spark. Ese cluster en conocido en Fabric como <em>grupo de Spark</em>. En ese enfoque de procesamiento distribuido, unos nodos denominados <em>nodos de trabajo</em> se encargan de realizar las tareas de procesamiento de datos y otros nodos denominados _nodos principales se encargan de coordinar las tareas de los nodos de trabajo.
+En este apartado veremos cómo usar Spark para ingerir, procesar y analizar datos en un lakehouse de Fabric. La figura siguiente muestra un ejemplo de un grupo de Spark en Fabric con un nodo principal (1) y cuatro nodos de trabajo (2).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-spark-cluster.png" alt="fabric spark cluster">
+</div>
+</div>
+<div class="paragraph">
+<p>En Fabric, cada workspace es inicializado con un grupo de Spark. En la configuración del workspace se puede configurar un grupo Spark existente o crear nuevos grupos Spark. La opción está disponible en el menú <code>Ciencia/Ingeniería de datos</code> en la configuración del workspace. La figura siguiente muestra la configuración del grupo Spark de inicio creado de forma predeterminada en el workspace. El grupo se puede modificar para cambiar las características hardware de los nodos de trabajo, el escalado automático, el número de nodos de trabajo y si se van a asignar recursos dinámicamente a los trabajos de Spark.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-spark-group.png" alt="fabric spark group">
+</div>
+</div>
+<div class="paragraph">
+<p>A partir del workspace y el lakehouse creados anteriormente, en este apartado vamos a desarrollar un ejemplo de procesamiento de datos con Spark.</p>
+</div>
+<div class="sect2">
+<h3 id="_preparación_del_trabajo">Preparación del trabajo</h3>
+<div class="paragraph">
+<p>Para llevar a cabo el ejemplo necesitaremos una serie de datos con los que trabajar y un cuaderno de Spark. A continuación realizaremos la carga de datos en el lakehouse, la creación de un cuaderno de Spark y la carga de los datos.</p>
+</div>
+<div class="sect3">
+<h4 id="_carga_de_datos_en_el_lakehouse">Carga de datos en el lakehouse</h4>
+<div class="paragraph">
+<p>Descargaremos en nuestro equipo este [archivo .zip de ventas](<a href="https://github.com/MicrosoftLearning/dp-data/raw/main/orders.zip" class="bare">https://github.com/MicrosoftLearning/dp-data/raw/main/orders.zip</a>) y lo subiremos a una carpeta <code>orders</code> del lakehouse. El archivo contiene datos de ventas en formato CSV de los años 2019, 2020 y 2021. La figura siguiente muestra los tres archivos en la carpeta <code>orders</code> del exploradore del lakehouse.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-orders-files.png" alt="fabric orders files">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creación_de_un_cuaderno_de_spark">Creación de un cuaderno de Spark</h4>
+<div class="paragraph">
+<p>Un cuaderno de Spark es un entorno interactivo que permite escribir y ejecutar código de Spark en diferentes lenguajes y permite añadir notas para explicaciones y comentarios. Para crear el cuaderno en Facric, desde el explorador del lakehouse y teniendo seleccionada la carpeta <code>orders</code> seleccionaremos de la barra de herramientas <code>Abrir cuaderno | Nuevo cuaderno</code>. Aparecerá un cuaderno de Spark con una celda en blanco en el que podremos escribir y ejecutar código de Spark.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los cuadernos están formados por celdas. Cada celda puede contener código, texto o gráficos. El código puede escribirse en diferentes lenguajes, como Scala, Python, SQL o R. El texto puede escribirse en Markdown. Las celdas se pueden ejecutar de forma independiente.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En un primer paso convertiremos la celda en una celda de Markdown (pulsando el botón  <code>M↓</code> de la barra de herramientas de la celda) y le introduciremos este texto:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-markdown" data-lang="markdown"># Exploración de datos de pedidos
+
+Utilizar el código de este cuaderno para explorar los datos de pedidos y realizar un análisis exploratorio de los datos.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Podremos cambiar entre la vista de edición de la celda y la de visualización. La figura siguiente muestra la celda de Markdown en la vista de visualización.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-markdown-cell.png" alt="fabric markdown cell">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_carga_de_datos_en_un_dataframe_de_spark">Carga de datos en un DataFrame de Spark</h3>
+<div class="paragraph">
+<p>Un <em>Dataframe</em> es una estructura de datos tabular que se puede utilizar para representar datos en Spark. En el cuaderno de Spark, crearemos una nueva celda situando el ratón debajo de la celda Markdown creada en el paso anterior. En la nueva celda escribiremos el siguiente código en PySpark para cargar los datos de ventas en un DataFrame de Spark:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>PySpark es una variante de Spark que permite escribir código en Python para procesar datos en Spark. Es uno de los lenguajes más utilizados en Spark y es el predeterminado en Fabric.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">df = spark.read.format("csv").option("header","true").load("Files/orders/2019.csv") <i class="conum" data-value="1"></i><b>(1)</b>
+# df now is a Spark DataFrame containing CSV data from "Files/orders/2019.csv".
+display(df) <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Carga los datos del archivo CSV "2019.csv" en un DataFrame de Spark. Los datos se presentan con cabecera</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Muestra los datos en una tabla</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Para ejecutar el código, pulsaremos el botón de <code>Ejecutar</code> de la celda. El código cargará los datos del archivo <code>2019.csv</code> en un DataFrame de Spark y mostrará los datos en una tabla. La figura siguiente muestra los datos de ventas cargados en un DataFrame de Spark.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-spark-dataframe.png" alt="fabric spark dataframe">
+</div>
+</div>
+<div class="paragraph">
+<p>Como los datos que se muestran en la cabecera no son válidos, retiraremos la cabecera y crearemos un esquema para los datos de ventas. Modificaremos el código de la celda para que quede de la siguiente forma:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">from pyspark.sql.types import *
+
+orderSchema = StructType([
+    StructField("SalesOrderNumber", StringType()),
+    StructField("SalesOrderLineNumber", IntegerType()),
+    StructField("OrderDate", DateType()),
+    StructField("CustomerName", StringType()),
+    StructField("Email", StringType()),
+    StructField("Item", StringType()),
+    StructField("Quantity", IntegerType()),
+    StructField("UnitPrice", FloatType()),
+    StructField("Tax", FloatType())
+    ]) <i class="conum" data-value="1"></i><b>(1)</b>
+
+df = spark.read.format("csv").schema(orderSchema).load("Files/orders/2019.csv") <i class="conum" data-value="2"></i><b>(2)</b>
+display(df)</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Define un esquema para los datos de ventas</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Carga los datos del archivo CSV "2019.csv" en un DataFrame de Spark con el esquema definido</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Al volver a ejecutar la celda, tras unos instantes se mostrará el dataframe con los datos de ventas con la cabecera correcta. La figura siguiente muestra los datos de ventas cargados en un DataFrame de Spark con el esquema correcto.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-spark-dataframe-schema.png" alt="fabric spark dataframe schema">
+</div>
+</div>
+<div class="paragraph">
+<p>El ejemplo anterior sólo cargaba en el dataframe los datos de pedidos de 2019. Para cargar los datos de todos los años basta con modificar el código de la celda para que cargue todos los archivos de la carpeta <code>orders</code>. El código quedaría de la siguiente forma:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">from pyspark.sql.types import *
+
+orderSchema = StructType([
+    StructField("SalesOrderNumber", StringType()),
+    StructField("SalesOrderLineNumber", IntegerType()),
+    StructField("OrderDate", DateType()),
+    StructField("CustomerName", StringType()),
+    StructField("Email", StringType()),
+    StructField("Item", StringType()),
+    StructField("Quantity", IntegerType()),
+    StructField("UnitPrice", FloatType()),
+    StructField("Tax", FloatType())
+    ])
+
+df = spark.read.format("csv").schema(orderSchema).load("Files/orders/*.csv") <i class="conum" data-value="1"></i><b>(1)</b>
+display(df)</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Carga los datos de todos los archivos CSV de la carpeta "Files/orders" en un DataFrame de Spark con el esquema definido.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Al ejecutar la celda, se mostrarán los datos de ventas de todos los años en un DataFrame de Spark.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exploración_de_datos">Exploración de datos</h3>
+<div class="paragraph">
+<p>Los objetos dataframe ofrecen una serie de métodos para explorar y analizar los datos. A continuuación veremos algunos ejemplos de cómo explorar los datos de ventas con Spark.</p>
+</div>
+<div class="paragraph">
+<p>Añadiremos una nueva celda al cuaderno de Spark y escribiremos el siguiente código para seleccionar sólo las columnas <code>CustomeName</code> y <code>Email</code> y usar algunos operadores de agregación para contar filas y valores únicos:</p>
+</div>
+<div class="paragraph">
+<p>El ejemplo siguiente muestra el código para seleccionar sólo las columnas <code>CustomerName</code> y <code>Email</code> y contar el número total de filas y el número de filas únicas:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">customers = df.select("CustomerName", "Email") <i class="conum" data-value="1"></i><b>(1)</b>
+
+print(customers.count())
+print(customers.distinct().count())
+display(customers.distinct())</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>customers</code> es un nuevo DataFrame que contiene sólo las columnas <code>CustomerName</code> y <code>Email</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Los filtros los aplicaremos mediante el método <code>where</code>. El ejemplo siguiente muestra el código modificado para seleccionar sólo los pedidos que incluyen un tipo de elemento específico. Los datos se muestran en una tabla.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">customers = df.select("CustomerName", "Email").where(df['Item']=='Road-250 Red, 52')
+print("Total de clientes" + customers.count())
+print("Total de clientes diferentes" + customers.distinct().count())
+display(customers.distinct())</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>El ejemplo siguiente muestra el código para calcular el total de ventas por producto y mostrar los resultados en una tabla. El ejemplo agrupa por la columna <code>Item</code> y luego aplica la función de agregación <code>sum</code> a todas las columnas numéricas para calcular el total de ventas por producto.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">productSales = df.select("Item", "Quantity").groupBy("Item").sum()
+display(productSales)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>El ejemplo siguiente muestra el código para calcular las ventas anuales y mostrar los resultados en una tabla. El ejemplo agrupa por la columna <code>OrderDate</code> y luego aplica la función de agregación <code>sum</code> a todas las columnas numéricas para calcular las ventas anuales presentando los datos ordenados por año.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">from pyspark.sql.functions import * <i class="conum" data-value="1"></i><b>(1)</b>
+
+yearlySales = df.select(year("OrderDate").alias("Year")).groupBy("Year").count().orderBy("Year") <i class="conum" data-value="2"></i><b>(2)</b>
+display(yearlySales)</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Importa las funciones de Spark SQL para trabajar con fechas.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>La función <code>year</code> extrae el año de una fecha.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_transformación_de_datos">Transformación de datos</h3>
+<div class="paragraph">
+<p>A la hora de tratar con datos es muy habitual tener que realizar transformaciones sobre ellos. En Spark, las transformaciones se realizan mediante la función <code>withColumn</code> que permite añadir una nueva columna al DataFrame o modificar una columna existente. A continuación veremos algunos ejemplos de cómo realizar transformaciones sobre los datos de ventas con Spark.</p>
+</div>
+<div class="paragraph">
+<p>El ejemplo siguiente muestra el código para realizar varias transformaciones sobre el dataframe de ventas. En primer lugar, se añade una nueva columna <code>TotalPrice</code> al DataFrame que contiene el precio total de cada pedido. La nueva columna se calcula multiplicando las columnas <code>Quantity</code> y <code>UnitPrice</code>. En segundo lugar, se crean nuevas columnas <code>Year</code> y <code>Month</code> a partir de la columna <code>OrderDate</code> que muestren el año y el mes de cada pedido. En tercer lugar, se crean nuevas columnas <code>FirstName</code> y <code>LastName</code> a partir de la columna <code>CustomerName</code> que muestren el nombre y el apellido de cada cliente. Por último, se seleccionan sólo las columnas necesarias para el análisis.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python"># Añadir una nueva columna TotalPrice al DataFrame que contiene el precio total de cada pedido
+transformed_df = df.withColumn("TotalPrice", df["Quantity"] * df["UnitPrice"])
+
+# Crear nuevas columnas Year y Month a partir de la columna OrderDate que muestren el año y el mes de cada pedido
+transformed_df = transformed_df.withColumn("Year", year(col("OrderDate"))).withColumn("Month", month(col("OrderDate")))
+
+# Crear nuevas columnas FirstName y LastName a partir de la columna CustomerName que muestren el nombre y el apellido de cada cliente
+transformed_df = transformed_df.withColumn("FirstName", split(col("CustomerName"), " ").getItem(0)).withColumn("LastName", split(col("CustomerName"), " ").getItem(1))
+
+# Seleccionar sólo las columnas necesarias para el análisis
+transformed_df = transformed_df["SalesOrderNumber", "SalesOrderLineNumber", "OrderDate", "Year", "Month", "FirstName", "LastName", "Email", "Item", "Quantity", "UnitPrice", "Tax", "TotalPrice"]
+
+# Mostrar las primeras 10 filas del DataFrame transformado
+display(transformed_df.limit(10))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_guardar_los_datos_transformados">Guardar los datos transformados</h3>
+<div class="paragraph">
+<p>Una vez realizadas las transformaciones necesarias sobre los datos, es posible guardar los datos transformados en un nuevo archivo. En entornos de procesamiento de datos suele ser habitual utilizar otros formatos de datos más eficientes que el CSV, como el formato [Parquet](<a href="https://parquet.apache.org/" class="bare">https://parquet.apache.org/</a>). El formato Parquet es un formato de archivo de almacenamiento de columnas que es muy eficiente para el análisis de datos y es compatible con Spark. A continuación veremos cómo guardar los datos transformados en un archivo Parquet.</p>
+</div>
+<div class="paragraph">
+<p>El ejemplo siguiente muestra el código para guardar los datos transformados en un archivo Parquet. Para una mejor organización de los archivos, usaremos una carpeta <code>transformed_data</code> en el lakehouse para almacenar los datos transformados. El código guarda los datos transformados en una carpeta Parquet llamada <code>orders</code>. La carpeta Parquet contendrá varios archivos Parquet que contienen los datos transformados. La figura siguiente muestre los datos transformados guardados en Parquet tras actualizar el explorador del datalake.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">transformed_df.write.mode("overwrite").parquet('Files/transformed_data/orders')
+print ("Datos transformados guardados en Parquet")</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-transformed-data.png" alt="fabric transformed data">
+</div>
+</div>
+<div class="paragraph">
+<p>A la hora de guardar datos transformados es habitual crear particiones en los datos para mejorar el rendimiento de las consultas. Las particiones dividen los datos en subconjuntos más pequeños que se almacenan en carpetas separadas. En Spark, las particiones se pueden crear mediante el método <code>partitionBy</code> que permite particionar los datos por una o varias columnas. A continuación veremos cómo guardar los datos transformados en un archivo Parquet particionado por año y mes.</p>
+</div>
+<div class="paragraph">
+<p>El ejemplo siguiente muestra el código para guardar los datos transformados en un archivo Parquet particionado por año y mes. El código guarda los datos transformados en una carpeta Parquet llamada <code>partitioned_data/orders</code>. La carpeta Parquet contendrá varias carpetas Parquet que contienen los datos transformados particionados por año y mes. La figura siguiente muestre los datos transformados guardados en Parquet particionado tras actualizar el explorador del datalake.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">transformed_df.write.mode("overwrite").partitionBy("Year", "Month").parquet('Files/partitioned_data/orders')
+print ("Datos transformados guardados en Parquet particionado")</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-partitioned-data.png" alt="fabric partitioned data">
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez particionados los datos, se pueden consultar de forma más eficiente. Por ejemplo, si queremos consultar los datos de ventas de un año y un mes concretos, Spark sólo tendrá que leer los archivos Parquet correspondientes a esa partición. El ejemplo siguiente muestra el código para cargar los datos de ventas de 2019 en un DataFrame de Spark.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">orders_2019_df = spark.read.format("parquet").load("Files/partitioned_data/Year=2019/Month=*")
+display(orders_2019_df)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La imagen siguiente muestra los datos de ventas de 2019 cargados en un DataFrame de Spark.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-partitioned-data-2019.png" alt="fabric partitioned data 2019">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uso_de_sql_en_spark">Uso de SQL en Spark</h3>
+<div class="paragraph">
+<p>Spark SQL es un módulo de Spark que permite ejecutar consultas SQL sobre los datos de Spark. Spark SQL permite trabajar con datos estructurados y semiestructurados y ofrece una serie de funciones y operadores para trabajar con los datos. A continuación veremos cómo utilizar Spark SQL para realizar consultas sobre los datos de ventas.</p>
+</div>
+<div class="paragraph">
+<p>Para utilizar Spark SQL en un cuaderno de Spark, usaremos lo que se conoce como <em>metastore</em> de Spark. El metastore permite definir tablas relacionales sobre los datos de Spark y ejecutar consultas SQL sobre esas tablas. De esta manera se combina la flexibilidad de almacenamiento en data lakes con la capacidad de consulta y análisis de almacenamiento de datos. A continuación veremos cómo definir una tabla sobre los datos de ventas y ejecutar consultas SQL sobre esa tabla.</p>
+</div>
+<div class="paragraph">
+<p>Comenzaremos guardando los datos del dataframe de ventas en una tabla denominada <code>salesorders</code>. Mediante <code>DESCRIBE</code> podemos obtener la estructura de la tabla. A continuación mostramos cómo ejecutar una consulta SQL sobre la tabla <code>salesorders</code> para calcular el total de ventas por producto y mostrar los resultados en una tabla.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python"># Guardar los datos del DataFrame de ventas en una tabla denominada salesorders
+df.write.format("delta").saveAsTable("salesorders")
+
+# Mostrar la estructura de la tabla salesorders
+spark.sql("DESCRIBE salesorders").show()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La figura siguiente muestra la estructura de la tabla <code>salesorders</code> tras ejecutar la consulta SQL. Tras actualizar el explorador del lakehouse se observa que <code>salesorders</code> es una tabla Delta.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Delta es un formato de archivo de almacenamiento de datos que es muy eficiente para el análisis de datos y es compatible con Spark. Delta proporciona una serie de características adicionales, como la capacidad de realizar operaciones de escritura atómicas, la capacidad de realizar operaciones de escritura de datos en tiempo real y la capacidad de realizar operaciones de escritura de datos en tiempo real.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-sql-describe.png" alt="fabric sql describe">
+</div>
+</div>
+<div class="paragraph">
+<p>Tras crear la tabla <code>salesorders</code> en el metastore de Spark, podemos ejecutar consultas SQL sobre los datos de ventas. El ejemplo siguiente muestra el código para ejecutar una consulta SQL sobre la tabla <code>salesorders</code> para calcular el total de ventas por año incluyendo impuestos y mostrar los resultados en una tabla ordenados por año. La figura siguiente muestra los resultados de la consulta SQL.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">%%sql <i class="conum" data-value="1"></i><b>(1)</b>
+SELECT YEAR(OrderDate) AS OrderYear,
+       SUM((UnitPrice * Quantity) + Tax) AS GrossRevenue
+FROM salesorders
+GROUP BY YEAR(OrderDate)
+ORDER BY OrderYear;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>La celda se ejecuta como una consulta SQL. A esta línea se la denomina <em>comando mágico</em>.</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-sql-query-results.png" alt="fabric sql query results">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_visualización_de_datos_con_spark">Visualización de datos con Spark</h3>
+<div class="paragraph">
+<p>De forma predeterminada, la ejecución de una consulta SQL o de un comando que muestre un dataframe puede ser visualizado como un gráfico en Fabric. Para ello, basta con pulsar sobre la pestaña <code>Chart</code> de la salida de la celda. La figura siguiente muestra el gráfico de barras que muestra el total de ventas por año incluyendo impuestos. Además, se puede observar que también es posible personalizar el gráfico pulsando sobre <code>Personalizar gráfico</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-sql-chart.png" alt="fabric sql chart">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creación_de_un_informe_con_power_bi_2">Creación de un informe con Power BI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Una vez que hemos explorado y transformado los datos de ventas con Spark, podemos crear un informe con Power BI para visualizar los datos de ventas. El informe lo podemos realizar sobre la tabla o la vista que creamos mediante la importación de un archivo CSV, o sobre la tabla <code>salesorders</code> que creamos mediante Spark SQL a partir de un dataframe de Spark. De una forma o de otra, el origen de datos será el lakehouse de Fabric y será transparente para Power BI. Eso sí, para que Power BI puede acceder a los datos transformados, primero deberemos añadirlos al modelo semántico predeterminado. Si no están añadididos, desde el explorador del lakehouse seleccionaremos la opción <code>Administrar modelo semántico predeterminado</code> en la pestaña <code>Creación de informes</code>. Aparecerá un cuadro de diálogo para que podamos añadir los objetos deseados. En nuestro caso añadiremos la tabla <code>salesorders</code> y pulsaremos el botón <code>Confirmar</code>. La figura siguiente muestra cómo añadir la tabla <code>salesorders</code> al modelo semántico predeterminado.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-add-salesorders.png" alt="fabric add salesorders">
+</div>
+</div>
+<div class="paragraph">
+<p>Tras añadir la tabla <code>salesorders</code> al modelo semántico predeterminado, podremos crear un informe con Power BI sobre los datos de ventas que tienen su origen en un dataframe Spark. Para ello, seleccionaremos la pestaña <code>Creación de informes</code> de la parte superior y pulsaremos el botón <code>Nuevo informe</code>. Para seleccionar la fuente de datos podremos hacerlo de cualquier de estas dos formas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Seleccionando <code>Obtener datos | Microsoft Fabric | Modelo semántico de Power BI</code>.</p>
+</li>
+<li>
+<p>Seleccionando <code>Centro de datos de OneLake| Modelo semántico de Power BI</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La figura siguiente ilustra el cuadro de diálogo para obtener datos desde un modelo semántico de Power BI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-powerbi-model.png" alt="fabric powerbi model">
+</div>
+</div>
+<div class="paragraph">
+<p>A continuación aparecerá un cuadro de diálogo con las distintas fuentes de datos a las que podemos acceder. Entre ellas estará el lakehouse <code>test</code> creado en Fabric tal y como se muestra en la figura siguiente. Seleccionaremos el lakehouse y pulsaremos el botón <code>Conectar</code>. Esto hará que aparezcan en la zona <code>Datos</code> de Power BI las tablas y vistas disponibles en el lakehouse.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-powerbi-lakehouse.png" alt="fabric powerbi lakehouse">
+</div>
+</div>
+<div class="paragraph">
+<p>A partir de aquí, podremos crear un informe con Power BI sobre los datos de ventas. A modo de ilustración, crearemos un informe de ventas con Power BI sobre la tabla <code>salesorders</code> que muestre lo siguiente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Dos tarjetas de datos apiladas en la parte izquierda para: total de clientes diferentes y total de productos diferentes.</p>
+</li>
+<li>
+<p>Dos gráficos de líneas que muestren la suma de unidades vendidas (<code>Quantity</code>) e impuestos (<code>Tax</code>) por fecha.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La figura siguiente muestra el informe de ventas creado con Power BI. En el informe se han cambiado los títulos y los ejes de los gráficos para que muestren valores más adecuados en lugar de los generados directamente a partir de los campos de la fuente de datos. Guardaremos el informe con el nombre de <code>salesorders-report</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/fabric-powerbi-report-salesorders.png" alt="fabric powerbi report salesorders">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusiones">Conclusiones</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En este tutorial hemos trabajado con Fabric para realizar un ejemplo descriptivo de operaciones habituales en un entorno de procesamiento de datos. Entre las tareas hemos creado un lakehouse, hemos cargado datos, hemos creado un cuaderno Spark para realizar operaciones básicas de tratamiento de datos, hemos practicado con archivos Parquet. Finalmente, dado que Fabric permite la integración con Power BI a través de un modelo semántico, hemos definido el modelo semántico y hemos creado un informe con Power BI.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2024-11-18 18:33:04 +0100
+</div>
+</div>
+</body>
+</html>

@@ -157,7 +157,7 @@ Profesores:
 ** link:Docs/Labs/03-ConstruccionDeCubosOLAP/TrabajoAutonomo03.html[Actividad: Creación de cubos con Microsoft Analysis Services, window=_blank]
 
 * Lab04
-** link:Docs/Labs/Lab04/index.html[Tutorial: Extracción e integración de datos - No disponible, window=_blank]
+** link:Docs/Labs/04-Fabric/index.html[Tutorial: Procesamiento de datos con Microsoft Fabric, window=_blank]
 
 * Lab05
 ** link:Docs/Labs/Lab05/index.html[Tutorial: Consultas en cubos OLAP - No disponible, window=_blank]
