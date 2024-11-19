@@ -46,6 +46,11 @@ COLOCA A CONTINUACION LOS OBJETIVOS
 * Aprender a visualizar datos con Power BI en Fabric.
 * Realizar ejemplos sencillos de tratamiento de datos con PySpark y Spark SQL.
 
+[NOTE]
+====
+Disponible el link:../SalesReportFabric.ipynb[cuaderno Jupyter] con el código de ejemplo en PySpark y Spark SQL.
+====
+
 :numbered: 
 
 ## Introducción
