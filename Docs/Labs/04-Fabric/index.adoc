@@ -48,7 +48,7 @@ COLOCA A CONTINUACION LOS OBJETIVOS
 
 [NOTE]
 ====
-Disponible el link:../SalesReportFabric.ipynb[cuaderno Jupyter] con el código de ejemplo en PySpark y Spark SQL.
+Disponible el link:./SalesReportFabric.ipynb[cuaderno Jupyter] con el código de ejemplo en PySpark y Spark SQL.
 ====
 
 :numbered: 
