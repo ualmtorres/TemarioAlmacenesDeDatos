@@ -406,6 +406,22 @@ image::../../../images/fabric-transformed-data.png[]
 
 A la hora de guardar datos transformados es habitual crear particiones en los datos para mejorar el rendimiento de las consultas. Las particiones dividen los datos en subconjuntos más pequeños que se almacenan en carpetas separadas. En Spark, las particiones se pueden crear mediante el método `partitionBy` que permite particionar los datos por una o varias columnas. A continuación veremos cómo guardar los datos transformados en un archivo Parquet particionado por año y mes.
 
+[NOTE]
+====
+La partición de datos es una técnica de optimización que divide los datos en subconjuntos más pequeños que se almacenan en carpetas separadas. La partición de datos mejora el rendimiento de las consultas al reducir el número de archivos que se leen. Sin embargo, las particiones deben ser utilizadas en situaciones con volúmenes de datos grandes, ya que la partición de pequeñas cantidades de datos puede degradar el rendimiento, ya que aumenta el número de archivos y puede agravar el "problema de archivos pequeños". 
+
+Se usarán de particiones si:
+
+* Se tienen grandes cantidades de datos.
+* Las tablas se pueden dividir en algunas particiones grandes.
+
+Sin embargo, no se deben usar particiones si:
+
+* Los volúmenes de datos son pequeños.
+* Una columna de creación de particiones tiene una cardinalidad alta, ya que esto crea un gran número de particiones.
+====
+
+
 El ejemplo siguiente muestra el código para guardar los datos transformados en un archivo Parquet particionado por año y mes. El código guarda los datos transformados en una carpeta Parquet llamada `partitioned_data/orders`. La carpeta Parquet contendrá varias carpetas Parquet que contienen los datos transformados particionados por año y mes. La figura siguiente muestre los datos transformados guardados en Parquet particionado tras actualizar el explorador del datalake.
 
 [source,python]
@@ -432,7 +448,14 @@ image::../../../images/fabric-partitioned-data-2019.png[]
 
 Spark SQL es un módulo de Spark que permite ejecutar consultas SQL sobre los datos de Spark. Spark SQL permite trabajar con datos estructurados y semiestructurados y ofrece una serie de funciones y operadores para trabajar con los datos. A continuación veremos cómo utilizar Spark SQL para realizar consultas sobre los datos de ventas.
 
-Para utilizar Spark SQL en un cuaderno de Spark, usaremos lo que se conoce como _metastore_ de Spark. El metastore permite definir tablas relacionales sobre los datos de Spark y ejecutar consultas SQL sobre esas tablas. De esta manera se combina la flexibilidad de almacenamiento en data lakes con la capacidad de consulta y análisis de almacenamiento de datos. A continuación veremos cómo definir una tabla sobre los datos de ventas y ejecutar consultas SQL sobre esa tabla.
+Para utilizar Spark SQL en un cuaderno de Spark, usaremos lo que se conoce como _metastore_ de Spark. El metastore permite definir tablas relacionales sobre los datos de Spark y ejecutar consultas SQL sobre esas tablas. Estas tablas relacionales son conocidas como tablas delta (indicadas en Fabric mediante un símbolo de delta, Δ). De esta manera se combina la flexibilidad de almacenamiento en data lakes con la capacidad de consulta y análisis de almacenamiento de datos. A continuación veremos cómo definir una tabla sobre los datos de ventas y ejecutar consultas SQL sobre esa tabla.
+
+.Tablas Delta
+****
+Las tablas Delta son una abstracción en forma de tabla relacional sobre archivos de datos que se almacena con el formato Delta (Delta es un formato de archivo de almacenamiento de datos que es muy eficiente para el análisis de datos y es compatible con Spark). Para cada tabla delta, el lakehouse guarda una carpeta que contiene archivos de datos en formato Parquet y una carpeta _delta_log_ en la que se almacenan las transacciones realizadas en formato JSON.
+
+Sobre estas tablas es posible realizar operaciones CRUD, soportan transacciones ACID, ofrecen control de versiones sobre los datos con la posibilidad de realizar _rollback_ y _time travel_ (para recuperar versiones anteriores de una fila en una consulta)
+****
 
 Comenzaremos guardando los datos del dataframe de ventas en una tabla denominada `salesorders`. Mediante `DESCRIBE` podemos obtener la estructura de la tabla. A continuación mostramos cómo ejecutar una consulta SQL sobre la tabla `salesorders` para calcular el total de ventas por producto y mostrar los resultados en una tabla.
 
@@ -506,3 +529,9 @@ image::../../../images/fabric-powerbi-report-salesorders.png[]
 ## Conclusiones
 
 En este tutorial hemos trabajado con Fabric para realizar un ejemplo descriptivo de operaciones habituales en un entorno de procesamiento de datos. Entre las tareas hemos creado un lakehouse, hemos cargado datos, hemos creado un cuaderno Spark para realizar operaciones básicas de tratamiento de datos, hemos practicado con archivos Parquet. Finalmente, dado que Fabric permite la integración con Power BI a través de un modelo semántico, hemos definido el modelo semántico y hemos creado un informe con Power BI.
+
+:numbered!:
+
+## Recursos complementarios
+
+* Tutorial link:./etl.html[ETL con Fabric]

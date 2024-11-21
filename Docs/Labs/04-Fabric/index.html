@@ -478,6 +478,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_creación_de_un_informe_con_power_bi_2">5. Creación de un informe con Power BI</a></li>
 <li><a href="#_conclusiones">6. Conclusiones</a></li>
+<li><a href="#_recursos_complementarios">Recursos complementarios</a></li>
 </ul>
 </div>
 </div>
@@ -1132,6 +1133,46 @@ print ("Datos transformados guardados en Parquet")</code></pre>
 <div class="paragraph">
 <p>A la hora de guardar datos transformados es habitual crear particiones en los datos para mejorar el rendimiento de las consultas. Las particiones dividen los datos en subconjuntos más pequeños que se almacenan en carpetas separadas. En Spark, las particiones se pueden crear mediante el método <code>partitionBy</code> que permite particionar los datos por una o varias columnas. A continuación veremos cómo guardar los datos transformados en un archivo Parquet particionado por año y mes.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>La partición de datos es una técnica de optimización que divide los datos en subconjuntos más pequeños que se almacenan en carpetas separadas. La partición de datos mejora el rendimiento de las consultas al reducir el número de archivos que se leen. Sin embargo, las particiones deben ser utilizadas en situaciones con volúmenes de datos grandes, ya que la partición de pequeñas cantidades de datos puede degradar el rendimiento, ya que aumenta el número de archivos y puede agravar el "problema de archivos pequeños".</p>
+</div>
+<div class="paragraph">
+<p>Se usarán de particiones si:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Se tienen grandes cantidades de datos.</p>
+</li>
+<li>
+<p>Las tablas se pueden dividir en algunas particiones grandes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sin embargo, no se deben usar particiones si:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Los volúmenes de datos son pequeños.</p>
+</li>
+<li>
+<p>Una columna de creación de particiones tiene una cardinalidad alta, ya que esto crea un gran número de particiones.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>El ejemplo siguiente muestra el código para guardar los datos transformados en un archivo Parquet particionado por año y mes. El código guarda los datos transformados en una carpeta Parquet llamada <code>partitioned_data/orders</code>. La carpeta Parquet contendrá varias carpetas Parquet que contienen los datos transformados particionados por año y mes. La figura siguiente muestre los datos transformados guardados en Parquet particionado tras actualizar el explorador del datalake.</p>
 </div>
@@ -1170,7 +1211,18 @@ display(orders_2019_df)</code></pre>
 <p>Spark SQL es un módulo de Spark que permite ejecutar consultas SQL sobre los datos de Spark. Spark SQL permite trabajar con datos estructurados y semiestructurados y ofrece una serie de funciones y operadores para trabajar con los datos. A continuación veremos cómo utilizar Spark SQL para realizar consultas sobre los datos de ventas.</p>
 </div>
 <div class="paragraph">
-<p>Para utilizar Spark SQL en un cuaderno de Spark, usaremos lo que se conoce como <em>metastore</em> de Spark. El metastore permite definir tablas relacionales sobre los datos de Spark y ejecutar consultas SQL sobre esas tablas. De esta manera se combina la flexibilidad de almacenamiento en data lakes con la capacidad de consulta y análisis de almacenamiento de datos. A continuación veremos cómo definir una tabla sobre los datos de ventas y ejecutar consultas SQL sobre esa tabla.</p>
+<p>Para utilizar Spark SQL en un cuaderno de Spark, usaremos lo que se conoce como <em>metastore</em> de Spark. El metastore permite definir tablas relacionales sobre los datos de Spark y ejecutar consultas SQL sobre esas tablas. Estas tablas relacionales son conocidas como tablas delta (indicadas en Fabric mediante un símbolo de delta, Δ). De esta manera se combina la flexibilidad de almacenamiento en data lakes con la capacidad de consulta y análisis de almacenamiento de datos. A continuación veremos cómo definir una tabla sobre los datos de ventas y ejecutar consultas SQL sobre esa tabla.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Tablas Delta</div>
+<div class="paragraph">
+<p>Las tablas Delta son una abstracción en forma de tabla relacional sobre archivos de datos que se almacena con el formato Delta (Delta es un formato de archivo de almacenamiento de datos que es muy eficiente para el análisis de datos y es compatible con Spark). Para cada tabla delta, el lakehouse guarda una carpeta que contiene archivos de datos en formato Parquet y una carpeta <em>delta_log</em> en la que se almacenan las transacciones realizadas en formato JSON.</p>
+</div>
+<div class="paragraph">
+<p>Sobre estas tablas es posible realizar operaciones CRUD, soportan transacciones ACID, ofrecen control de versiones sobre los datos con la posibilidad de realizar <em>rollback</em> y <em>time travel</em> (para recuperar versiones anteriores de una fila en una consulta)</p>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Comenzaremos guardando los datos del dataframe de ventas en una tabla denominada <code>salesorders</code>. Mediante <code>DESCRIBE</code> podemos obtener la estructura de la tabla. A continuación mostramos cómo ejecutar una consulta SQL sobre la tabla <code>salesorders</code> para calcular el total de ventas por producto y mostrar los resultados en una tabla.</p>
@@ -1317,10 +1369,22 @@ ORDER BY OrderYear;</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_recursos_complementarios">Recursos complementarios</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Tutorial <a href="./etl.html">ETL con Fabric</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-19 10:49:55 +0100
+Last updated 2024-11-21 19:54:51 +0100
 </div>
 </div>
 </body>
