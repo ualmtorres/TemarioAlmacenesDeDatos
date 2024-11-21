@@ -158,6 +158,7 @@ Profesores:
 
 * Lab04
 ** link:Docs/Labs/04-Fabric/index.html[Tutorial: Procesamiento de datos con Microsoft Fabric, window=_blank]
+** link:Docs/Labs/04-Fabric/etl.html[Tutorial: ETL con Microsoft Fabric, window=_blank]
 
 * Lab05
 ** link:Docs/Labs/Lab05/index.html[Tutorial: Consultas en cubos OLAP - No disponible, window=_blank]
