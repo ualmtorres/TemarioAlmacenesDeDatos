@@ -1,0 +1,92 @@
+////
+NO CAMBIAR!!
+Codificación, idioma, tabla de contenidos, tipo de documento
+////
+:encoding: utf-8
+:lang: es
+:toc: right
+:toc-title: Tabla de contenidos
+:doctype: book
+:linkattrs:
+:icons: font
+
+
+////
+Nombre y título del trabajo
+////
+# Consultas SQL para análisis de datos - Almacenes de datos
+Grado en Ingeniería Informática. Universidad de Almería
+Manuel Torres <mtorres@ual.es>
+
+
+image::../../../images/di.png[]
+
+// NO CAMBIAR!! (Entrar en modo no numerado de apartados)
+:numbered!: 
+
+## Resumen
+
+Uno de los conocimientos necesarios en entornos de data warehousing es el manejo de consultas SQL para análisis de datos. En este actividad se proponen una serie de ejercicios que permiten practicar con las extensiones OLAP de SQL, como `ROLLUP`, `CUBE` y `GROUPING SETS`, así como con funciones de ventana y la función `GROUPING` para identificar los valores de agrupación `NULL` en consultas OLAP.
+
+.Objetivos
+
+* Realizar consultas SQL con las extensiones OLAP de SQL.
+* Practicar con los operadores `ROLLUP`, `CUBE` y `GROUPING SETS`.
+* Crear consultas SQL con funciones de ventana.
+* Usar la función `GROUPING` para identificar los valores de agrupación `NULL` en consultas OLAP.
+
+:numbered:
+
+## Descripción de la actividad
+
+Realizar las consultas siguientes sobre la base de datos AdventureWorksDW2019 tomando como fecha de las ventas la fecha en que se efectuó el pedido (_order date_)
+
+1. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por mes y país
+* ¿Cuántas filas develve la consulta? _72_
+* Importe de ventas en Julio en Estados Unidos _747463,912_
+* Importe de ventas en Enero en Australia _567222,3744_
+
+2. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por mes y país y que use `ROLLUP` para calcular además el importe de ventas por mes y el total general
+* ¿Cuántas filas develve la consulta? _85_
+* Importe de ventas en Abril _1948432,2303_
+* Importe de ventas total _29358677,2207_
+
+3. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por país y mes, y que use `ROLLUP` para calcular además el importe de ventas por país y el total general
+* ¿Cuántas filas develve la consulta? _79_
+* Importe de ventas en Alemania _2894312,3382_
+* Importe de ventas total _29358677,2207_
+
+4. Rescribir la consulta del ejercicio anterior con `UNION ALL`
+* ¿Cuántas filas develve la consulta? _79_
+* Importe de ventas en Reino Unido _3391712,2109_
+* Importe de ventas total _29358677,2207_
+
+5. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por país y mes y que use `CUBE` para calcular además el importe de todos los subtotales y el total general
+* ¿Cuántas filas develve la consulta? _91_
+* Importe de ventas en Canadá en el mes de Abril _84216,0113_
+* Importe de ventas en Septiembre _2536756,6378_
+* Importe de ventas en Francia _2644017,7143_
+* Importe de ventas total _29358677,2207_
+
+6. Escribir una consulta SQL que devuelva sólo los subtotales de ventas realizadas en Internet por país y mes, así como el el total general
+* ¿Cuántas filas develve la consulta? _19_
+* Importe de ventas en Agosto _2689540,8765_
+* Importe de ventas en Canadá _1977844,8621_
+
+7. Rescribir la consulta del ejercicio anterior con `UNION ALL`
+* ¿Cuántas filas develve la consulta? _19_
+* Importe de ventas en Australia _9061000,5844_
+* Importe de ventas total _29358677,2207_
+
+8. Escribir una consulta SQL que use una función de ventana para calcular las ventas por producto restringidas a clientes de nacionalidad francesa vendidos en Diciembre del 2001. La consulta debe mostrar el nombre del producto, nombre y apellidos del cliente, la fecha, importe de ventas e importe de ventas por producto. Ordenar los resultados por nombre de producto y apellidos del cliente. A partir de lo resultados obtenidos:
+* ¿Qué importe se ha vendido del producto _AWC Logo Cap_? _197,78_
+* ¿Se ha vendido el producto _AWC Logo Cap_ a Kyle Carter? No
+* ¿Cuánto gastó _Sabrina Blanco_ en el producto _AWC Logo Cap_ el 04 de diciembre de 2013? _8,99_
+
+9. Crear una consulta SQL a partir de la consulta del Ejercicio 5 en la que se sustituyan los valores `NULL` de agrupación de país por _Todos los países_ y los valores `NULL` de agrupación de mes por _Todos los meses_.
+
+10. A partir de la consulta anterior añadir filtros a grupos para responder a las
+preguntas siguientes:
+* ¿Qué valores hay en la columna país y mes para el valor de ventas 131235,7541? _Francia / Abril_
+* ¿Qué valores hay en la columna país y mes para el valor de ventas 3211714,9962? _Todos los países / Diciembre_
+* ¿Qué valores hay en la columna país y mes para el valor de ventas 2536756,6378? _Todos los países / Septiembre_

@@ -162,7 +162,7 @@ Profesores:
 ** link:Docs/Labs/04-Fabric/etl.html[Tutorial: ETL con Microsoft Fabric, window=_blank]
 
 * Lab05
-** link:Docs/Labs/Lab05/index.html[Tutorial: Consultas en cubos OLAP - No disponible, window=_blank]
+** link:Docs/Labs/05-Consultas/TrabajoAutonomo05.html[Actividad: Consultas SQL para análisis de datos (1), window=_blank]
 
 .Actividades complementarias
 ****
