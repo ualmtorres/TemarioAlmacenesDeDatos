@@ -52,7 +52,7 @@ image::../images/di.png[]
 | 05 | 6N| Modelado dimensional (3/3) | link:./Labs/03-ConstruccionDeCubosOLAP/index.html[Enlace, window=_blank]
 | 06 | 13N | ETL (1/2) | link:./Labs/04-Fabric/index.html[Enlace, window=_blank]
 | 07 | 20N | ETL (2/2) | link:./Labs/04-Fabric/etl.html[Enlace, window=_blank]
-| 08 | 27N | Consultas (1/3) | https://todo.com[Enlace no disponible, window=_blank]
+| 08 | 27N | Consultas (1/3) | link:./Labs/05-Consultas/TrabajoAutonomo05.html[Enlace, window=_blank]
 | 09 | 4D | Consultas (2/3) | https://todo.com[Enlace no disponible, window=_blank]
 | 10 | 11D | Consultas (3/3) | https://todo.com[Enlace no disponible, window=_blank]
 |====================

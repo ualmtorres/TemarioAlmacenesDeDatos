@@ -90,3 +90,22 @@ preguntas siguientes:
 * ¿Qué valores hay en la columna país y mes para el valor de ventas 131235,7541? _Francia / Abril_
 * ¿Qué valores hay en la columna país y mes para el valor de ventas 3211714,9962? _Todos los países / Diciembre_
 * ¿Qué valores hay en la columna país y mes para el valor de ventas 2536756,6378? _Todos los países / Septiembre_
+
+11. Escribir una consulta SQL que devuelva el ranking de los 3 países que más han vendido en Internet por año
+• País que aparece repetido en el ranking _Australia_
+• Máximo importe vendido por mes en un país _5462078,86_
+• ¿En qué mes año aparece Estados Unidos en el ranking? _2013_
+
+12. Escribir una consulta SQL que devuelva el ranking de ventas realizadas en Internet por año y país
+* Posición que ocupó Francia en 2010 _4_
+* País con mayor cantidad de ventas en 2010 _Australia_
+* Importe de ventas del último clasificado en 2013 _1085632,65_
+
+13. Escribir una vista indexada denominada `vistaDimProductoReducida` que almacene una forma resumida de la dimensión Producto con la clave del producto, nombre, subcategoría y categoría del producto, todos ellos en español.
+
+14. Escribir una vista indexada denominada `vistaVentasInternetAlemania` que almacene la suma de ventas y costes realizadas en Alemania como país del territorio en el que se realizan las ventas. Las ventas y costes de la vista estarán agrupados por clave de producto, clave de fecha de pedido (`orderDateKey`) y clave de cliente. Además de mostrar los atributos por los que se agrupa, también se quiere mostrar las ventas y costes
+
+15. Escribir una consulta SQL que a partir de las vistas indexadas creadas en los ejercicios 13 y 14 obtenga el TOP 5 de ventas y costes por subcategoría y categoría.
+• ¿Cuál es la subcategoría con mayor importe en ventas? _Bicicleta de carretera_
+• ¿Qué importe en ventas tiene el resultado que aparece en tercera posición? _424370,52_
+• ¿Cuántas veces aparece la categoría Bicicleta en el TOP 5 de ventas? _3_
