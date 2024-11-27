@@ -1,0 +1,9 @@
+CREATE MATERIALIZED VIEW VM_VENTAS_ALMACEN
+BUILD DEFERRED
+REFRESH COMPLETE ON DEMAND
+ENABLE QUERY REWRITE
+AS
+SELECT s.name, SUM(dollar_sales) AS sum_dollar_sales
+FROM store s, salesfact f
+WHERE f.store_key = s.store_key
+GROUP BY s.name;

@@ -1,0 +1,11 @@
+-- Log de vista materializada con clave primaria --
+CREATE MATERIALIZED VIEW LOG ON Channels
+  WITH PRIMARY KEY
+  INCLUDING NEW VALUES;
+  
+CREATE MATERIALIZED VIEW VMCanales
+  REFRESH FAST
+  AS
+  SELECT * 
+  FROM CHANNELS
+
