@@ -136,7 +136,7 @@ Profesores:
 ### Tema 4. Consultas en Data Warehousing
 
 * https://docs.google.com/presentation/d/1zvfzIr6FJz_37NH3r0MznUtry7Co2un4yBFx0UkCGFs/edit?usp=sharing[Consultas en Data Warehousing, window=_blank]
-* link:Docs/Tema04/ConsutasSQL[ConsultasSQL, window=_blank]
+* https://github.com/ualmtorres/Asignatura-Almacenes-De-Datos/tree/gh-pages/Docs/Tema04/ConsultasSQL[Consultas SQL, window=_blank]
 * link:Docs/Tema04/Enlaces.html[Enlaces de interés - No disponible, window=_blank]
 
 ### Tema 5. Tendencias actuales
