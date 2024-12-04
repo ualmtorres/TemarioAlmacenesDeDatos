@@ -41,17 +41,17 @@ Uno de los conocimientos necesarios en entornos de data warehousing es el manejo
 
 Realizar las consultas siguientes sobre la base de datos AdventureWorksDW2019 tomando como fecha de las ventas la fecha en que se efectuó el pedido (_order date_)
 
-1. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por mes y país
+1. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por mes y país del cliente
 * ¿Cuántas filas develve la consulta? _72_
 * Importe de ventas en Julio en Estados Unidos _747463,912_
 * Importe de ventas en Enero en Australia _567222,3744_
 
-2. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por mes y país y que use `ROLLUP` para calcular además el importe de ventas por mes y el total general
+2. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por mes y país del cliente y que use `ROLLUP` para calcular además el importe de ventas por mes y el total general
 * ¿Cuántas filas develve la consulta? _85_
 * Importe de ventas en Abril _1948432,2303_
 * Importe de ventas total _29358677,2207_
 
-3. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por país y mes, y que use `ROLLUP` para calcular además el importe de ventas por país y el total general
+3. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por país del cliente y mes, y que use `ROLLUP` para calcular además el importe de ventas por país y el total general
 * ¿Cuántas filas develve la consulta? _79_
 * Importe de ventas en Alemania _2894312,3382_
 * Importe de ventas total _29358677,2207_
@@ -61,14 +61,14 @@ Realizar las consultas siguientes sobre la base de datos AdventureWorksDW2019 to
 * Importe de ventas en Reino Unido _3391712,2109_
 * Importe de ventas total _29358677,2207_
 
-5. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por país y mes y que use `CUBE` para calcular además el importe de todos los subtotales y el total general
+5. Escribir una consulta SQL que devuelva el importe de ventas realizadas en Internet por país del cliente y mes y que use `CUBE` para calcular además el importe de todos los subtotales y el total general
 * ¿Cuántas filas develve la consulta? _91_
 * Importe de ventas en Canadá en el mes de Abril _84216,0113_
 * Importe de ventas en Septiembre _2536756,6378_
 * Importe de ventas en Francia _2644017,7143_
 * Importe de ventas total _29358677,2207_
 
-6. Escribir una consulta SQL que devuelva sólo los subtotales de ventas realizadas en Internet por país y mes, así como el el total general
+6. Escribir una consulta SQL que devuelva sólo los subtotales de ventas realizadas en Internet por país del cliente y mes, así como el el total general
 * ¿Cuántas filas develve la consulta? _19_
 * Importe de ventas en Agosto _2689540,8765_
 * Importe de ventas en Canadá _1977844,8621_
@@ -78,7 +78,7 @@ Realizar las consultas siguientes sobre la base de datos AdventureWorksDW2019 to
 * Importe de ventas en Australia _9061000,5844_
 * Importe de ventas total _29358677,2207_
 
-8. Escribir una consulta SQL que use una función de ventana para calcular las ventas por producto restringidas a clientes de nacionalidad francesa vendidos en Diciembre del 2001. La consulta debe mostrar el nombre del producto, nombre y apellidos del cliente, la fecha, importe de ventas e importe de ventas por producto. Ordenar los resultados por nombre de producto y apellidos del cliente. A partir de lo resultados obtenidos:
+8. Escribir una consulta SQL que use una función de ventana para calcular las ventas por producto restringidas a clientes de nacionalidad francesa vendidos en Diciembre del 2013. La consulta debe mostrar el nombre del producto, nombre y apellidos del cliente, la fecha, importe de ventas e importe de ventas por producto. Ordenar los resultados por nombre de producto y apellidos del cliente. A partir de lo resultados obtenidos:
 * ¿Qué importe se ha vendido del producto _AWC Logo Cap_? _197,78_
 * ¿Se ha vendido el producto _AWC Logo Cap_ a Kyle Carter? No
 * ¿Cuánto gastó _Sabrina Blanco_ en el producto _AWC Logo Cap_ el 04 de diciembre de 2013? _8,99_
