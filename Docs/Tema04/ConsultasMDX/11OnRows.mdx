@@ -1,0 +1,4 @@
+SELECT [Measures].[Reseller Sales-Sales Amount] ON COLUMNS,
+[Product].[Product Line] ON ROWS
+FROM [Analysis Services Tutorial]
+WHERE [Order Date].[Calendar Year].&[2013]

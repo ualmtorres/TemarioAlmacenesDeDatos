@@ -1,0 +1,158 @@
+////
+NO CAMBIAR!!
+Codificación, idioma, tabla de contenidos, tipo de documento
+////
+:encoding: utf-8
+:lang: es
+:toc: right
+:toc-title: Tabla de contenidos
+:doctype: book
+:linkattrs:
+:icons: font
+
+
+////
+Nombre y título del trabajo
+////
+# Consultas MDX para análisis de datos - Almacenes de datos
+Grado en Ingeniería Informática. Universidad de Almería
+Manuel Torres <mtorres@ual.es>
+
+
+image::../../../images/di.png[]
+
+// NO CAMBIAR!! (Entrar en modo no numerado de apartados)
+:numbered!: 
+
+## Resumen
+
+Uno de los conocimientos necesarios en entornos de data warehousing es el manejo de consultas MDX para análisis de datos. En este actividad se proponen una serie de ejercicios que permiten practicar con las consultas MDX para la realización de análisis OLAP en cubos de datos. Entre los temas tratados se encuentran la realización de consultas MDX básicas, el uso de funciones de agregación y de filtrado, la realización de consultas con múltiples dimensiones y la creación de consultas con funciones de cálculo. Se practica con la combinación de dimensiones mediante `CROSSJOIN`, se eliminan filas con valores nulos mediante `NON EMPTY`, se ordenan los resultados mediante `ORDER`, se practica el uso de `FILTER` para la selección de elementos, se usa el `TOPCOUNT` para la selección de un número determinado de elementos, se practica con la creación de miembros calculados mediante `WITH MEMBER` y se realizan operaciones de conjuntos mediante `INTERSECT` y `EXCEPT`.
+
+.Objetivos
+
+* Realizar consultas MDX básicas en cubos de datos.
+* Practicar con funciones de agregación y de filtrado en consultas MDX.
+* Crear consultas MDX con múltiples dimensiones.
+* Usar funciones de cálculo en consultas MDX.
+* Practicar con la combinación de dimensiones mediante `CROSSJOIN`.
+* Eliminar filas con valores nulos mediante `NON EMPTY`.
+* Ordenar los resultados mediante `ORDER`.
+* Usar `FILTER` para la selección de elementos.
+* Usar `TOPCOUNT` para la selección de un número determinado de elementos.
+* Crear miembros calculados mediante `WITH MEMBER`.
+* Realizar operaciones de conjuntos mediante `INTERSECT` y `EXCEPT`.
+
+:numbered:
+
+## Descripción de la actividad
+
+Realizar las consultas siguientes sobre la base de datos AdventureWorksDW2019 tomando como fecha de las ventas la fecha en que se efectuó el pedido (_order date_)
+
+1. La consulta siguiente devuelve el valor de todas las medidas del cubo `Analysis Services Tutorial`. Escribir una consulta MDX que devuelva el valor de la medida predeterminada del cubo. ¿Cuál es la medida predeterminada y su valor? _Internet Sales-Order Quantity 60.398_
++
+[source,mdx]
+----
+SELECT [Measures].Members ON COLUMNS
+FROM [Analysis Services Tutorial]
+----
+
+2. Escribir una consulta MDX que devuelva en columnas para las ventas de Internet el total de ventas, total de costes de producto y el total de impuestos. Responder a las preguntas siguientes:
+* Total de ventas _29.358.677,22 €_
+* Total de costes de producto _17.277.793,58 €_
+* Total de impuestos _2.348.694,23 €_
+
+3. Escribir una consulta MDX que devuelva en columnas para las ventas de Internet el total de ventas, total de costes de producto y el total de impuestos, y que devuelva en filas las regiones territoriales de las ventas. Responder a las preguntas siguientes:
+* Total de ventas en Australia _9.061.000,58 €_
+* Total de costes de producto en Francia _1.557.752,99 €_
+* Total de impuestos en Canadá _158.227,59 €_
+
+4. Escribir una consulta MDX que devuelva en columnas para las ventas de Internet el total de ventas, total de costes de producto y el total de impuestos, y que devuelva en filas las regiones territoriales de las ventas realizadas en 2013. Responder a las preguntas siguientes:
+
+* Total de ventas en Australia _4.339.443,38 €_
+* Total de costes de producto en Francia _925.745,06 €_
+* Total de impuestos en Canadá _86.850,61 €_
+
+5. Escribir una consulta MDX que devuelva en columnas para las ventas de Internet el total de ventas, total de costes de producto y el total de impuestos, y que devuelva en filas las regiones territoriales de las ventas realizadas en 2013 en las que la promoción aplicada sea de tipo `New Product`. Responder a las preguntas siguientes:
+
+* Total de ventas en Australia _1.484,70 €_
+* Total de costes de producto en Francia _5.271,10 €_
+* Total de impuestos en Canadá _809,73 €_
+
+6. Escribir una consulta MDX que devuelva las ventas de Internet en 2013 y distribuidas por regiones territoriales de venta en las columnas y tipos de promoción en filas. Responder a las preguntas siguientes:
+
+* Total de ventas en Australia realizadas con la promoción `No Discount` _4.041.216,22 €_
+* Total de ventas en Francia realizadas con la promoción `New Product` _8.479,89 €_
+* Total de ventas en Canadá realizadas con la promoción `Volume Discount` _63.527,63 €_
+
+7. Escribir una consulta MDX que devuelva las ventas de Internet en 2013 y distribuidas por nivel educativo de los clientes columnas y línea de producto en filas. Responder a las preguntas siguientes:
+
+* Total de ventas a clientes con nivel educativo `Graduate Degree` en la línea de producto `Accessory` _100.625,27 €_
+* Total de ventas a clientes con nivel educativo `Partial College` en la línea de producto `Road` _1.378.242,38 €_
+* Total de ventas a clientes con nivel educativo `Bachelors` en la línea de producto `Mountain` _2.222.852,95 €_
+
+8. Escribir una consulta MDX que devuelva las ventas de Internet en 2013 y distribuidas por clase de producto en columnas y trimestre en filas. Responder a las preguntas siguientes:
+
+* Total de ventas de productos de clase `H` en el primer trimestre _1.780.227,47 €_
+* Total de ventas de productos de clase `M` en el segundo trimestre _861.166,85 €_
+* Total de ventas de productos de clase `L` en el tercer trimestre _380.527,61 €_
+
+9. Escribir una consulta MDX que devuelva las ventas de Internet en 2013 realizadas sin promoción (tipo de promoción `No Discount`) y distribuidas por clase de producto en columnas y trimestre en filas. Responder a las preguntas siguientes:
+
+* Total de ventas de productos de clase `H` en el primer trimestre _1.538.888,34 €_
+* Total de ventas de productos de clase `M` en el segundo trimestre _820.061,01 €_
+* Total de ventas de productos de clase `L` en el tercer trimestre _361.089,06 €_
+
+10. Reescribir la consulta anterior para que además de mostrar en filas los trimestres, también muestre el total en una fila. Responder a las preguntas siguientes:
+
+* Total de ventas de todos los productos en todos los trimestres _15.122.745,28 €_
+* Total de ventas de productos de clase `H` _9.442.594,34 €_
+* Total de ventas de productos de clase `M` _3.480.927,54 €_
+
+11. Escribir una consulta MDX que devuelva las ventas de Internet y muestre las clases de producto en columnas y en filas muestre la combinación de los años con los tipos de promoción. Responder a las preguntas siguientes:
+
+* Ventas en 2010 de productos de clase `H` con la promoción `No Discount`  _42.022,84 €_
+* Ventas en 2012 de productos de clase `L` con la promoción `Volume Discount` _539,99 €_
+* Ventas en 2005 de productos de clase `M` con la promoción `New Product` _NULL_
+
+12. A partir de la consulta anterior, eliminar la presentación de filas únicamente con valores nulos. ¿Cuántas combinaciones devuelve esta consulta? (Hacer clic sobre una celda del último registro devuelto y ver al pie de la ventana qué valor muestra Línea) _19_
+
+13. Escribir una consulta MDX que devuelva las ventas de Internet mostrando en columnas los años y en filas los modelos de producto. Los resultados se mostrarán ordenados en orden descendente de forma absoluta por el valor de ventas de Internet y no se mostrarán filas con todos los valores nulos. Responder a las preguntas siguientes:
+
+* Fila en la que aparece el modelo de producto `Road-250` _3_
+* Tipo de modelo de producto que aparece en primer lugar _Mountain-200_
+* En la segunda fila y columna `CY 2010` aparece el valor `25.047,89 €`. ¿Qué modelo de producto es? _Road-150_
+
+14. Escribir una consulta MDX que devuelva el Top 3 de ventas de Internet de modelos de producto en 2011. ¿Qué producto aparece en la tercera posición y con qué valor? _Road-650 - 182.017,21 €_
+
+15. Escribir una consulta MDX que devuelva los modelos de producto vendidos en Internet en 2013 con un importede ventas superior a 1.000.000. Responder a las preguntas siguientes:
+
+* ¿Cuántos modelos de producto aparecen en la consulta? _2_
+* ¿Qué modelo de producto ha vendido más en 2013? _Road-150_
+* ¿Qué modelo de producto ha registrado un importe de ventas de `1.324.146,09 €` en 2013? _Mountain-100_
+
+16. Escribir una consulta MDX que devuelva los nombres de producto vendidos	que han estado en el Top 50 de ventas de Internet en los años 2012 y 2013. Responder a las preguntas siguientes:
+
+* ¿Qué producto aparece en la posición 1 del ranking? _Mountain-200 Black, 46_
+* ¿Qué producto aparece en la última posición del ranking? _Road-550-W Yellow, 48_
+* ¿Qué importe de ventas ha registrado el producto `Road-250 Red, 58`? _327.408,90 €_
+
+17. Escibir una consulta que devuelva las ventas realizadas por vendedor (`Reseller sales`) que muestre en columnas los años y en filas el Top 5 de productos vendidas limitado a aquellos productos que hayan registrado ventas (`Reseller Sales-Sales Amount] > 0`). Responder a las preguntas siguientes:
+
+* ¿Cuál es el total de ventas general? _80.450.596,98 €_
+* Cuál es el total de ventas del producto `Road-350-W Yellow, 48` en 2013? _1.252.251,66 €_
+* ¿Cuánto suman las ventas de producto en 2011? __18.192.802,71 €_
+
+18. Escribir una consulta MDX que devuelva las ventas realizadas por vendedor (`Reseller sales``) en la línea de producto `Accessory`. En las filas se mostrarán las ventas realizadas por los vendedores (`Reseller`) de tipo de negocio (`Business Type`) `Warehouse` y `Specialty Bike Shop`, así como un nuevo valor creado para la consulta denominado `Total` y que muestre el total de ventas de los vendedores para los dos tipos de negocio anteriores. (Sugerencia: `Total` sería considerado como un nuevo miembro de `Business Type`). Cuál es el total de ventas de los dos tipos de negocio? _1.371.661,58 €_
+
+19. Escribir una conswulta MDX a partir de la consulta anterior que en las columnas muestre las ventas de los años 2012 y 2013. y añada una columna denominada `Crecimiento`. Esta nueva columna mostrará el crecimiento de 2013 respecto a 2012 expresado en tanto por ciento. (Sugerencia: Dividir las ventas de 2013 entre las de 2012 y expresar el resultado en tanto por cien y no en tanto por uno). Responder a las preguntas siguientes:
+
+* ¿Cuál es el crecimiento global de las ventas de 2013 respecto a 2012? _19.09%_
+* ¿Cuál es el crecimiento de las ventas de `Mountain-200 Black, 38` de 2013 respecto a 2012? _1714,70%_
+* ¿Cuál es el crecimiento de las ventas de `Mountain-200 Black, 38` de 2013 respecto a 2012? _-100%_
+
+20. Escribir una consulta MDX que devuelva las ventas realizadas por vendedor (`Reseller sales`) y que muestre los nombres de producto que formaron parte del Top 5 en ventas en 2012 pero no fueron parte del Top 5 en 2013. Responder a las preguntas siguientes:
+
+* ¿Cuántos productos aparecen como resultado de la consulta? _4_
+* ¿Cuál es el producto que aparece en la primera posición y con qué valor? _Mountain-200 Black, 38	- 1.471.078,72 €_
+* ¿Cuál es el producto que aparece en la última posición y con qué valor? _Mountain-200 Silver, 38	- 1.172.269,42 €_
+

@@ -1,0 +1,6 @@
+WITH MEMBER
+[Measures].[Product Line Sales Average] AS
+AVG([Product].[Product Line].Members, [Measures].[Reseller Sales-Sales Amount])
+SELECT {[Measures].[Reseller Sales-Sales Amount], [Measures].[Product Line Sales Average]} ON COLUMNS,
+[Product].[Product Line].AllMembers ON ROWS
+FROM [Analysis Services Tutorial]

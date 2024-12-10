@@ -1,0 +1,8 @@
+SELECT [Measures].[Reseller Sales-Sales Amount] ON COLUMNS,
+NON EMPTY(
+[Order Date].[Month Name].Members,
+[Employee].[Employees].Members
+)
+ON ROWS
+FROM [Analysis Services Tutorial]
+WHERE [Order Date].[Calendar Year].&[2012]

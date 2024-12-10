@@ -1,0 +1,7 @@
+WITH MEMBER
+[Product].[Product Line].[Accesory and Components] AS
+[Product].[Product Line].[Accesory] + [Product].[Product Line].[Components]
+SELECT {[Order Date].[Calendar Year].&[2012], [Order Date].[Calendar Year].&[2011]} ON COLUMNS,
+[Product].[Product Line].AllMembers ON ROWS
+FROM [Analysis Services Tutorial]
+WHERE [Measures].[Reseller Sales-Sales Amount]

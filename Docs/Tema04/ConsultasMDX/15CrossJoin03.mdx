@@ -1,0 +1,16 @@
+SELECT {
+([Geography].[State-Province].&[California],[Order Date].[Calendar Year].&[2013]),
+([Geography].[State-Province].&[Montana],[Order Date].[Calendar Year].&[2013])
+} ON COLUMNS,
+CROSSJOIN (
+{
+[Product].[Product Model Lines].[Product Line].&[M],
+[Product].[Product Model Lines].[Product Line].&[R],
+[Product].[Product Model Lines].[Product Line].&[T]
+},
+{
+[Measures].[Reseller Sales-Sales Amount],
+[Measures].[Reseller Sales-Order Quantity]
+}
+) ON ROWS
+FROM [Analysis Services Tutorial]

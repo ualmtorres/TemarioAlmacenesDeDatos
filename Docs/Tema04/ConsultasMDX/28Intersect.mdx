@@ -1,0 +1,14 @@
+SELECT [Measures].[Reseller Sales-Sales Amount] ON COLUMNS,
+INTERSECT (
+	TOPCOUNT(
+	[Product].[Product Model Lines].[Product Line].Members,
+	3,
+	([Measures].[Reseller Sales-Sales Amount], [Order Date].[Calendar Year].&[2012])
+	),
+	TOPCOUNT(
+	[Product].[Product Model Lines].[Product Line].Members,
+	3,
+	([Measures].[Reseller Sales-Sales Amount], [Order Date].[Calendar Year].&[2009])
+	)
+) ON ROWS
+FROM [Analysis Services Tutorial]

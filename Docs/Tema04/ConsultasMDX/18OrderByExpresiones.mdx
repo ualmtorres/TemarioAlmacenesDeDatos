@@ -1,0 +1,7 @@
+SELECT {[Measures].[Reseller Sales-Sales Amount], [Measures].[Internet Sales-Sales Amount]} ON COLUMNS,
+ORDER(
+[Product].[Product Line].Members, 
+[Measures].[Reseller Sales-Sales Amount] + [Measures].[Internet Sales-Sales Amount] , 
+DESC
+) ON ROWS
+FROM [Analysis Services Tutorial]

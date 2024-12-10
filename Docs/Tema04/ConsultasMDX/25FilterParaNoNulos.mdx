@@ -1,0 +1,12 @@
+SELECT 
+    [Measures].[Reseller Sales-Sales Amount] ON COLUMNS,
+    BOTTOMCOUNT(
+        FILTER(
+            [Product].[Product Name].Members,
+            NOT IsEmpty([Measures].[Reseller Sales-Sales Amount])
+        ),
+        10,
+        [Measures].[Reseller Sales-Sales Amount]
+    ) ON ROWS
+FROM [Analysis Services Tutorial]
+

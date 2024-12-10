@@ -1,0 +1,8 @@
+SELECT 
+    {[Measures].[Reseller Sales-Sales Amount], [Measures].[Internet Sales-Sales Amount]} ON COLUMNS,
+    FILTER(
+        [Product].[Product Name].Members,
+        [Measures].[Reseller Sales-Sales Amount] < [Measures].[Internet Sales-Sales Amount]
+	) ON ROWS
+FROM [Analysis Services Tutorial]
+
