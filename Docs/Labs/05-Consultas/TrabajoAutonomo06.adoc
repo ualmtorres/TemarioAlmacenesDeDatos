@@ -72,7 +72,7 @@ FROM [Analysis Services Tutorial]
 * Total de costes de producto en Francia _925.745,06 €_
 * Total de impuestos en Canadá _86.850,61 €_
 
-5. Escribir una consulta MDX que devuelva en columnas para las ventas de Internet el total de ventas, total de costes de producto y el total de impuestos, y que devuelva en filas las regiones territoriales de las ventas realizadas en 2013 en las que la promoción aplicada sea de tipo `New Product`. Responder a las preguntas siguientes:
+5. Escribir una consulta MDX que devuelva en columnas para las ventas de Internet el total de ventas, total de costes de producto y el total de impuestos, y que devuelva en filas las regiones territoriales de las ventas realizadas en 2013 en las que la promoción aplicada, siguiendo la jerarquía `Promotions`, sea de tipo `New Product`. Responder a las preguntas siguientes:
 
 * Total de ventas en Australia _1.484,70 €_
 * Total de costes de producto en Francia _5.271,10 €_
