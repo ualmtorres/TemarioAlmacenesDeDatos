@@ -124,11 +124,11 @@ FROM [Analysis Services Tutorial]
 
 14. Escribir una consulta MDX que devuelva el Top 3 de ventas de Internet de modelos de producto en 2011. ¿Qué producto aparece en la tercera posición y con qué valor? _Road-650 - 182.017,21 €_
 
-15. Escribir una consulta MDX que devuelva los modelos de producto vendidos en Internet en 2013 con un importede ventas superior a 1.000.000. Responder a las preguntas siguientes:
+15. Escribir una consulta MDX que devuelva los modelos de producto vendidos en Internet en 2011 con un importede ventas superior a 1.000.000. Responder a las preguntas siguientes:
 
 * ¿Cuántos modelos de producto aparecen en la consulta? _2_
-* ¿Qué modelo de producto ha vendido más en 2013? _Road-150_
-* ¿Qué modelo de producto ha registrado un importe de ventas de `1.324.146,09 €` en 2013? _Mountain-100_
+* ¿Qué modelo de producto ha vendido más en 2011? _Road-150_
+* ¿Qué modelo de producto ha registrado un importe de ventas de `1.324.146,09 €` en 2011? _Mountain-100_
 
 16. Escribir una consulta MDX que devuelva los nombres de producto vendidos	que han estado en el Top 50 de ventas de Internet en los años 2012 y 2013. Responder a las preguntas siguientes:
 
