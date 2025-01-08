@@ -174,3 +174,12 @@ Puedes profundizar en contenidos de la asignatura a través de estos recursos:
 * link:https://learn.microsoft.com/en-us/fabric/data-warehouse/[Data warehousing documentation in Microsoft Fabric, windows=_blank]
 * link:https://learn.microsoft.com/en-us/power-bi/[Power BI documentation, windows=_blank]
 ****
+
+## Notas de la asignatura generadas por NotebookLM
+
+https://notebooklm.google/[NotebookLM] es una herramienta de Google para el procesamiento de lenguaje natural que puede ser utilizado para ayudar a entender la información relevante de un texto. Entre las fuentes de información procesables por NotebookLM se encuentran URLs, documentos en Google Drive, archivos PDF, videos de YouTube, y demás. El enlace siguiente muestra el link:Docs/Notas/index.html[resumen de los contenidos de la asignatura generados por Google NotebookLM] a partir del contenido del grupo docente de la asignatura,. 
+
+[CAUTION]
+====
+**En ningún caso, este resumen sustituye al contenido de la asignatura, sino que debe ser entendido como un complemento para facilitar su estudio.**
+====
